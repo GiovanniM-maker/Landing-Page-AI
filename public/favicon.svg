@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+  <rect width="64" height="64" rx="12" fill="#0d59f2"/>
+  <path d="M32 14L50 32L32 50L14 32L32 14Z" fill="white"/>
+</svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="none">
+  <rect width="32" height="32" rx="6" fill="#1B2B4B"/>
+  <text x="16" y="22" text-anchor="middle" fill="#FAFAF8" font-family="system-ui" font-size="14" font-weight="700">A</text>
+</svg>

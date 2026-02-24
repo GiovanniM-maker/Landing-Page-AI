@@ -1,0 +1,1404 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Product Enrichment AI – Auiki</title>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Nunito:wght@700;800&display=swap" rel="stylesheet">
+  <style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --bg: #0A0A0A;
+  --bg-raised: #141414;
+  --bg-card: #1A1A1A;
+  --bg-card-hover: #202020;
+  --border: rgba(255,255,255,0.08);
+  --border-strong: rgba(255,255,255,0.14);
+  --coral: #F36A63;
+  --coral-dim: rgba(243,106,99,0.12);
+  --coral-glow: rgba(243,106,99,0.08);
+  --white: #F5F5F7;
+  --gray-100: #E5E5E7;
+  --gray-300: #A1A1A6;
+  --gray-500: #6E6E73;
+  --gray-700: #3A3A3C;
+  --green: #34C759;
+  --green-dim: rgba(52,199,89,0.12);
+  --red: #FF453A;
+  --red-dim: rgba(255,69,58,0.1);
+  --font: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--font);
+  background: var(--bg);
+  color: var(--white);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ── NAV ── */
+.nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  padding: 18px 40px;
+  display: flex; align-items: center; justify-content: space-between;
+  background: #000000;
+  border-bottom: 1px solid var(--border);
+}
+.nav-logo {
+  display: flex;
+  align-items: center;
+}
+.nav-logo-img {
+  height: 28px;
+  width: auto;
+  display: block;
+}
+.nav-cta {
+  padding: 10px 26px;
+  background: transparent; color: var(--white);
+  font-family: var(--font); font-size: 13px; font-weight: 600;
+  border: 1px solid var(--border-strong); border-radius: 100px;
+  cursor: pointer; transition: all 0.25s;
+  text-decoration: none; letter-spacing: 0.02em;
+}
+.nav-cta:hover { background: var(--white); color: var(--bg); }
+.nav-ctas {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.nav-ctas .nav-cta {
+  padding: 8px 18px;
+  font-size: 12px;
+}
+.nav-cta-light {
+  background: #fff !important;
+  color: #000 !important;
+  border-color: #fff !important;
+}
+.nav-cta-light:hover {
+  background: rgba(255,255,255,0.9) !important;
+  color: #000 !important;
+}
+.nav-cta-red {
+  background: var(--coral) !important;
+  color: #fff !important;
+  border-color: var(--coral) !important;
+}
+.nav-cta-red:hover {
+  filter: brightness(1.1);
+  color: #fff !important;
+}
+
+/* ── CONTAINER ── */
+.container { max-width: 1100px; margin: 0 auto; padding: 0 32px; }
+section { padding: 100px 0; }
+
+/* ── KICKER ── */
+.kicker {
+  font-size: 11px; font-weight: 700;
+  letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--coral); margin-bottom: 20px;
+}
+
+/* ── HEADINGS ── */
+h1, h2, h3 { font-weight: 600; letter-spacing: -0.025em; }
+h2 { font-size: clamp(28px, 3.5vw, 42px); line-height: 1.15; margin-bottom: 16px; }
+.subtitle {
+  font-size: 17px; line-height: 1.7; color: var(--gray-300);
+  max-width: 540px;
+}
+
+/* ── HERO ── */
+.hero {
+  padding-top: 180px; padding-bottom: 100px;
+  position: relative; overflow: hidden;
+}
+.hero::after {
+  content: '';
+  position: absolute; top: 80px; left: 50%; transform: translateX(-50%);
+  width: 700px; height: 500px;
+  background: radial-gradient(ellipse, var(--coral-glow) 0%, transparent 65%);
+  pointer-events: none;
+}
+.hero-inner {
+  display: grid; grid-template-columns: 1fr 360px;
+  gap: 48px; align-items: center;
+}
+.hero-content { position: relative; z-index: 1; }
+.hero-visual {
+  position: relative; z-index: 1;
+}
+.hero-visual img {
+  width: 100%; height: auto; display: block;
+  filter: drop-shadow(0 20px 40px rgba(0,0,0,0.3));
+  animation: heroFloat 5s ease-in-out infinite;
+}
+@keyframes heroFloat {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-14px) rotate(1deg); }
+}
+.hero h1 {
+  font-size: clamp(40px, 5.5vw, 64px);
+  line-height: 1.08;
+  max-width: 780px;
+  margin-bottom: 24px;
+}
+.hero h1 em {
+  font-style: italic; color: var(--coral);
+}
+.hero .subtitle { margin-bottom: 48px; }
+.hero-ctas {
+  display: flex; gap: 16px; flex-wrap: wrap;
+}
+.btn-coral {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 15px 34px;
+  background: var(--coral); color: #fff;
+  font-family: var(--font); font-size: 14px; font-weight: 600;
+  border: none; border-radius: 100px;
+  cursor: pointer; transition: all 0.25s;
+  text-decoration: none; letter-spacing: 0.01em;
+}
+.btn-coral:hover { filter: brightness(1.1); transform: translateY(-1px); }
+.btn-outline {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 15px 34px;
+  background: transparent; color: var(--white);
+  font-family: var(--font); font-size: 14px; font-weight: 600;
+  border: 1px solid var(--border-strong); border-radius: 100px;
+  cursor: pointer; transition: all 0.25s;
+  text-decoration: none;
+}
+.btn-outline:hover { background: rgba(255,255,255,0.06); }
+
+.hero-stats {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  gap: 0; margin-top: 64px;
+  padding-top: 40px; border-top: 1px solid var(--border);
+}
+.hero-stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+.hero-stat .num {
+  font-size: 50px; font-weight: 700; letter-spacing: -0.03em;
+}
+.hero-stat .label {
+  font-size: 15px; color: var(--gray-500); margin-top: 6px;
+}
+
+/* ── PROBLEM ── */
+.problem {
+  background: var(--bg-raised);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+.problem-grid-2x2 {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 16px; margin-top: 32px;
+}
+.p-card {
+  display: flex; gap: 16px; align-items: flex-start;
+  padding: 22px 24px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  transition: all 0.25s;
+}
+.p-card:hover { border-color: var(--coral); background: var(--bg-card-hover); }
+.p-icon {
+  flex-shrink: 0; width: 38px; height: 38px;
+  display: flex; align-items: center; justify-content: center;
+  background: var(--red-dim); border-radius: 10px; font-size: 16px;
+}
+.p-card h4 { font-size: 15px; font-weight: 600; margin-bottom: 4px; }
+.p-card p { font-size: 13px; color: var(--gray-300); line-height: 1.55; }
+
+.cost-box {
+  margin-top: 32px;
+  padding: 28px 32px;
+  background: var(--red-dim);
+  border: 1px solid rgba(255,69,58,0.15);
+  border-radius: 12px;
+}
+.cost-box .cost-label {
+  font-size: 11px; font-weight: 700; color: var(--red);
+  text-transform: uppercase; letter-spacing: 0.1em;
+  margin-bottom: 8px;
+}
+.cost-box p { font-size: 14px; color: var(--gray-300); line-height: 1.6; }
+.cost-box strong { color: var(--white); }
+
+/* ── SOLUTION ── */
+.solution-pipeline {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  gap: 16px; margin-top: 48px;
+}
+.pipe-step {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 32px 24px;
+  position: relative;
+  transition: all 0.25s;
+}
+.pipe-step:hover { border-color: var(--coral); }
+.pipe-num {
+  font-size: 11px; font-weight: 700; color: var(--coral);
+  letter-spacing: 0.1em; text-transform: uppercase;
+  margin-bottom: 8px;
+}
+.pipe-icon {
+  width: 100%; height: auto; max-height: 200px; margin-bottom: 12px;
+  object-fit: contain;
+  display: block;
+}
+.pipe-step h4 { font-size: 16px; font-weight: 600; margin-bottom: 8px; }
+.pipe-step p { font-size: 13px; color: var(--gray-300); line-height: 1.55; }
+.pipe-arrow {
+  position: absolute; right: -12px; top: 50%;
+  transform: translateY(-50%);
+  width: 24px; height: 24px;
+  background: var(--bg); border: 1px solid var(--border);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 11px; color: var(--gray-500); z-index: 2;
+}
+.solution-note {
+  margin-top: 32px; text-align: center;
+  padding: 18px; border-radius: 10px;
+  border: 1px dashed var(--border);
+  font-size: 14px; color: var(--gray-300);
+}
+.solution-note strong { color: var(--white); }
+
+/* ── OUTCOMES ── */
+.outcomes {
+  background: var(--bg-raised);
+  border-top: 1px solid var(--border);
+}
+.outcomes-grid {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  gap: 16px; margin-top: 48px;
+}
+.o-card {
+  padding: 32px 20px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  text-align: center;
+  transition: all 0.25s;
+}
+.o-card:hover { border-color: var(--coral); transform: translateY(-3px); }
+.o-num {
+  font-size: 38px; font-weight: 700; letter-spacing: -0.03em;
+  color: var(--coral); margin-bottom: 8px;
+}
+.o-card h4 { font-size: 14px; font-weight: 600; margin-bottom: 8px; }
+.o-card p { font-size: 13px; color: var(--gray-300); line-height: 1.5; }
+
+.case {
+  margin-top: 48px;
+  padding: 40px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+}
+.case-top { margin-bottom: 32px; }
+.case-label {
+  font-size: 11px; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 0.1em; color: var(--coral); margin-bottom: 12px;
+}
+.case h4 { font-size: 22px; font-weight: 600; margin-bottom: 16px; line-height: 1.3; }
+.case-top > p { font-size: 14px; color: var(--gray-300); line-height: 1.65; }
+.case-metrics-row {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px;
+}
+.case-m {
+  padding: 20px; background: var(--bg-raised);
+  border-radius: 10px; text-align: center;
+}
+.case-m .val { font-size: 28px; font-weight: 700; color: var(--coral); }
+.case-m .desc { font-size: 12px; color: var(--coral); margin-top: 4px; font-weight: 600; }
+.case-m-detail { font-size: 12px; color: var(--gray-300); line-height: 1.5; margin-top: 8px; }
+
+/* ── SIMULATOR ── */
+.sim-section {
+  position: relative;
+  background: var(--bg-raised);
+  border-bottom: 1px solid var(--border);
+  overflow: hidden;
+}
+.sim-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  --color: #E1E1E1;
+  background-color: #F3F3F3;
+  background-image: linear-gradient(0deg, transparent 24%, var(--color) 25%, var(--color) 26%, transparent 27%, transparent 74%, var(--color) 75%, var(--color) 76%, transparent 77%, transparent),
+    linear-gradient(90deg, transparent 24%, var(--color) 25%, var(--color) 26%, transparent 27%, transparent 74%, var(--color) 75%, var(--color) 76%, transparent 77%, transparent);
+  background-size: 85px 85px;
+  mask-image: linear-gradient(to bottom, transparent 0%, black 12%, black 100%);
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 12%, black 100%);
+}
+.sim-carousel {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 16px; margin-top: 40px;
+}
+.sim-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  overflow: hidden; cursor: pointer;
+  transition: all 0.25s;
+}
+.sim-card:hover { transform: translateY(-3px); box-shadow: 0 16px 40px rgba(0,0,0,0.35); }
+.sim-card.is-selected { border-color: var(--coral); box-shadow: 0 0 0 1px var(--coral); }
+.sim-card.is-disabled { opacity: 0.3; pointer-events: none; filter: grayscale(1); }
+.sim-card-img {
+  position: relative; height: 220px; overflow: hidden; background: #fff;
+}
+.sim-card-img img { width: 100%; height: 100%; object-fit: contain; display: block; }
+.sim-img-back {
+  position: absolute; inset: 0; opacity: 0; transition: opacity 0.3s; background: #fff;
+}
+.sim-img-back img { width: 100%; height: 100%; object-fit: contain; }
+.sim-card:hover .sim-img-back { opacity: 1; }
+.sim-card-info { padding: 16px 18px; }
+.sim-card-name { font-size: 14px; font-weight: 600; margin: 0; }
+.sim-card-cat { font-size: 12px; color: var(--gray-500); margin: 4px 0 0; }
+
+/* Upload card */
+.sim-upload-zone {
+  display: flex; align-items: center; justify-content: center;
+  height: 220px;
+  background: var(--bg);
+  border: 2px dashed var(--border-strong);
+  transition: all 0.25s;
+}
+.sim-card-upload:hover .sim-upload-zone { border-color: var(--coral); }
+.sim-card-upload.has-files .sim-upload-zone { border-color: var(--green); background: var(--green-dim); }
+.sim-upload-inner {
+  display: flex; flex-direction: column; align-items: center; gap: 10px;
+  color: var(--gray-500); font-size: 13px; text-align: center; line-height: 1.4;
+}
+.sim-card-upload:hover .sim-upload-inner { color: var(--coral); }
+.sim-card-upload.has-files .sim-upload-inner { color: var(--green); }
+
+.sim-muted { font-size: 13px; color: var(--gray-500); margin-top: 12px; }
+.sim-error { font-size: 13px; color: var(--red); margin-top: 8px; }
+
+.sim-generate-btn {
+  display: inline-flex; align-items: center; gap: 10px;
+  margin-top: 32px; padding: 16px 40px;
+  background: var(--coral); color: #fff;
+  font-family: var(--font); font-size: 15px; font-weight: 600;
+  border: none; border-radius: 100px;
+  cursor: pointer; transition: all 0.25s;
+  letter-spacing: 0.01em;
+}
+.sim-generate-btn:hover { filter: brightness(1.1); transform: translateY(-1px); }
+
+/* Loader */
+.sim-loader-box {
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  min-height: 420px;
+  background: var(--bg-card); border: 1px solid var(--border); border-radius: 14px;
+}
+.sim-loader-ring {
+  position: relative; width: 56px; height: 56px; margin-bottom: 28px;
+}
+.sim-spinner {
+  position: absolute; inset: 0;
+  border: 2.5px solid var(--border);
+  border-top-color: var(--coral);
+  border-radius: 50%;
+  animation: spin 0.9s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+.sim-loader-title { font-size: 20px; font-weight: 600; margin-bottom: 10px; }
+.sim-loader-step { font-size: 14px; color: var(--gray-300); }
+
+/* Browser */
+.sim-browser {
+  background: var(--bg-card); border: 1px solid var(--border);
+  border-radius: 14px; overflow: hidden; margin-top: 40px;
+}
+.sim-browser-bar {
+  display: flex; align-items: center; gap: 16px;
+  padding: 14px 20px;
+  background: #1E1E1E; border-bottom: 1px solid var(--border);
+}
+.sim-dots { display: flex; gap: 7px; }
+.sim-dots span { width: 11px; height: 11px; border-radius: 50%; }
+.sim-url {
+  flex: 1; display: flex; align-items: center; gap: 8px;
+  padding: 7px 14px;
+  background: var(--bg); border-radius: 8px;
+  font-size: 12px; color: var(--gray-500);
+}
+.sim-browser-body { min-height: 560px; background: #fff; position: relative; }
+.sim-browser-body iframe { width: 100%; height: 560px; border: none; display: block; }
+.sim-fallback {
+  padding: 32px; color: var(--gray-300); font-size: 14px;
+  background: var(--bg); min-height: 560px;
+}
+.sim-fallback pre {
+  margin-top: 16px; padding: 16px;
+  background: var(--bg-card); border-radius: 10px;
+  font-size: 12px; overflow: auto; white-space: pre-wrap;
+  word-break: break-all; max-height: 320px; color: var(--gray-500);
+}
+
+/* Lead form */
+.sim-lead {
+  margin-top: 28px; padding: 36px 40px;
+  background: var(--bg-card); border: 1px solid var(--border);
+  border-radius: 14px; text-align: center;
+}
+.sim-lead-lock {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 44px; height: 44px;
+  background: var(--coral-dim); border-radius: 12px;
+  color: var(--coral); margin-bottom: 14px;
+}
+.sim-lead-title { font-size: 22px; font-weight: 600; margin-bottom: 8px; }
+.sim-lead-sub { font-size: 14px; color: var(--gray-300); max-width: 460px; margin: 0 auto 24px; line-height: 1.6; }
+.sim-lead .final-form { margin-top: 0; }
+.sim-lead .form-row input, .sim-lead .form-row select { background: var(--bg); }
+.sim-lead-fields { max-width: 400px; margin: 0 auto; display: flex; flex-direction: column; gap: 10px; }
+.sim-lead-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.sim-input {
+  padding: 13px 16px;
+  background: var(--bg); border: 1px solid var(--border);
+  border-radius: 10px; color: var(--white);
+  font-family: var(--font); font-size: 14px; transition: border-color 0.2s;
+}
+.sim-input::placeholder { color: var(--gray-500); }
+.sim-input:focus { outline: none; border-color: var(--coral); }
+.sim-submit-btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  padding: 14px 32px; margin-top: 6px;
+  background: var(--coral); color: #fff;
+  font-family: var(--font); font-size: 14px; font-weight: 600;
+  border: none; border-radius: 100px; cursor: pointer; transition: all 0.25s;
+}
+.sim-submit-btn:hover { filter: brightness(1.1); }
+.sim-lead-note { font-size: 12px; color: var(--gray-500); margin-top: 12px; }
+.sim-unlocked-msg {
+  display: flex; align-items: center; justify-content: center; gap: 12px;
+  margin-top: 24px; padding: 20px;
+  background: var(--green-dim); border: 1px solid rgba(52,199,89,0.2);
+  border-radius: 12px; font-size: 15px; font-weight: 500; color: var(--green);
+}
+.sim-reset-btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  margin-top: 20px; padding: 10px 22px;
+  background: transparent; color: var(--gray-500);
+  font-family: var(--font); font-size: 13px; font-weight: 500;
+  border: 1px solid var(--border); border-radius: 100px;
+  cursor: pointer; transition: all 0.25s;
+}
+.sim-reset-btn:hover { color: var(--white); border-color: var(--border-strong); }
+
+/* ── ROI ── */
+#roi {
+  position: relative;
+  overflow: hidden;
+}
+#roi::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  --color: #252525;
+  background-color: #000000;
+  background-image: linear-gradient(0deg, transparent 24%, var(--color) 25%, var(--color) 26%, transparent 27%, transparent 74%, var(--color) 75%, var(--color) 76%, transparent 77%, transparent),
+    linear-gradient(90deg, transparent 24%, var(--color) 25%, var(--color) 26%, transparent 27%, transparent 74%, var(--color) 75%, var(--color) 76%, transparent 77%, transparent);
+  background-size: 85px 85px;
+  mask-image: linear-gradient(to bottom, black 0%, black 88%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to bottom, black 0%, black 88%, transparent 100%);
+}
+#roi .container { position: relative; z-index: 1; }
+.roi-inputs {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 16px; margin-top: 40px;
+}
+.roi-field label {
+  display: block; font-size: 13px; font-weight: 600;
+  color: var(--gray-300); margin-bottom: 8px;
+}
+.roi-field input {
+  width: 100%; padding: 14px 16px;
+  background: var(--bg-card); border: 1px solid var(--border);
+  border-radius: 10px; color: var(--white);
+  font-family: var(--font); font-size: 16px; font-weight: 600;
+  transition: border-color 0.2s;
+}
+.roi-field input::placeholder { color: var(--gray-500); font-weight: 400; }
+.roi-field input:focus { outline: none; border-color: var(--coral); }
+.roi-output {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 16px; margin-top: 20px;
+}
+.roi-r {
+  padding: 28px 20px;
+  background: var(--bg-card); border: 1px solid var(--border);
+  border-radius: 14px; text-align: center;
+}
+.roi-r .r-label { font-size: 13px; color: var(--gray-300); margin-bottom: 8px; }
+.roi-r .r-val { font-size: 32px; font-weight: 700; letter-spacing: -0.02em; }
+.roi-r.current .r-val { color: var(--red); }
+.roi-r.saving .r-val { color: var(--green); }
+.roi-r.annual .r-val { color: var(--coral); }
+.roi-note {
+  margin-top: 18px; font-size: 12px; color: var(--gray-500); text-align: center;
+}
+
+/* ── LIGHT SECTIONS (simulator + outcomes) ── */
+.sim-section,
+.outcomes {
+  --bg: #f5f5f5;
+  --bg-raised: #ffffff;
+  --bg-card: #f8f8f8;
+  --bg-card-hover: #f0f0f0;
+  --border: rgba(0,0,0,0.1);
+  --border-strong: rgba(0,0,0,0.15);
+  --white: #1a1a1a;
+  --gray-100: #2a2a2a;
+  --gray-300: #4a4a4a;
+  --gray-500: #6b6b6b;
+  --gray-700: #3a3a3a;
+  --coral: #FF6868;
+  --coral-dim: rgba(255,104,104,0.12);
+  --coral-glow: rgba(255,104,104,0.08);
+  --red: #FF6868;
+  --red-dim: rgba(255,104,104,0.1);
+  background: #ffffff;
+  color: #1a1a1a;
+  border-color: rgba(0,0,0,0.1);
+}
+.sim-section .container { position: relative; z-index: 1; }
+.sim-section .kicker,
+.outcomes .kicker { color: var(--coral); }
+.sim-section h2,
+.outcomes h2 { color: #1a1a1a; }
+.sim-section .subtitle,
+.outcomes .subtitle { color: var(--gray-300); }
+.sim-browser-bar { background: #2a2a2a; }
+
+/* ── RISK ── */
+.risk-grid {
+  display: grid; grid-template-columns: repeat(5, 1fr);
+  gap: 16px; margin-top: 48px;
+}
+.risk-item {
+  padding: 28px 18px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  text-align: center;
+  transition: all 0.25s;
+}
+.risk-item:hover { border-color: var(--coral); }
+.risk-icon { font-size: 24px; margin-bottom: 14px; }
+.risk-item h4 { font-size: 15px; font-weight: 600; margin-bottom: 8px; }
+.risk-item p { font-size: 13px; color: var(--gray-300); line-height: 1.5; }
+
+/* ── FINAL CTA ── */
+.final-cta {
+  text-align: center;
+  background: var(--bg-raised);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  position: relative;
+}
+.final-cta .subtitle {
+  margin: 0 auto 40px;
+  text-align: center;
+}
+.final-form {
+  max-width: 460px;
+  margin: 0 auto;
+  margin-top: 32px;
+  display: flex; flex-direction: column; gap: 12px;
+}
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.form-row input, .form-row select {
+  padding: 14px 16px;
+  background: var(--bg-card); border: 1px solid var(--border);
+  border-radius: 10px; color: var(--white);
+  font-family: var(--font); font-size: 14px;
+}
+.form-row input::placeholder, .form-row select { color: var(--gray-500); }
+.form-row input:focus, .form-row select:focus {
+  outline: none; border-color: var(--coral);
+}
+.final-form .btn-coral {
+  width: 100%;
+  justify-content: center;
+  margin-top: 4px;
+  padding: 16px;
+}
+.form-note {
+  font-size: 12px;
+  color: var(--gray-500);
+  margin-top: 12px;
+  text-align: center;
+}
+
+/* ── FOOTER ── */
+footer {
+  background: #000000;
+  color: #fff;
+  padding: 64px 0 80px;
+  border-top: none;
+}
+.footer-top {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+  align-items: start;
+  padding-bottom: 40px;
+  border-bottom: 1px solid rgba(255,255,255,0.2);
+}
+.footer-top-left {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+.footer-top-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 24px;
+  min-width: 0;
+}
+.footer-brand-name {
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+.footer-columns {
+  display: grid;
+  grid-template-columns: 1fr 1fr auto;
+  gap: 64px;
+  width: 100%;
+  max-width: 100%;
+  justify-items: start;
+}
+.footer-col h5 {
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 16px;
+  color: rgba(255,255,255,0.9);
+  text-align: right;
+}
+.footer-col ul {
+  list-style: none;
+}
+.footer-col li {
+  margin-bottom: 8px;
+  text-align: right;
+}
+.footer-col a {
+  color: rgba(255,255,255,0.75);
+  text-decoration: none;
+  font-size: 14px;
+  transition: color 0.2s;
+}
+.footer-col a:hover {
+  color: #fff;
+}
+.footer-legal-row {
+  display: flex;
+  justify-content: flex-end;
+  gap: 24px;
+  margin-top: 24px;
+  font-size: 13px;
+  color: rgba(255,255,255,0.6);
+}
+.footer-bottom {
+  padding-top: 48px;
+  text-align: center;
+}
+.footer-logo-img {
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  display: block;
+  object-fit: contain;
+}
+@media (max-width: 768px) {
+  .footer-top {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+  .footer-top-right {
+    align-items: flex-start;
+  }
+  .footer-columns {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+}
+  </style>
+</head>
+<body>
+
+<!-- ═══ NAV ─── -->
+<nav class="nav">
+  <a href="#" class="nav-logo"><img src="/logo-potential.png" alt="Potential" class="nav-logo-img"></a>
+  <div class="nav-ctas">
+    <a href="#simulator" class="nav-cta nav-cta-light">Genera la tua prima scheda AI</a>
+    <a href="#roi" class="nav-cta nav-cta-light">Calcola il costo del tuo catalogo</a>
+    <a href="#booking" class="nav-cta nav-cta-red">Prenota una call conoscitiva</a>
+  </div>
+</nav>
+
+<!-- ═══ HERO ─── -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-inner">
+      <div class="hero-content">
+        <p class="kicker">Product Enrichment AI</p>
+        <h1>Gestisci migliaia di SKU?<br>Il tuo catalogo ti costa<br>più di quanto pensi.</h1>
+        <p class="subtitle">Sistema di Product Enrichment AI per ridurre fino al 70% il tempo di gestione catalogo. Senza aumentare il team.</p>
+        <div class="hero-ctas">
+          <a href="#simulator" class="btn-coral">Genera la tua prima scheda AI</a>
+          <a href="#roi" class="btn-outline">Calcola il costo del tuo catalogo</a>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <img src="/hero-banner.png" alt="Catalog Automation – Dati prodotto organizzati e pronti canale">
+        <div style="display:none; width:100%; min-height:280px; background:var(--bg-card); border:1px solid var(--border); border-radius:14px; align-items:center; justify-content:center; color:var(--gray-500);" class="hero-fallback">Hero visual</div>
+      </div>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat"><span class="num">–70%</span><span class="label">Tempo gestione catalogo</span></div>
+      <div class="hero-stat"><span class="num">3x</span><span class="label">Velocità go-to-market</span></div>
+      <div class="hero-stat"><span class="num">–40%</span><span class="label">Costi operativi</span></div>
+      <div class="hero-stat"><span class="num">∞</span><span class="label">Scalabilità</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ PROBLEM ─── -->
+<section class="problem">
+  <div class="container">
+    <p class="kicker">Il Problema</p>
+    <h2>Il catalogo digitale è il collo<br>di bottiglia che nessuno affronta.</h2>
+    <p class="subtitle">Ogni SKU inserita manualmente è tempo perso, costo nascosto e rischio di errore. Il problema non è il team. È il processo.</p>
+    <div class="cost-box">
+      <div class="cost-label">Costo nascosto</div>
+      <p>Un team di 3 persone che spende 15 minuti a scheda su 300 SKU/mese genera un costo operativo di <strong>oltre €4.500/mese</strong> solo per l'inserimento dati. Senza contare revisioni, correzioni e rilavorazioni.</p>
+    </div>
+    <div class="problem-grid-2x2">
+      <div class="p-card">
+        <div class="p-icon">⏱</div>
+        <div>
+          <h4>Inserimento manuale lento</h4>
+          <p>Ogni scheda prodotto richiede minuti di lavoro ripetitivo. Moltiplica per centinaia di SKU al mese.</p>
+        </div>
+      </div>
+      <div class="p-card">
+        <div class="p-icon">⚠</div>
+        <div>
+          <h4>Incoerenza dati e errori umani</h4>
+          <p>Titoli diversi, attributi mancanti, categorie sbagliate. Il catalogo diventa ingestibile.</p>
+        </div>
+      </div>
+      <div class="p-card">
+        <div class="p-icon">🐢</div>
+        <div>
+          <h4>Ritardi nel lancio prodotti</h4>
+          <p>I prodotti sono pronti ma il catalogo no. Ogni giorno di ritardo è fatturato perso.</p>
+        </div>
+      </div>
+      <div class="p-card">
+        <div class="p-icon">📈</div>
+        <div>
+          <h4>Impossibilità di scalare</h4>
+          <p>Da 500 a 5.000 SKU il processo crolla. L'unica soluzione attuale: assumere.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ SOLUTION ─── -->
+<section id="solution">
+  <div class="container">
+    <p class="kicker">La Soluzione</p>
+    <h2>Un sistema, non un tool.<br>Product Enrichment in 4 step.</h2>
+    <p class="subtitle">Non sostituiamo il tuo team. Eliminiamo il lavoro ripetitivo e standardizziamo l'output. Il controllo resta sempre in mano tua.</p>
+    <div class="solution-pipeline">
+      <div class="pipe-step">
+        <img src="/step-01-input.png" alt="Input" class="pipe-icon">
+        <div class="pipe-num">Step 01</div>
+        <h4>Input</h4>
+        <p>Immagini prodotto, dati grezzi, file esistenti. Qualsiasi formato tu abbia già.</p>
+        <span class="pipe-arrow">→</span>
+      </div>
+      <div class="pipe-step">
+        <img src="/step-02-enrichment.png" alt="AI Enrichment Engine" class="pipe-icon">
+        <div class="pipe-num">Step 02</div>
+        <h4>AI Enrichment Engine</h4>
+        <p>Generazione automatica di titoli, descrizioni, attributi strutturati, categorie, tag SEO.</p>
+        <span class="pipe-arrow">→</span>
+      </div>
+      <div class="pipe-step">
+        <img src="/step-03-validation.png" alt="Validazione & QA" class="pipe-icon">
+        <div class="pipe-num">Step 03</div>
+        <h4>Validazione & QA</h4>
+        <p>Controllo qualità con regole personalizzate. Review umano dove serve. Nessun output incontrollato.</p>
+        <span class="pipe-arrow">→</span>
+      </div>
+      <div class="pipe-step">
+        <img src="/step-04-export.png" alt="Output PIM-Ready" class="pipe-icon">
+        <div class="pipe-num">Step 04</div>
+        <h4>Output PIM-Ready</h4>
+        <p>Dati pronti per il tuo PIM, eCommerce o ERP. Integrazione diretta, zero rework.</p>
+      </div>
+    </div>
+    <div class="solution-note"><strong>Business-oriented, non tech-driven.</strong> Il sistema si adatta al tuo processo, al tuo PIM e alla tua struttura dati. Non il contrario.</div>
+  </div>
+</section>
+
+<!-- ═══ OUTCOMES ─── -->
+<section class="outcomes">
+  <div class="container">
+    <p class="kicker">I Risultati</p>
+    <h2>Meno ore. Meno errori. Più velocità.</h2>
+    <p class="subtitle">Non promettiamo rivoluzioni. Promettiamo efficienza concreta e misurabile.</p>
+    <div class="case">
+      <div class="case-top">
+        <div class="case-label">Caso Studio</div>
+        <h4>Azienda Retail — Catalogo Food, +2.000 SKU</h4>
+        <p>Processo catalogo gestito manualmente da un team di 4 persone. Dopo l'implementazione del sistema di Product Enrichment AI: il tempo medio per scheda è passato da 12 a 3 minuti, con una riduzione del 65% dei costi operativi legati all'inserimento dati. Go-live nuovi prodotti ridotto da 2 settimane a 3 giorni.</p>
+      </div>
+      <div class="case-metrics-row">
+        <div class="case-m">
+          <div class="val">–75%</div>
+          <div class="desc">Tempo per scheda</div>
+          <div class="case-m-detail">Da 40 minuti a meno di 5 per scheda prodotto. Su larga scala, i numeri cambiano tutto.</div>
+        </div>
+        <div class="case-m">
+          <div class="val">–65%</div>
+          <div class="desc">Costi operativi</div>
+          <div class="case-m-detail">Meno ore-uomo allocate sul data entry. Il team lavora su attività a valore.</div>
+        </div>
+        <div class="case-m">
+          <div class="val">3 gg</div>
+          <div class="desc">Time-to-market</div>
+          <div class="case-m-detail">Prodotti online in giorni, non settimane. Time-to-market compresso drasticamente.</div>
+        </div>
+        <div class="case-m">
+          <div class="val">∞</div>
+          <div class="desc">Scalabilità</div>
+          <div class="case-m-detail">Da 300 a 3.000 SKU/mese senza aggiungere una persona. Il sistema scala, il costo no.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ SIMULATOR (WEBHOOK) ─── -->
+<section class="sim-section" id="simulator">
+  <div class="container">
+    <p class="kicker">Il simulatore</p>
+    <h2>Prova il motore sulla tua scheda prodotto</h2>
+    <p class="subtitle">Seleziona un prodotto dal carosello. Passa il mouse per vedere la seconda foto e avvia l'analisi. Oppure carica le tue immagini.</p>
+
+    <!-- IDLE: carousel + generate -->
+    <div id="sim-idle" style="display:block;">
+      <div class="sim-carousel">
+        <div class="sim-card is-selected" data-id="wine-zolla" onclick="simSelect(this)">
+          <div class="sim-card-img">
+            <img src="/products/wine-front.png" alt="La Zolla fronte">
+            <div class="sim-img-back"><img src="/products/wine-back.png" alt="La Zolla retro"></div>
+          </div>
+          <div class="sim-card-info">
+            <h4 class="sim-card-name">La Zolla Toscana Sangiovese 2023</h4>
+            <p class="sim-card-cat">Food & Beverage</p>
+          </div>
+        </div>
+        <div class="sim-card" data-id="gift-wild-turkey" onclick="simSelect(this)">
+          <div class="sim-card-img">
+            <img src="/products/box-front.png" alt="Wild Turkey fronte">
+            <div class="sim-img-back"><img src="/products/box-back.png" alt="Wild Turkey retro"></div>
+          </div>
+          <div class="sim-card-info">
+            <h4 class="sim-card-name">Wild Turkey Gift Box</h4>
+            <p class="sim-card-cat">Spirits</p>
+          </div>
+        </div>
+        <div class="sim-card sim-card-upload" onclick="document.getElementById('sim-file-input').click()">
+          <div class="sim-upload-zone">
+            <div class="sim-upload-inner">
+              <span>📤 Carica le tue immagini</span>
+              <span>PNG, JPG, WEBP (max 6)</span>
+            </div>
+          </div>
+          <div class="sim-card-info">
+            <h4 class="sim-card-name">Upload custom</h4>
+            <p class="sim-card-cat">Le tue foto prodotto</p>
+          </div>
+          <input type="file" id="sim-file-input" accept="image/png,image/jpeg,image/webp" multiple style="display:none" onchange="simFiles(this)">
+        </div>
+      </div>
+      <p id="sim-custom-info" class="sim-muted" style="display:none;"></p>
+      <p id="sim-upload-error" class="sim-error" style="display:none;"></p>
+      <button type="button" class="sim-generate-btn" onclick="simRun()">Avvia analisi →</button>
+    </div>
+
+    <!-- LOADING -->
+    <div id="sim-loading" style="display:none;">
+      <div class="sim-loader-box">
+        <div class="sim-loader-ring">
+          <div class="sim-spinner"></div>
+        </div>
+        <div class="sim-loader-title">Analisi in corso</div>
+        <div class="sim-loader-step" id="sim-step-text">Analisi della struttura in corso...</div>
+      </div>
+    </div>
+
+    <!-- RESULT: browser + lead form -->
+    <div id="sim-result" style="display:none;">
+      <div class="sim-browser">
+        <div class="sim-browser-bar">
+          <div class="sim-dots">
+            <span style="background:#ff5f57"></span>
+            <span style="background:#febc2e"></span>
+            <span style="background:#28c840"></span>
+          </div>
+          <div class="sim-url">🔒 webhook.response</div>
+        </div>
+        <div class="sim-browser-body">
+          <iframe id="sim-iframe" style="display:none;" sandbox="allow-same-origin"></iframe>
+          <div id="sim-fallback" class="sim-fallback" style="display:none;">
+            <p>Risposta webhook (testo):</p>
+            <pre id="sim-fallback-text"></pre>
+          </div>
+        </div>
+      </div>
+      <div class="sim-lead">
+        <h3 class="sim-lead-title">Vuoi saperne o capirne di più? Contattaci.</h3>
+        <p class="sim-lead-sub">Inserisci i tuoi dati.</p>
+        <div id="sim-lead-form">
+          <form class="final-form sim-lead-form-inner" onsubmit="return false;">
+            <div class="form-row">
+              <input type="text" id="sim-name" class="sim-input" placeholder="Nome e Cognome" required>
+              <input type="email" id="sim-email" class="sim-input" placeholder="Email aziendale" required>
+            </div>
+            <div class="form-row">
+              <select id="sim-role" required>
+                <option value="" disabled selected>Il tuo ruolo</option>
+                <option value="Head of eCommerce">Head of eCommerce</option>
+                <option value="Digital Director">Digital Director</option>
+                <option value="Operations Manager">Operations Manager</option>
+                <option value="CEO">CEO</option>
+                <option value="PIM Manager">PIM Manager</option>
+                <option value="Altro">Altro</option>
+              </select>
+              <select id="sim-sku" required>
+                <option value="" disabled selected>SKU gestite (circa)</option>
+                <option value="Meno di 500">Meno di 500</option>
+                <option value="500 – 2.000">500 – 2.000</option>
+                <option value="2.000 – 10.000">2.000 – 10.000</option>
+                <option value="Oltre 10.000">Oltre 10.000</option>
+              </select>
+            </div>
+            <button type="button" class="btn-coral" onclick="simSubmitLead()">Contattaci</button>
+            <p id="sim-email-error" class="sim-error" style="display:none;"></p>
+          </form>
+          <p class="sim-lead-note">Solo email aziendali. Nessun spam.</p>
+        </div>
+        <div id="sim-unlocked" class="sim-unlocked-msg" style="display:none;">
+          ✓ Richiesta inviata. Ti contatteremo al più presto.
+        </div>
+        <button type="button" class="sim-reset-btn" onclick="simReset()">↺ Riprova con un altro prodotto</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ ROI ─── -->
+<section id="roi">
+  <div class="container">
+    <p class="kicker">Calcola il tuo ROI</p>
+    <h2>Quanto costa il tempo del tuo team?</h2>
+    <p class="subtitle">Inserisci i dati per stimare il risparmio annuale.</p>
+    <div class="roi-inputs">
+      <div class="roi-field">
+        <label>SKU gestite (circa)</label>
+        <input type="number" id="roi-sku" placeholder="es. 5000" oninput="roiCalc()">
+      </div>
+      <div class="roi-field">
+        <label>Minuti per scheda (attuale)</label>
+        <input type="number" id="roi-min" placeholder="es. 15" oninput="roiCalc()">
+      </div>
+      <div class="roi-field">
+        <label>Costo orario (€)</label>
+        <input type="number" id="roi-cost" placeholder="es. 25" oninput="roiCalc()">
+      </div>
+    </div>
+    <div id="roi-output" class="roi-output" style="display:none;">
+      <div class="roi-r current">
+        <div class="r-label">Costo mensile attuale</div>
+        <div class="r-val" id="roi-val-current">—</div>
+      </div>
+      <div class="roi-r saving">
+        <div class="r-label">Risparmio stimato (60%)</div>
+        <div class="r-val" id="roi-val-saving">—</div>
+      </div>
+      <div class="roi-r annual">
+        <div class="r-label">Risparmio annuale</div>
+        <div class="r-val" id="roi-val-annual">—</div>
+      </div>
+    </div>
+    <p class="roi-note">Stima indicativa. Il risparmio reale dipende dal processo e dal volume.</p>
+  </div>
+</section>
+
+<!-- ═══ RISK ─── -->
+<section>
+  <div class="container">
+    <p class="kicker">Zero rischi</p>
+    <h2>Nessuna AI fuori controllo.<br>Solo un processo governato.</h2>
+    <p class="subtitle">Ogni output è validato. Ogni modifica è reversibile. Il go-live avviene solo dopo la tua approvazione.</p>
+    <div class="risk-grid">
+      <div class="risk-item"><div class="risk-icon">👁</div><h4>Controllo umano</h4><p>Review e approvazione su ogni output prima della pubblicazione.</p></div>
+      <div class="risk-item"><div class="risk-icon">🧪</div><h4>Test su subset</h4><p>Si parte da un campione. Mai rollout massivo senza validazione.</p></div>
+      <div class="risk-item"><div class="risk-icon">🔒</div><h4>Zero modifiche distruttive</h4><p>I dati originali restano intatti. Sempre.</p></div>
+      <div class="risk-item"><div class="risk-icon">✅</div><h4>Validazione pre-rollout</h4><p>Quality check strutturato prima di ogni pubblicazione.</p></div>
+      <div class="risk-item"><div class="risk-icon">📅</div><h4>2–4 settimane</h4><p>Processo strutturato. Tempi certi, milestone chiare.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ FINAL CTA ─── -->
+<section class="final-cta" id="booking">
+  <div class="container">
+    <p class="kicker">Prossimo passo</p>
+    <h2>Prenota una Call Strategica.<br>20 minuti, zero vendita.</h2>
+    <p class="subtitle">Analizziamo il tuo processo catalogo, identifichiamo le inefficienze e ti mostriamo dove il sistema può generare impatto reale.</p>
+    <form class="final-form" id="booking-form" onsubmit="return submitBookingForm(event);">
+      <div class="form-row">
+        <input type="text" id="booking-name" name="nome" placeholder="Nome e Cognome" required>
+        <input type="email" id="booking-email" name="email" placeholder="Email aziendale" required>
+      </div>
+      <div class="form-row">
+        <select id="booking-role" name="ruolo" required>
+          <option value="" disabled selected>Il tuo ruolo</option>
+          <option value="Head of eCommerce">Head of eCommerce</option>
+          <option value="Digital Director">Digital Director</option>
+          <option value="Operations Manager">Operations Manager</option>
+          <option value="CEO">CEO</option>
+          <option value="PIM Manager">PIM Manager</option>
+          <option value="Altro">Altro</option>
+        </select>
+        <select id="booking-sku" name="sku_gestite" required>
+          <option value="" disabled selected>SKU gestite (circa)</option>
+          <option value="Meno di 500">Meno di 500</option>
+          <option value="500 – 2.000">500 – 2.000</option>
+          <option value="2.000 – 10.000">2.000 – 10.000</option>
+          <option value="Oltre 10.000">Oltre 10.000</option>
+        </select>
+      </div>
+      <button type="submit" class="btn-coral">Prenota la Call Strategica →</button>
+      <p class="form-note">Solo email aziendali. 20 minuti, senza impegno. Nessun follow-up aggressivo.</p>
+      <p id="booking-feedback" class="form-note" style="display:none; margin-top:8px;"></p>
+    </form>
+  </div>
+</section>
+
+<!-- ═══ FOOTER ─── -->
+<footer>
+  <div class="container">
+    <div class="footer-top">
+      <div class="footer-top-left">
+        <div class="footer-brand-name">Auiki srl</div>
+      </div>
+      <div class="footer-top-right">
+        <div class="footer-columns">
+        <div class="footer-col">
+          <h5>Contatti</h5>
+          <ul>
+            <li><a href="tel:">Telefono</a></li>
+            <li><a href="mailto:">Email</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h5>Dove trovarci</h5>
+          <ul>
+            <li>Reggio Emilia</li>
+            <li>Milano</li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h5>Social</h5>
+          <ul>
+            <li><a href="#" target="_blank" rel="noopener">Instagram</a></li>
+            <li><a href="#" target="_blank" rel="noopener">Linkedin</a></li>
+            <li><a href="#" target="_blank" rel="noopener">Vimeo</a></li>
+          </ul>
+        </div>
+        </div>
+        <div class="footer-legal-row">
+          <span>REA 307388</span>
+          <span>p.iva 02721330351</span>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <img src="/auiki-logo-footer.png" alt="AUIKI" class="footer-logo-img">
+    </div>
+  </div>
+</footer>
+
+<script>
+/* ═══ PERSISTENZA & PREVENZIONE RELOAD ═══ */
+const STORAGE = {
+  roi: 'auiki_roi',
+  sim: 'auiki_sim'
+};
+document.querySelectorAll('form').forEach(f => {
+  f.addEventListener('submit', e => { e.preventDefault(); return false; });
+});
+function saveRoiState(){
+  const sku=$('#roi-sku')?.value, min=$('#roi-min')?.value, cost=$('#roi-cost')?.value;
+  if(sku&&min&&cost) try {
+    localStorage.setItem(STORAGE.roi, JSON.stringify({sku,min,cost,current:$('#roi-val-current')?.textContent,saving:$('#roi-val-saving')?.textContent,annual:$('#roi-val-annual')?.textContent}));
+  } catch(_){}
+}
+function restoreState(){
+  try {
+    const r=localStorage.getItem(STORAGE.roi);
+    if(r){ const d=JSON.parse(r);
+      $('#roi-sku').value=d.sku; $('#roi-min').value=d.min; $('#roi-cost').value=d.cost;
+      if(d.current){ $('#roi-val-current').textContent=d.current; $('#roi-val-saving').textContent=d.saving; $('#roi-val-annual').textContent=d.annual; $('#roi-output').style.display='grid'; }
+    }
+    const s=localStorage.getItem(STORAGE.sim);
+    if(s){ const d=JSON.parse(s);
+      if(d.used){ simShow('sim-result');
+        if(d.resultHtml){ $('#sim-iframe').srcdoc=d.resultHtml; $('#sim-iframe').style.display='block'; $('#sim-fallback').style.display='none'; }
+        else{ $('#sim-iframe').style.display='none'; $('#sim-fallback').style.display='block'; $('#sim-fallback-text').textContent=d.resultText||'(Nessuna risposta)'; }
+        if(d.unlocked){ $('#sim-lead-form').style.display='none'; $('#sim-unlocked').style.display='flex'; }
+        const resetBtn=document.querySelector('.sim-reset-btn'); if(resetBtn) resetBtn.style.display='none';
+      }
+    }
+  } catch(_){}
+}
+document.addEventListener('DOMContentLoaded', restoreState);
+
+/* ═══ SIMULATOR – WEBHOOK REALE ═══ */
+const WH = "https://giovannimavilla.app.n8n.cloud/webhook/598963fd-c7c5-41ca-b0cf-27a9c9f2b229";
+const LWH = "https://giovannimavilla.app.n8n.cloud/webhook/f5d0fd75-8c72-4c61-8029-cd6c46832039";
+const BOOKING_WH = "https://giovannimavilla.app.n8n.cloud/webhook-test/030ae6ab-aeed-474c-8727-9b6591f2cbcd";
+const ALLOWED = ["image/png","image/jpeg","image/webp"];
+const STEPS = ["Analisi della struttura in corso...","Verifica attributi tecnici...","Controllo ottimizzazione SEO...","Confronto benchmark di settore...","Generazione report..."];
+const PROMPT = "Analizza l'immagine/le immagini di questo prodotto alimentare ed estrai tutte le informazioni visibili.\nRISPONDI SOLO CON IL JSON, NIENTE ALTRO.";
+const PRODS = [
+  {id:"wine-zolla",name:"La Zolla Toscana Sangiovese 2023",cat:"Food & Beverage"},
+  {id:"gift-wild-turkey",name:"Wild Turkey Gift Box",cat:"Spirits"}
+];
+let selId = PRODS[0].id, customFiles = [], stepIv;
+const $ = s => document.querySelector(s);
+const $$ = s => document.querySelectorAll(s);
+
+function simShow(id){
+  ['sim-idle','sim-loading','sim-result'].forEach(k => {
+    const el = document.getElementById(k);
+    if(el) el.style.display = k===id?'block':'none';
+  });
+}
+function simSelect(card){
+  if(customFiles.length) return;
+  selId = card.dataset.id;
+  $$('.sim-card').forEach(c => c.classList.remove('is-selected'));
+  card.classList.add('is-selected');
+}
+function simFiles(input){
+  const files = Array.from(input.files||[]);
+  if(!files.length) return;
+  const valid = files.filter(f => ALLOWED.includes(f.type)).slice(0,6);
+  if(!valid.length){ $('#sim-upload-error').textContent="Formato non supportato."; $('#sim-upload-error').style.display='block'; input.value=''; return; }
+  customFiles = valid;
+  $('#sim-upload-error').style.display='none';
+  $('#sim-custom-info').textContent='Upload: '+valid.map(f=>f.name).join(' · ');
+  $('#sim-custom-info').style.display='block';
+  $('.sim-card-upload').classList.add('has-files');
+  $$('.sim-card:not(.sim-card-upload)').forEach(c=>c.classList.add('is-disabled'));
+  input.value='';
+}
+function isHtml(t){return /<!doctype html|<html[\s>]|<head[\s>]|<body[\s>]/i.test(t);}
+
+async function simRun(){
+  try { const s=localStorage.getItem(STORAGE.sim); if(s&&JSON.parse(s).used) return; } catch(_){}
+  simShow('sim-loading');
+  let step=0;
+  stepIv = setInterval(()=>{ step=(step+1)%STEPS.length; $('#sim-step-text').textContent=STEPS[step]; },1100);
+  try{
+    const hasCustom = customFiles.length>0;
+    const prod = PRODS.find(p=>p.id===selId)||PRODS[0];
+    let filesToSend = customFiles;
+    if(!hasCustom){
+      const cards = $$('.sim-card[data-id]');
+      let frontSrc='', backSrc='';
+      cards.forEach(c=>{
+        if(c.dataset.id===selId){
+          const imgs = c.querySelectorAll('.sim-card-img img');
+          if(imgs[0]) frontSrc=imgs[0].src;
+          if(imgs[1]) backSrc=imgs[1].src;
+        }
+      });
+      const toFile = async (dataUrl, name) => {
+        const res = await fetch(dataUrl);
+        const blob = await res.blob();
+        return new File([blob], name, {type:blob.type||'image/jpeg'});
+      };
+      filesToSend = [];
+      if(frontSrc) filesToSend.push(await toFile(frontSrc, prod.id+'-front.jpg'));
+      if(backSrc) filesToSend.push(await toFile(backSrc, prod.id+'-back.jpg'));
+    }
+    const payload = {
+      event:'simulator_submit', text:PROMPT,
+      inputMode:hasCustom?'custom_upload':'sample_carousel',
+      selectedProduct:{id:hasCustom?null:prod.id, name:hasCustom?'Upload custom':prod.name, category:hasCustom?'Custom':prod.cat},
+      email:'', filesMeta:filesToSend.map(f=>({filename:f.name,mimeType:f.type,sizeBytes:f.size})),
+      sentAt:new Date().toISOString(), source:'auiki-landing-simulator'
+    };
+    const fd = new FormData();
+    fd.append('payload',JSON.stringify(payload));
+    fd.append('event','simulator_submit');
+    fd.append('text',PROMPT);
+    fd.append('inputMode',hasCustom?'custom_upload':'sample_carousel');
+    fd.append('productId',hasCustom?'custom-upload':prod.id);
+    fd.append('productName',hasCustom?'Upload custom':prod.name);
+    fd.append('productCategory',hasCustom?'Custom':prod.cat);
+    fd.append('email','');
+    fd.append('sentAt',payload.sentAt);
+    fd.append('source','auiki-landing-simulator');
+    filesToSend.forEach(f=>fd.append('files',f,f.name));
+
+    const res = await fetch(WH,{method:'POST',body:fd});
+    const raw = await res.text().catch(()=>'');
+    clearInterval(stepIv);
+    simShow('sim-result');
+    if(isHtml(raw)&&raw){
+      $('#sim-iframe').srcdoc=raw.slice(0,50000);
+      $('#sim-iframe').style.display='block';
+      $('#sim-fallback').style.display='none';
+    } else {
+      $('#sim-iframe').style.display='none';
+      $('#sim-fallback').style.display='block';
+      $('#sim-fallback-text').textContent=(raw||'').replace(/\s+/g,' ').trim().slice(0,12000)||'(Nessuna risposta)';
+    }
+    try {
+      localStorage.setItem(STORAGE.sim, JSON.stringify({used:true, resultHtml: isHtml(raw)&&raw ? raw.slice(0,50000) : null, resultText: !isHtml(raw) ? (raw||'').replace(/\s+/g,' ').trim().slice(0,12000) : null, unlocked: false}));
+    } catch(_){}
+    const resetBtn=document.querySelector('.sim-reset-btn'); if(resetBtn) resetBtn.style.display='none';
+  }catch(err){
+    clearInterval(stepIv); simShow('sim-result');
+    $('#sim-iframe').style.display='none';
+    $('#sim-fallback').style.display='block';
+    $('#sim-fallback-text').textContent='Errore: '+err.message;
+    try {
+      localStorage.setItem(STORAGE.sim, JSON.stringify({used:true, resultHtml:null, resultText:'Errore: '+err.message, unlocked:false}));
+    } catch(_){}
+    const resetBtn=document.querySelector('.sim-reset-btn'); if(resetBtn) resetBtn.style.display='none';
+  }
+}
+async function simSubmitLead(){
+  const name=$('#sim-name').value.trim(), em=$('#sim-email').value.trim().toLowerCase(), role=$('#sim-role').value, sku=$('#sim-sku').value;
+  const err=$('#sim-email-error');
+  if(!name){if(err){err.textContent='Inserisci nome e cognome.';err.style.display='block';}return;}
+  if(!em||!em.includes('@')||!em.split('@')[1]?.includes('.')){if(err){err.textContent="Inserisci un'email aziendale valida.";err.style.display='block';}return;}
+  if(err){err.style.display='none';}
+  try{
+    const r=await fetch(BOOKING_WH,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({source:'simulator',nome:name,email:em,ruolo:role,sku_gestite:sku})});
+    if(!r.ok)throw new Error(r.status);
+    $('#sim-lead-form').style.display='none';
+    $('#sim-unlocked').style.display='flex';
+    try {
+      const s=localStorage.getItem(STORAGE.sim);
+      if(s){ const d=JSON.parse(s); d.unlocked=true; localStorage.setItem(STORAGE.sim, JSON.stringify(d)); }
+    } catch(_){}
+  }catch(e){if(err){err.textContent='Errore invio. Riprova.';err.style.display='block';}}
+}
+function simReset(){
+  try { const s=localStorage.getItem(STORAGE.sim); if(s&&JSON.parse(s).used) return; } catch(_){}
+  customFiles=[];selId=PRODS[0].id;
+  $$('.sim-card').forEach(c=>{c.classList.remove('is-selected','is-disabled');});
+  $$('.sim-card')[0]?.classList.add('is-selected');
+  $('.sim-card-upload')?.classList.remove('has-files');
+  $('#sim-custom-info').style.display='none';
+  $('#sim-upload-error').style.display='none';
+  $('#sim-lead-form').style.display='block';
+  $('#sim-unlocked').style.display='none';
+  $('#sim-name').value='';
+  $('#sim-email').value='';
+  var roleSel=$('#sim-role'), skuSel=$('#sim-sku');
+  if(roleSel){roleSel.value='';}
+  if(skuSel){skuSel.value='';}
+  var err=$('#sim-email-error');
+  if(err){err.style.display='none';}
+  simShow('sim-idle');
+}
+
+/* ═══ BOOKING FORM → WEBHOOK ═══ */
+async function submitBookingForm(ev){
+  ev.preventDefault();
+  const form = $('#booking-form');
+  if(!form) return false;
+  const nome = ($('#booking-name')&&$('#booking-name').value) ? $('#booking-name').value.trim() : '';
+  const email = ($('#booking-email')&&$('#booking-email').value) ? $('#booking-email').value.trim().toLowerCase() : '';
+  const ruolo = ($('#booking-role')&&$('#booking-role').value) ? $('#booking-role').value : '';
+  const sku_gestite = ($('#booking-sku')&&$('#booking-sku').value) ? $('#booking-sku').value : '';
+  const fb = $('#booking-feedback');
+  if(fb){ fb.style.display='none'; fb.textContent=''; }
+  if(!nome){ if(fb){ fb.textContent='Inserisci nome e cognome.'; fb.style.display='block'; } return false; }
+  if(!email||!email.includes('@')||!email.split('@')[1]||!email.split('@')[1].includes('.')){ if(fb){ fb.textContent='Inserisci un\'email aziendale valida.'; fb.style.display='block'; } return false; }
+  if(!ruolo){ if(fb){ fb.textContent='Seleziona il tuo ruolo.'; fb.style.display='block'; } return false; }
+  if(!sku_gestite){ if(fb){ fb.textContent='Seleziona le SKU gestite.'; fb.style.display='block'; } return false; }
+  try {
+    const r = await fetch(BOOKING_WH, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ source: 'booking', nome, email, ruolo, sku_gestite }) });
+    if(!r.ok) throw new Error(r.status);
+    if(fb){ fb.textContent='✓ Richiesta inviata. Ti contatteremo al più presto.'; fb.style.display='block'; fb.style.color='var(--coral)'; }
+    form.reset();
+    if($('#booking-role')) $('#booking-role').value='';
+    if($('#booking-sku')) $('#booking-sku').value='';
+  } catch(e) {
+    if(fb){ fb.textContent='Errore invio. Riprova.'; fb.style.display='block'; }
+  }
+  return false;
+}
+
+/* ═══ ROI ═══ */
+function roiCalc(){
+  const sku=+$('#roi-sku').value||0, min=+$('#roi-min').value||0, cost=+$('#roi-cost').value||0;
+  if(!sku||!min||!cost){$('#roi-output').style.display='none';return;}
+  const m=(sku*min/60)*cost, s=m*0.6, a=s*12;
+  $('#roi-val-current').textContent='€'+Math.round(m).toLocaleString('it-IT');
+  $('#roi-val-saving').textContent='€'+Math.round(s).toLocaleString('it-IT');
+  $('#roi-val-annual').textContent='€'+Math.round(a).toLocaleString('it-IT');
+  $('#roi-output').style.display='grid';
+  saveRoiState();
+}
+</script>
+</body>
+</html>
