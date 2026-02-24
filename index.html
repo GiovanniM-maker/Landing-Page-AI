@@ -356,6 +356,9 @@ h2 { font-size: clamp(28px, 3.5vw, 42px); line-height: 1.15; margin-bottom: 16px
   display: grid; grid-template-columns: repeat(3, 1fr);
   gap: 16px; margin-top: 40px;
 }
+.sim-carousel .sim-card-upload { order: 3; }
+.sim-carousel .sim-card[data-id="wine-zolla"] { order: 1; }
+.sim-carousel .sim-card[data-id="gift-wild-turkey"] { order: 2; }
 .sim-card {
   background: var(--bg-card);
   border: 1px solid var(--border);
@@ -883,8 +886,8 @@ footer {
 
 @media (max-width: 768px) {
   .nav-ctas { display: none; }
-  .nav { padding: 14px 20px; }
-  .container { padding: 0 20px; }
+  .nav { padding: 14px 16px; }
+  .container { padding: 0 16px; }
   section { padding: 60px 0; }
   .hero {
     padding-top: 120px;
@@ -893,6 +896,9 @@ footer {
   .hero-inner {
     grid-template-columns: 1fr;
     gap: 32px;
+  }
+  .hero-visual {
+    display: none;
   }
   .hero .subtitle { margin-bottom: 32px; }
   .hero-stats {
@@ -918,8 +924,32 @@ footer {
     gap: 12px;
   }
   .sim-carousel {
-    grid-template-columns: 1fr;
-    gap: 12px;
+    display: flex;
+    flex-direction: row;
+    gap: 16px;
+    margin-top: 24px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x mandatory;
+    padding-bottom: 8px;
+  }
+  .sim-carousel .sim-card-upload,
+  .sim-carousel .sim-card[data-id="wine-zolla"],
+  .sim-carousel .sim-card[data-id="gift-wild-turkey"] {
+    order: unset;
+  }
+  .sim-carousel .sim-card {
+    flex: 0 0 auto;
+    width: 82vw;
+    max-width: 320px;
+    scroll-snap-align: start;
+  }
+  .sim-carousel .sim-card-img {
+    height: 200px;
+  }
+  .sim-upload-zone {
+    height: 200px;
   }
   .sim-lead { padding: 24px 20px; margin-top: 20px; }
   .roi-inputs {
@@ -1123,6 +1153,19 @@ footer {
     <!-- IDLE: carousel + generate -->
     <div id="sim-idle" style="display:block;">
       <div class="sim-carousel">
+        <div class="sim-card sim-card-upload" onclick="document.getElementById('sim-file-input').click()">
+          <div class="sim-upload-zone">
+            <div class="sim-upload-inner">
+              <span>📤 Carica le tue immagini</span>
+              <span>PNG, JPG, WEBP (max 6)</span>
+            </div>
+          </div>
+          <div class="sim-card-info">
+            <h4 class="sim-card-name">Upload custom</h4>
+            <p class="sim-card-cat">Le tue foto prodotto</p>
+          </div>
+          <input type="file" id="sim-file-input" accept="image/png,image/jpeg,image/webp" multiple style="display:none" onchange="simFiles(this)">
+        </div>
         <div class="sim-card is-selected" data-id="wine-zolla" onclick="simSelect(this)">
           <div class="sim-card-img">
             <img src="/products/wine-front.png" alt="La Zolla fronte">
@@ -1142,19 +1185,6 @@ footer {
             <h4 class="sim-card-name">Wild Turkey Gift Box</h4>
             <p class="sim-card-cat">Spirits</p>
           </div>
-        </div>
-        <div class="sim-card sim-card-upload" onclick="document.getElementById('sim-file-input').click()">
-          <div class="sim-upload-zone">
-            <div class="sim-upload-inner">
-              <span>📤 Carica le tue immagini</span>
-              <span>PNG, JPG, WEBP (max 6)</span>
-            </div>
-          </div>
-          <div class="sim-card-info">
-            <h4 class="sim-card-name">Upload custom</h4>
-            <p class="sim-card-cat">Le tue foto prodotto</p>
-          </div>
-          <input type="file" id="sim-file-input" accept="image/png,image/jpeg,image/webp" multiple style="display:none" onchange="simFiles(this)">
         </div>
       </div>
       <p id="sim-custom-info" class="sim-muted" style="display:none;"></p>
@@ -1751,7 +1781,7 @@ function simReset(){
   try { const s=localStorage.getItem(STORAGE.sim); if(s&&JSON.parse(s).used) return; } catch(_){}
   customFiles=[];selId=PRODS[0].id;
   $$('.sim-card').forEach(c=>{c.classList.remove('is-selected','is-disabled');});
-  $$('.sim-card')[0]?.classList.add('is-selected');
+  $$('.sim-card[data-id]')[0]?.classList.add('is-selected');
   $('.sim-card-upload')?.classList.remove('has-files');
   $('#sim-custom-info').style.display='none';
   $('#sim-upload-error').style.display='none';
