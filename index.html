@@ -129,7 +129,7 @@ h2 { font-size: clamp(28px, 3.5vw, 42px); line-height: 1.15; margin-bottom: 16px
   pointer-events: none;
 }
 .hero-inner {
-  display: grid; grid-template-columns: 1fr 360px;
+  display: grid; grid-template-columns: 1fr 320px;
   gap: 48px; align-items: center;
 }
 .hero-content { position: relative; z-index: 1; }
@@ -146,9 +146,9 @@ h2 { font-size: clamp(28px, 3.5vw, 42px); line-height: 1.15; margin-bottom: 16px
   50% { transform: translateY(-14px) rotate(1deg); }
 }
 .hero h1 {
-  font-size: clamp(40px, 5.5vw, 64px);
+  font-size: clamp(38px, 4.6vw, 54px);
   line-height: 1.08;
-  max-width: 780px;
+  max-width: 720px;
   margin-bottom: 24px;
 }
 .hero h1 em {
@@ -743,16 +743,213 @@ footer {
   object-fit: contain;
 }
 @media (max-width: 768px) {
+  footer {
+    padding: 40px 0 48px;
+  }
   .footer-top {
     grid-template-columns: 1fr;
-    gap: 32px;
+    gap: 20px;
+    padding-bottom: 24px;
   }
   .footer-top-right {
     align-items: flex-start;
   }
   .footer-columns {
     grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  .footer-brand-name {
+    font-size: 16px;
+  }
+  .footer-col h5 {
+    margin-bottom: 10px;
+    text-align: left;
+    font-size: 11px;
+  }
+  .footer-col li {
+    text-align: left;
+    margin-bottom: 6px;
+  }
+  .footer-col a, .footer-col li {
+    font-size: 13px;
+  }
+  .footer-legal-row {
+    margin-top: 16px;
+    gap: 16px;
+    font-size: 12px;
+    flex-wrap: wrap;
+  }
+  .footer-bottom {
+    padding-top: 28px;
+  }
+  .footer-bottom .footer-logo-img {
+    max-width: 160px;
+    margin: 0 auto;
+  }
+}
+
+
+
+/* ── FLOATING CHAT CTA (solo mobile) ── */
+.floating-cta {
+  display: none;
+  position: fixed;
+  bottom: max(20px, env(safe-area-inset-bottom, 20px));
+  right: max(20px, env(safe-area-inset-right, 20px));
+  z-index: 9999;
+  max-width: calc(100vw - 40px);
+}
+.floating-cta.is-visible {
+  display: block;
+  animation: floatingCtaIn 0.4s ease-out;
+}
+.floating-cta-bubble {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 14px 16px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-strong);
+  border-radius: 16px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+  text-align: left;
+}
+.floating-cta-bubble:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 40px rgba(0,0,0,0.45);
+}
+.floating-cta-bubble:active { transform: scale(0.98); }
+.floating-cta-icon {
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--coral-dim);
+  color: var(--coral);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+}
+.floating-cta-body {
+  flex: 1;
+  min-width: 0;
+}
+.floating-cta-body p {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--white);
+  line-height: 1.4;
+  margin: 0 0 8px 0;
+}
+.floating-cta-body span {
+  font-size: 12px;
+  color: var(--coral);
+  font-weight: 600;
+}
+.floating-cta-close {
+  flex-shrink: 0;
+  width: 28px;
+  height: 28px;
+  border: none;
+  background: transparent;
+  color: var(--gray-500);
+  border-radius: 8px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  line-height: 1;
+  transition: color 0.2s, background 0.2s;
+}
+.floating-cta-close:hover {
+  color: var(--white);
+  background: var(--bg-raised);
+}
+
+@keyframes floatingCtaIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@media (max-width: 768px) {
+  .nav-ctas { display: none; }
+  .nav { padding: 14px 20px; }
+  .container { padding: 0 20px; }
+  section { padding: 60px 0; }
+  .hero {
+    padding-top: 120px;
+    padding-bottom: 60px;
+  }
+  .hero-inner {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+  .hero .subtitle { margin-bottom: 32px; }
+  .hero-stats {
+    grid-template-columns: repeat(2, 1fr);
     gap: 24px;
+    margin-top: 40px;
+    padding-top: 32px;
+  }
+  .problem-grid-2x2 { grid-template-columns: 1fr; }
+  .solution-pipeline {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+  .pipe-arrow { display: none; }
+  .outcomes-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    margin-top: 32px;
+  }
+  .case { padding: 24px 20px; margin-top: 32px; }
+  .case-metrics-row {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+  .sim-carousel {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+  .sim-lead { padding: 24px 20px; margin-top: 20px; }
+  .roi-inputs {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin-top: 24px;
+  }
+  .roi-field {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+  }
+  .roi-field label {
+    font-size: 11px;
+    line-height: 1.25;
+    margin-bottom: 6px;
+    min-height: 2.5em;
+    display: flex;
+    align-items: flex-end;
+  }
+  .roi-field input {
+    padding: 12px 10px;
+    font-size: 14px;
+  }
+  .roi-output { grid-template-columns: 1fr; }
+  .risk-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+    margin-top: 32px;
   }
 }
   </style>
@@ -1170,6 +1367,123 @@ footer {
   </div>
 </footer>
 
+<!-- Floating CTA (solo mobile, stile chat) -->
+<div id="floating-cta" class="floating-cta" aria-hidden="true">
+  <div class="floating-cta-bubble" id="floating-cta-bubble" role="button" tabindex="0">
+    <span class="floating-cta-icon" aria-hidden="true">💬</span>
+    <div class="floating-cta-body">
+      <p id="floating-cta-text">Vuoi provare a generare una scheda prodotto con la nostra demo?</p>
+      <span id="floating-cta-action">Vai alla demo →</span>
+    </div>
+    <button type="button" class="floating-cta-close" id="floating-cta-close" aria-label="Chiudi">×</button>
+  </div>
+</div>
+<script>
+(function(){
+  var wrap = document.getElementById('floating-cta');
+  var bubble = document.getElementById('floating-cta-bubble');
+  var textEl = document.getElementById('floating-cta-text');
+  var actionEl = document.getElementById('floating-cta-action');
+  if (!wrap || !bubble || !textEl) return;
+  var KEY = 'auiki_float_cta_dismissed';
+  var MSGS = [
+    { text: 'Vuoi provare a generare una scheda prodotto con la nostra demo?', action: 'Vai alla demo →', href: '#simulator' },
+    { text: 'Quanto ti costa il catalogo? Calcola una stima in 30 secondi.', action: 'Calcola il ROI →', href: '#roi' },
+    { text: 'Prenota una call di 20 minuti e analizziamo il tuo processo.', action: 'Prenota call →', href: '#booking' }
+  ];
+  var step = 0;
+  var isTouch = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+  function show() {
+    if (sessionStorage.getItem(KEY) === '1') return;
+    wrap.classList.add('is-visible');
+    wrap.style.setProperty('display', 'block');
+    wrap.setAttribute('aria-hidden', 'false');
+  }
+  function hide() {
+    wrap.classList.remove('is-visible');
+    wrap.style.display = '';
+    wrap.setAttribute('aria-hidden', 'true');
+  }
+  function setStep(n) {
+    if (n < 0 || n > 2) return;
+    step = n;
+    textEl.textContent = MSGS[step].text;
+    if (actionEl) actionEl.textContent = MSGS[step].action;
+  }
+  window._floatCtaGo = function() {
+    var el = document.querySelector(MSGS[step].href);
+    if (el) el.scrollIntoView({ behavior: 'smooth' });
+    hide();
+  };
+  window._floatCtaDismiss = function() {
+    try { sessionStorage.setItem(KEY, '1'); } catch(e){}
+    hide();
+  };
+  bubble.addEventListener('click', function(e) {
+    if (e.target.id === 'floating-cta-close' || e.target.closest('#floating-cta-close')) {
+      e.preventDefault(); e.stopPropagation();
+      window._floatCtaDismiss();
+      return;
+    }
+    e.preventDefault();
+    window._floatCtaGo();
+  });
+  bubble.addEventListener('touchend', function(e) {
+    if (e.target.id === 'floating-cta-close' || e.target.closest('#floating-cta-close')) {
+      e.preventDefault(); e.stopPropagation();
+      window._floatCtaDismiss();
+      return;
+    }
+    e.preventDefault();
+    window._floatCtaGo();
+  }, { passive: false });
+  document.getElementById('floating-cta-close').addEventListener('click', function(e) {
+    e.preventDefault(); e.stopPropagation();
+    window._floatCtaDismiss();
+  });
+  document.getElementById('floating-cta-close').addEventListener('touchend', function(e) {
+    e.preventDefault(); e.stopPropagation();
+    window._floatCtaDismiss();
+  }, { passive: false });
+  function scrollPct() {
+    var doc = document.documentElement;
+    var body = document.body;
+    var scrollTop = window.pageYOffset !== undefined ? window.pageYOffset : (doc.scrollTop || body.scrollTop || 0);
+    var scrollHeight = Math.max(doc.scrollHeight, body.scrollHeight, doc.clientHeight);
+    var clientHeight = window.innerHeight || doc.clientHeight;
+    var maxScroll = scrollHeight - clientHeight;
+    if (maxScroll <= 0) return 0;
+    return Math.min(1, scrollTop / maxScroll);
+  }
+  var shown = false;
+  function tryShow() {
+    if (sessionStorage.getItem(KEY) === '1' || shown) return true;
+    var pct = scrollPct();
+    if (pct >= 0.25) {
+      shown = true;
+      setStep(pct >= 0.75 ? 2 : pct >= 0.5 ? 1 : 0);
+      show();
+      return true;
+    }
+    return false;
+  }
+  window.addEventListener('scroll', tryShow, { passive: true });
+  var delay = isTouch ? 1200 : 2500;
+  setTimeout(function() {
+    if (sessionStorage.getItem(KEY) !== '1' && !shown) {
+      shown = true;
+      setStep(0);
+      show();
+    }
+  }, delay);
+  tryShow();
+  if (isTouch) {
+    setTimeout(tryShow, 400);
+    setTimeout(tryShow, 800);
+  }
+})();
+</script>
+
 <script>
 /* ═══ PERSISTENZA & PREVENZIONE RELOAD ═══ */
 const STORAGE = {
@@ -1203,7 +1517,96 @@ function restoreState(){
     }
   } catch(_){}
 }
-document.addEventListener('DOMContentLoaded', restoreState);
+document.addEventListener('DOMContentLoaded', function(){
+  restoreState();
+});
+
+/* ═══ FLOATING CHAT CTA (mobile, ibrido scroll/tempo) ═══ */
+function initFloatingCta(){
+  var bubble = document.getElementById('floating-cta-bubble');
+  var wrap = document.getElementById('floating-cta');
+  var textEl = document.getElementById('floating-cta-text');
+  var actionEl = document.getElementById('floating-cta-action');
+  var closeBtn = document.getElementById('floating-cta-close');
+  if(!wrap || !bubble || !textEl) return;
+  var STORAGE_FLOAT = 'auiki_float_cta_dismissed';
+  var MSGS = [
+    { text: 'Vuoi provare a generare una scheda prodotto con la nostra demo?', action: 'Vai alla demo →', href: '#simulator' },
+    { text: 'Quanto ti costa il catalogo? Calcola una stima in 30 secondi.', action: 'Calcola il ROI →', href: '#roi' },
+    { text: 'Prenota una call di 20 minuti e analizziamo il tuo processo.', action: 'Prenota call →', href: '#booking' }
+  ];
+  var currentStep = 0;
+  var shown = false;
+  var triggerDone = false;
+
+  function isMobile(){ return window.innerWidth <= 768; }
+  function isDismissed(){ try { return sessionStorage.getItem(STORAGE_FLOAT) === '1'; } catch(_){ return false; } }
+  function scrollPct(){
+    var doc = document.documentElement;
+    var scrollTop = window.pageYOffset || doc.scrollTop;
+    var scrollHeight = Math.max(doc.scrollHeight, doc.body.scrollHeight) - window.innerHeight;
+    if(scrollHeight <= 0) return 0;
+    return Math.min(1, scrollTop / scrollHeight);
+  }
+  function setStep(step){
+    if(step < 0 || step > 2) return;
+    currentStep = step;
+    var m = MSGS[currentStep];
+    textEl.textContent = m.text;
+    if(actionEl) actionEl.textContent = m.action;
+  }
+  function show(){
+    if(isDismissed() || shown) return;
+    wrap.classList.add('is-visible');
+    wrap.style.display = 'block';
+    wrap.setAttribute('aria-hidden', 'false');
+    shown = true;
+  }
+  function hide(){
+    wrap.classList.remove('is-visible');
+    wrap.style.display = '';
+    wrap.setAttribute('aria-hidden', 'true');
+  }
+  function dismiss(){
+    try { sessionStorage.setItem(STORAGE_FLOAT, '1'); } catch(_){}
+    hide();
+  }
+
+  window._floatCtaGo = function() {
+    if (!wrap || !wrap.classList.contains('is-visible')) return;
+    var href = MSGS[currentStep].href;
+    var el = document.querySelector(href);
+    if (el) el.scrollIntoView({ behavior: 'smooth' });
+    hide();
+  };
+  window._floatCtaDismiss = function() {
+    dismiss();
+  };
+
+  function checkTrigger(){
+    if(triggerDone || isDismissed()) return;
+    var pct = scrollPct();
+    if(pct >= 0.25){ triggerDone = true; setStep(pct >= 0.75 ? 2 : pct >= 0.5 ? 1 : 0); show(); }
+  }
+  function onScroll(){
+    if(!shown || !triggerDone) checkTrigger();
+    else if(shown){
+      var pct = scrollPct();
+      if(pct >= 0.75 && currentStep !== 2) setStep(2);
+      else if(pct >= 0.5 && currentStep < 1) setStep(1);
+    }
+  }
+  setTimeout(function(){
+    if(triggerDone || isDismissed()) return;
+    triggerDone = true;
+    setStep(0);
+    show();
+  }, 4000);
+
+  window.addEventListener('scroll', function(){ onScroll(); }, { passive: true });
+  window.addEventListener('resize', function(){ if(window.innerWidth > 768) hide(); });
+  checkTrigger();
+}
 
 /* ═══ SIMULATOR – WEBHOOK REALE ═══ */
 const WH = "https://giovannimavilla.app.n8n.cloud/webhook/598963fd-c7c5-41ca-b0cf-27a9c9f2b229";
@@ -1331,14 +1734,18 @@ async function simSubmitLead(){
   if(err){err.style.display='none';}
   try{
     const r=await fetch(BOOKING_WH,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({source:'simulator',nome:name,email:em,ruolo:role,sku_gestite:sku})});
-    if(!r.ok)throw new Error(r.status);
+    if(!r.ok)throw new Error('HTTP '+r.status);
     $('#sim-lead-form').style.display='none';
     $('#sim-unlocked').style.display='flex';
     try {
       const s=localStorage.getItem(STORAGE.sim);
       if(s){ const d=JSON.parse(s); d.unlocked=true; localStorage.setItem(STORAGE.sim, JSON.stringify(d)); }
     } catch(_){}
-  }catch(e){if(err){err.textContent='Errore invio. Riprova.';err.style.display='block';}}
+  }catch(e){
+    var msg=(e&&e.message)?e.message:'Errore invio. Riprova.';
+    if(msg==='Failed to fetch'||(msg&&msg.indexOf('NetworkError')!==-1)) msg='Errore di rete o CORS. Apri la console (F12) o prova da un server (npm run dev).';
+    if(err){err.textContent='✗ '+msg;err.style.display='block';}
+  }
 }
 function simReset(){
   try { const s=localStorage.getItem(STORAGE.sim); if(s&&JSON.parse(s).used) return; } catch(_){}
@@ -1370,21 +1777,27 @@ async function submitBookingForm(ev){
   const ruolo = ($('#booking-role')&&$('#booking-role').value) ? $('#booking-role').value : '';
   const sku_gestite = ($('#booking-sku')&&$('#booking-sku').value) ? $('#booking-sku').value : '';
   const fb = $('#booking-feedback');
-  if(fb){ fb.style.display='none'; fb.textContent=''; }
+  if(fb){ fb.style.display='none'; fb.textContent=''; fb.style.color=''; }
   if(!nome){ if(fb){ fb.textContent='Inserisci nome e cognome.'; fb.style.display='block'; } return false; }
   if(!email||!email.includes('@')||!email.split('@')[1]||!email.split('@')[1].includes('.')){ if(fb){ fb.textContent='Inserisci un\'email aziendale valida.'; fb.style.display='block'; } return false; }
   if(!ruolo){ if(fb){ fb.textContent='Seleziona il tuo ruolo.'; fb.style.display='block'; } return false; }
   if(!sku_gestite){ if(fb){ fb.textContent='Seleziona le SKU gestite.'; fb.style.display='block'; } return false; }
+  if(fb){ fb.textContent='Invio in corso...'; fb.style.display='block'; }
+  var btn = form.querySelector('button[type="submit"]');
+  if(btn){ btn.disabled = true; }
   try {
     const r = await fetch(BOOKING_WH, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ source: 'booking', nome, email, ruolo, sku_gestite }) });
-    if(!r.ok) throw new Error(r.status);
+    if(!r.ok) throw new Error('HTTP ' + r.status);
     if(fb){ fb.textContent='✓ Richiesta inviata. Ti contatteremo al più presto.'; fb.style.display='block'; fb.style.color='var(--coral)'; }
     form.reset();
     if($('#booking-role')) $('#booking-role').value='';
     if($('#booking-sku')) $('#booking-sku').value='';
   } catch(e) {
-    if(fb){ fb.textContent='Errore invio. Riprova.'; fb.style.display='block'; }
+    var msg = (e && e.message) ? e.message : 'Errore invio. Riprova.';
+    if (msg === 'Failed to fetch' || msg.indexOf('NetworkError') !== -1) msg = 'Errore di rete o CORS. Verifica la console (F12) e che il webhook n8n sia raggiungibile.';
+    if(fb){ fb.textContent='✗ ' + msg; fb.style.display='block'; fb.style.color='#f87171'; }
   }
+  if(btn){ btn.disabled = false; }
   return false;
 }
 
