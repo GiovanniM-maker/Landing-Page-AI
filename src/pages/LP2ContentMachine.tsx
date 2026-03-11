@@ -590,7 +590,7 @@ function NumbersSection({ calcHours, setCalcHours, calcRate, setCalcRate, calcRe
             >
               <p className="font-body text-gray-400 mb-1">Stai bruciando circa</p>
               <p className="font-display font-bold text-3xl text-accent">&euro;{calcResult.toLocaleString('it-IT')}</p>
-              <p className="font-body text-gray-400 mt-1">all'anno in contenuti. Ecco quanto RISPARMIERESTI delegando all'AI.</p>
+              <p className="font-body text-gray-400 mt-1">all'anno in contenuti. Ecco <span className="font-bold text-gray-300">quanto risparmieresti</span> delegando all'AI.</p>
             </motion.div>
           )}
         </motion.div>
