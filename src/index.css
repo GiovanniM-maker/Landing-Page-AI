@@ -1,3 +1,15 @@
+@import "tailwindcss";
+
+@theme {
+  --color-ink: #1d1d1f;
+  --color-navy: #0a1628;
+  --color-accent: #F36A63;
+  --color-accent-hover: #e05a53;
+
+  --font-display: "Nunito", "Inter", system-ui, sans-serif;
+  --font-body: "Inter", system-ui, -apple-system, sans-serif;
+}
+
 * {
   box-sizing: border-box;
 }
@@ -10,8 +22,8 @@ body,
 }
 
 body {
-  background: #050607;
-  color: #f1f2f0;
+  background: #FAFAF8;
+  color: #1d1d1f;
   font-family: "Inter", system-ui, -apple-system, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
