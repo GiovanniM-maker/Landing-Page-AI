@@ -33,7 +33,7 @@ const STORY_LINES = [
 ];
 
 const STEPS = [
-  { num: '01', title: 'Ci racconti chi sei', desc: 'Una call di 30 minuti. Tono di voce, settore, competitor, obiettivi. Ti facciamo le domande giuste — tu non devi preparare niente.', time: '30 minuti · una volta sola' },
+  { num: '01', title: 'Ci racconti chi sei', desc: 'Una call di 30 minuti. Tono di voce, settore, competitor, obiettivi. Ti facciamo le domande giuste, tu non devi preparare niente.', time: '30 minuti · una volta sola' },
   { num: '02', title: 'Costruiamo il sistema', desc: 'Impostiamo la pipeline: fonti di contenuto, calendario editoriale, formati, canali. L\'audit strategico definisce la tua voce e il posizionamento. Costo fisso: €500.', time: 'Prima settimana' },
   { num: '03', title: 'Pubblichiamo ogni settimana', desc: 'Da quel momento: noi produciamo, tu (opzionalmente) approvi. Contenuti pubblicati, calendario pieno, profilo attivo. Tu guardi i risultati.', time: 'Ogni settimana, in autonomia' },
 ];
@@ -52,11 +52,11 @@ const FAQ_ITEMS = [
   },
   {
     q: 'I contenuti suonano "fatti dall\'AI"?',
-    a: 'No — e questa è la parte che ci distingue da un tool generico. L\'audit iniziale serve esattamente a calibrare il tono di voce, il lessico, le posizioni che volete prendere, gli argomenti che volete evitare. Usiamo l\'AI come strumento di produzione, ma ogni contenuto passa da una revisione umana prima di uscire. Il risultato suona come voi, non come ChatGPT.',
+    a: 'No, e questa è la parte che ci distingue da un tool generico. L\'audit iniziale serve esattamente a calibrare il tono di voce, il lessico, le posizioni che volete prendere, gli argomenti che volete evitare. Usiamo l\'AI come strumento di produzione, ma ogni contenuto passa da una revisione umana prima di uscire. Il risultato suona come voi, non come ChatGPT.',
   },
   {
     q: 'Perché il contratto minimo di 3 mesi?',
-    a: 'Il contenuto non si calibra in un mese. Le prime 4-6 settimane servono per trovare il ritmo, capire cosa funziona con il vostro pubblico, e ottimizzare il piano editoriale. Chi ha provato con un mese solo non ha mai visto i risultati — non perché il servizio non funzioni, ma perché i contenuti hanno bisogno di tempo per costruire autorevolezza e reach. Il minimo di 3 mesi è una garanzia per entrambe le parti.',
+    a: 'Il contenuto non si calibra in un mese. Le prime 4-6 settimane servono per trovare il ritmo, capire cosa funziona con il vostro pubblico, e ottimizzare il piano editoriale. Chi ha provato con un mese solo non ha mai visto i risultati. Non perché il servizio non funzioni, ma perché i contenuti hanno bisogno di tempo per costruire autorevolezza e reach. Il minimo di 3 mesi è una garanzia per entrambe le parti.',
   },
   {
     q: 'Cosa succede dopo i 3 mesi?',
@@ -64,11 +64,11 @@ const FAQ_ITEMS = [
   },
   {
     q: 'Possiamo approvare i contenuti prima della pubblicazione?',
-    a: 'Assolutamente sì. Tutti i contenuti vengono condivisi in anticipo — via Google Docs, Notion, o qualsiasi strumento usiate già. Potete approvare, chiedere modifiche o pubblicare direttamente. Se preferite non essere coinvolti, pubblichiamo in autonomia. La scelta è vostra e può cambiare mese per mese.',
+    a: 'Assolutamente sì. Tutti i contenuti vengono condivisi in anticipo, via Google Docs, Notion, o qualsiasi strumento usiate già. Potete approvare, chiedere modifiche o pubblicare direttamente. Se preferite non essere coinvolti, pubblichiamo in autonomia. La scelta è vostra e può cambiare mese per mese.',
   },
   {
     q: '€500/mese sembra poco per tutto questo. Perché?',
-    a: 'Perché usiamo strumenti AI per la produzione, il che abbassa drasticamente il tempo umano necessario. Un nostro operatore gestisce più clienti in parallelo — il che significa che il costo per cliente è sostenibile. Non stiamo tagliando sulla qualità: stiamo ottimizzando il processo. Il prezzo è basso rispetto al mercato, ma è sostenibile per noi perché il sistema è efficiente.',
+    a: 'Perché usiamo strumenti AI per la produzione, il che abbassa drasticamente il tempo umano necessario. Un nostro operatore gestisce più clienti in parallelo. Il che significa che il costo per cliente è sostenibile. Non stiamo tagliando sulla qualità: stiamo ottimizzando il processo. Il prezzo è basso rispetto al mercato, ma è sostenibile per noi perché il sistema è efficiente.',
   },
 ];
 
@@ -172,7 +172,7 @@ export default function LP2ContentMachine() {
             <ul className="space-y-3 font-body text-sm text-gray-300">
               {['Piano editoriale mensile personalizzato', 'Contenuti per LinkedIn, Instagram, newsletter, blog', 'Pubblicazione gestita ogni settimana', 'Revisione + feedback continuo', 'Report mensile di performance', 'Supporto diretto via WhatsApp'].map((item, i) => (
                 <li key={i} className="flex items-start gap-2">
-                  <span className="text-accent">—</span>
+                  <span className="text-accent">·</span>
                   {item}
                 </li>
               ))}
@@ -231,7 +231,7 @@ export default function LP2ContentMachine() {
                 <div className="space-y-3 font-body text-sm text-gray-400">
                   {STORY_LINES.map((line, i) => (
                     <p key={i} className="flex items-start gap-2">
-                      <span className="text-white/30">—</span>
+                      <span className="text-white/30">·</span>
                       {line}
                     </p>
                   ))}
@@ -390,7 +390,7 @@ export default function LP2ContentMachine() {
               <ul className="space-y-2 mb-6 font-body text-sm text-gray-300">
                 {['Call di 60 minuti approfondita', 'Analisi dei canali esistenti', 'Definizione del tono di voce e posizionamento', 'Benchmark competitor su 3 canali', 'Piano editoriale del primo mese', 'Documento strategico consegnato in PDF'].map((item, i) => (
                   <li key={i} className="flex items-start gap-2">
-                    <span className="text-accent">—</span>
+                    <span className="text-accent">·</span>
                     {item}
                   </li>
                 ))}
@@ -417,7 +417,7 @@ export default function LP2ContentMachine() {
               <ul className="space-y-2 mb-6 font-body text-sm text-gray-300">
                 {['2-3 post LinkedIn a settimana', 'Caption Instagram + indicazioni grafiche', 'Newsletter settimanale pronta da inviare', '1 articolo blog SEO al mese', 'Pubblicazione gestita (o bozze se preferisci)', 'Report mensile performance', 'Supporto WhatsApp diretto'].map((item, i) => (
                   <li key={i} className="flex items-start gap-2">
-                    <span className="text-accent">—</span>
+                    <span className="text-accent">·</span>
                     {item}
                   </li>
                 ))}
@@ -436,7 +436,7 @@ export default function LP2ContentMachine() {
             className="rounded-xl border border-white/10 bg-[#1A1A1A] p-6 flex flex-col sm:flex-row justify-between items-center gap-4"
           >
             <div>
-              <p className="font-body font-semibold text-[#F5F5F7]">Investimento totale — Primi 3 mesi</p>
+              <p className="font-body font-semibold text-[#F5F5F7]">Investimento totale · Primi 3 mesi</p>
               <p className="text-sm text-gray-400">Audit una tantum + 3 mesi di gestione completa</p>
             </div>
             <p className="font-body font-bold text-3xl text-accent">€2.000 <span className="text-base font-normal text-gray-400">totali</span></p>
