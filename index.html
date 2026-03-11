@@ -118,7 +118,7 @@ h2 { font-size: clamp(28px, 3.5vw, 42px); line-height: 1.15; margin-bottom: 16px
 
 /* ── HERO ── */
 .hero {
-  padding-top: 180px; padding-bottom: 100px;
+  padding-top: 90px; padding-bottom: 100px;
   position: relative; overflow: hidden;
 }
 .hero::after {
@@ -227,8 +227,8 @@ h2 { font-size: clamp(28px, 3.5vw, 42px); line-height: 1.15; margin-bottom: 16px
 .cost-box {
   margin-top: 32px;
   padding: 28px 32px;
-  background: var(--red-dim);
-  border: 1px solid rgba(255,69,58,0.15);
+  background: #fff;
+  border: 1px solid rgba(0,0,0,0.08);
   border-radius: 12px;
 }
 .cost-box .cost-label {
@@ -236,8 +236,19 @@ h2 { font-size: clamp(28px, 3.5vw, 42px); line-height: 1.15; margin-bottom: 16px
   text-transform: uppercase; letter-spacing: 0.1em;
   margin-bottom: 8px;
 }
-.cost-box p { font-size: 14px; color: var(--gray-300); line-height: 1.6; }
-.cost-box strong { color: var(--white); }
+.cost-box p { font-size: 14px; color: #1d1d1f; line-height: 1.6; }
+.cost-box strong { color: #1d1d1f; }
+.cost-box-cta {
+  display: inline-block;
+  margin-top: 16px;
+  font-family: var(--font);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--coral);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.cost-box-cta:hover { color: var(--red); }
 
 /* ── SOLUTION ── */
 .solution-pipeline {
@@ -890,7 +901,7 @@ footer {
   .container { padding: 0 16px; }
   section { padding: 60px 0; }
   .hero {
-    padding-top: 120px;
+    padding-top: 60px;
     padding-bottom: 60px;
   }
   .hero-inner {
@@ -907,6 +918,10 @@ footer {
     margin-top: 40px;
     padding-top: 32px;
   }
+  .hero-stats .hero-stat:nth-child(1) { order: 1; }
+  .hero-stats .hero-stat:nth-child(2) { order: 3; }
+  .hero-stats .hero-stat:nth-child(3) { order: 2; }
+  .hero-stats .hero-stat:nth-child(4) { order: 4; }
   .problem-grid-2x2 { grid-template-columns: 1fr; }
   .solution-pipeline {
     grid-template-columns: 1fr;
@@ -1007,11 +1022,11 @@ footer {
   <div class="container">
     <div class="hero-inner">
       <div class="hero-content">
-        <p class="kicker">Product Enrichment AI</p>
-        <h1>Gestisci migliaia di SKU?<br>Il tuo catalogo ti costa<br>più di quanto pensi.</h1>
-        <p class="subtitle">Sistema di Product Enrichment AI per ridurre fino al 70% il tempo di gestione catalogo. Senza aumentare il team.</p>
+        <p class="kicker">Arricchimento Prodotto AI</p>
+        <h1>Gestisci migliaia di referenze?<br>Il tuo catalogo ti costa<br>più di quanto pensi.</h1>
+        <p class="subtitle">Sistema di Arricchimento dei dati del prodotto con l'AI, per ridurre fino all'80/90% il tempo di gestione catalogo. Senza aumentare il team.</p>
         <div class="hero-ctas">
-          <a href="#simulator" class="btn-coral">Genera la tua prima scheda AI</a>
+          <a href="#simulator" class="btn-coral">Genera il tuo primo prodotto con AI</a>
           <a href="#roi" class="btn-outline">Calcola il costo del tuo catalogo</a>
         </div>
       </div>
@@ -1033,18 +1048,19 @@ footer {
 <section class="problem">
   <div class="container">
     <p class="kicker">Il Problema</p>
-    <h2>Il catalogo digitale è il collo<br>di bottiglia che nessuno affronta.</h2>
-    <p class="subtitle">Ogni SKU inserita manualmente è tempo perso, costo nascosto e rischio di errore. Il problema non è il team. È il processo.</p>
+    <h2>Il collo di bottiglia?<br>Il catalogo.</h2>
+    <p class="subtitle">Ogni referenza inserita manualmente è <strong>tempo perso, costo nascosto e rischio di errore</strong>. Il problema è il processo, non il team.</p>
     <div class="cost-box">
       <div class="cost-label">Costo nascosto</div>
-      <p>Un team di 3 persone che spende 15 minuti a scheda su 300 SKU/mese genera un costo operativo di <strong>oltre €4.500/mese</strong> solo per l'inserimento dati. Senza contare revisioni, correzioni e rilavorazioni.</p>
+      <p>Un team di 3 persone che spende 15 minuti a scheda su 300 referenze/mese genera un costo operativo di <strong>oltre €4.500/mese</strong> solo per l'inserimento dati. Senza contare revisioni, correzioni e rilavorazioni.</p>
+      <a href="#roi" class="cost-box-cta">Calcola il costo del tuo team Catalogo.</a>
     </div>
     <div class="problem-grid-2x2">
       <div class="p-card">
         <div class="p-icon">⏱</div>
         <div>
           <h4>Inserimento manuale lento</h4>
-          <p>Ogni scheda prodotto richiede minuti di lavoro ripetitivo. Moltiplica per centinaia di SKU al mese.</p>
+          <p>Ogni scheda prodotto richiede minuti di lavoro ripetitivo. Moltiplica per centinaia di referenze al mese.</p>
         </div>
       </div>
       <div class="p-card">
@@ -1065,7 +1081,7 @@ footer {
         <div class="p-icon">📈</div>
         <div>
           <h4>Impossibilità di scalare</h4>
-          <p>Da 500 a 5.000 SKU il processo crolla. L'unica soluzione attuale: assumere.</p>
+          <p>Da 500 a 5.000 referenze il processo crolla. L'unica soluzione attuale: assumere.</p>
         </div>
       </div>
     </div>
@@ -1076,7 +1092,7 @@ footer {
 <section id="solution">
   <div class="container">
     <p class="kicker">La Soluzione</p>
-    <h2>Un sistema, non un tool.<br>Product Enrichment in 4 step.</h2>
+    <h2>Un sistema, non un tool.<br>Arricchimento catalogo in 4 step.</h2>
     <p class="subtitle">Non sostituiamo il tuo team. Eliminiamo il lavoro ripetitivo e standardizziamo l'output. Il controllo resta sempre in mano tua.</p>
     <div class="solution-pipeline">
       <div class="pipe-step">
