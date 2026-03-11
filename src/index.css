@@ -22,9 +22,9 @@ body,
 }
 
 body {
-  background: #FAFAF8;
-  color: #1d1d1f;
-  font-family: "Inter", system-ui, -apple-system, sans-serif;
+  background: #0A0A0A;
+  color: #F5F5F7;
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
