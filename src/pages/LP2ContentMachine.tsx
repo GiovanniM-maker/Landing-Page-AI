@@ -2,7 +2,7 @@ import { useState, useRef, useEffect } from 'react';
 import { motion, useInView, AnimatePresence } from 'framer-motion';
 import { ArrowRight, Linkedin, Mail, Instagram, ChevronDown, FileText, BarChart3 } from 'lucide-react';
 import LandingNavbar from '../components/landing/LandingNavbar';
-import LandingFooter from '../components/landing/LandingFooter';
+import MainFooter from '../components/landing/MainFooter';
 
 const NAV_LINKS = [
   { label: 'Come funziona', id: 'come-funziona' },
@@ -531,15 +531,9 @@ export default function LP2ContentMachine() {
         </div>
       </section>
 
-      {/* CTA FINALE */}
+      {/* FOOTER */}
       <div id="contatti">
-        <LandingFooter
-        headline="Il tuo competitor pubblica già. Tu quando inizi?"
-        subtext="Prima call gratuita. Nessun impegno. Se non è la soluzione giusta per te, te lo diciamo in quella call."
-        ctaLabel="Prenota la call gratuita"
-        ctaTarget="contatti"
-        onScrollTo={scrollTo}
-      />
+        <MainFooter />
       </div>
     </div>
   );
