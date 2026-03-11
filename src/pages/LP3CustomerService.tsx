@@ -2,7 +2,7 @@ import { useState, useRef, useEffect } from 'react';
 import { motion, useInView, AnimatePresence } from 'framer-motion';
 import { ArrowRight, MessageCircle, Clock, Calendar, Users, ChevronDown, Shield, CheckCircle } from 'lucide-react';
 import LandingNavbar from '../components/landing/LandingNavbar';
-import LandingFooter from '../components/landing/LandingFooter';
+import MainFooter from '../components/landing/MainFooter';
 
 const NAV_LINKS = [
   { label: 'Il problema', id: 'problema' },
@@ -225,14 +225,8 @@ export default function LP3CustomerService() {
       {/* OBIEZIONI */}
       <FaqSection items={FAQ_ITEMS} openFaq={openFaq} setOpenFaq={setOpenFaq} />
 
-      {/* CTA FINALE */}
-      <LandingFooter
-        headline="Il prossimo cliente che ti scrive alle 22 non deve aspettare fino a domani mattina."
-        subtext="Configurazione in 30 minuti. Nessun contratto. Puoi disattivarla quando vuoi."
-        ctaLabel="Attiva la demo gratuita per la tua azienda"
-        ctaTarget="demo"
-        onScrollTo={scrollTo}
-      />
+      {/* FOOTER */}
+      <MainFooter />
     </div>
   );
 }

@@ -2,7 +2,7 @@ import { useState, useRef, useEffect } from 'react';
 import { motion, useInView, AnimatePresence } from 'framer-motion';
 import { ArrowRight, Target, Send, TrendingUp, Users, ChevronDown, CheckCircle, Zap, BarChart3 } from 'lucide-react';
 import LandingNavbar from '../components/landing/LandingNavbar';
-import LandingFooter from '../components/landing/LandingFooter';
+import MainFooter from '../components/landing/MainFooter';
 
 const NAV_LINKS = [
   { label: 'Il problema', id: 'problema' },
@@ -394,14 +394,8 @@ export default function LP5LeadGeneration() {
       {/* FAQ */}
       <FaqSection items={FAQ_ITEMS} openFaq={openFaq} setOpenFaq={setOpenFaq} />
 
-      {/* CTA FINALE */}
-      <LandingFooter
-        headline="La prossima settimana potresti avere già 10 conversazioni aperte con potenziali clienti. O potresti continuare a rimandare."
-        subtext="Nessuna registrazione. Risultato in 30 secondi. Poi decidi tu."
-        ctaLabel="Calcola quanti lead stai perdendo ogni mese"
-        ctaTarget="calcolatore"
-        onScrollTo={scrollTo}
-      />
+      {/* FOOTER */}
+      <MainFooter />
     </div>
   );
 }

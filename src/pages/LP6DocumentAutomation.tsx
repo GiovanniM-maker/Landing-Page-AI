@@ -2,7 +2,7 @@ import { useState, useRef, useEffect } from 'react';
 import { motion, useInView, AnimatePresence } from 'framer-motion';
 import { ArrowRight, FileText, Receipt, FileSignature, Mail, BarChart3, ChevronDown, CheckCircle, Upload, Clock, Shield } from 'lucide-react';
 import LandingNavbar from '../components/landing/LandingNavbar';
-import LandingFooter from '../components/landing/LandingFooter';
+import MainFooter from '../components/landing/MainFooter';
 
 const NAV_LINKS = [
   { label: 'Il problema', id: 'problema' },
@@ -375,14 +375,8 @@ export default function LP6DocumentAutomation() {
       {/* FAQ */}
       <FaqSection items={FAQ_ITEMS} openFaq={openFaq} setOpenFaq={setOpenFaq} />
 
-      {/* CTA FINALE */}
-      <LandingFooter
-        headline="Stasera potresti staccare alle 18. I preventivi li ha già fatti l'AI."
-        subtext="Gratis. Nessuna installazione. Risultato in 30 secondi."
-        ctaLabel="Carica il tuo primo documento e vedi cosa genera"
-        ctaTarget="demo"
-        onScrollTo={scrollTo}
-      />
+      {/* FOOTER */}
+      <MainFooter />
     </div>
   );
 }
