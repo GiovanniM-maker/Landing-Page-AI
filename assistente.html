@@ -6,10 +6,217 @@
   <title>AI Customer Service – Auiki</title>
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Nunito:wght@700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#000000;--bg-raised:#0A0A0A;--bg-card:#1A1A1A;--bg-card-hover:#202020;--border:rgba(255,255,255,0.08);--border-strong:rgba(255,255,255,0.14);--coral:#F36A63;--coral-dim:rgba(243,106,99,0.12);--coral-glow:rgba(243,106,99,0.08);--white:#F5F5F7;--gray-300:#A1A1A6;--gray-500:#6E6E73;--green:#34C759;--red:#FF453A;--font:'Inter',-apple-system,BlinkMacSystemFont,sans-serif}
+html{scroll-behavior:smooth}
+body{font-family:var(--font);background:var(--bg);color:var(--white);line-height:1.6;-webkit-font-smoothing:antialiased}
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:18px 40px;display:flex;align-items:center;justify-content:space-between;background:#000;border-bottom:1px solid var(--border)}
+.nav-logo{display:flex;align-items:center}
+.nav-logo-img{height:28px;width:auto;display:block}
+.nav-cta{padding:10px 26px;background:transparent;color:var(--white);font-family:var(--font);font-size:13px;font-weight:600;border:1px solid var(--border-strong);border-radius:100px;text-decoration:none;transition:all .25s}
+.nav-cta:hover{background:var(--white);color:var(--bg)}
+.nav-ctas{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.nav-cta-red{background:var(--coral)!important;color:#fff!important;border-color:var(--coral)!important}
+.nav-cta-red:hover{filter:brightness(1.1);color:#fff!important}
+.container{max-width:1100px;margin:0 auto;padding:0 32px}
+section{padding:100px 0}
+.kicker{font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--coral);margin-bottom:20px}
+h1,h2,h3{font-weight:600;letter-spacing:-.025em}
+h2{font-size:clamp(28px,3.5vw,42px);line-height:1.15;margin-bottom:16px}
+.subtitle{font-size:17px;line-height:1.7;color:var(--gray-300);max-width:540px}
+.hero{padding-top:180px;padding-bottom:100px;position:relative;overflow:hidden}
+.hero::after{content:'';position:absolute;top:80px;left:50%;transform:translateX(-50%);width:700px;height:500px;background:radial-gradient(ellipse,var(--coral-glow) 0%,transparent 65%);pointer-events:none}
+.hero-inner{display:grid;grid-template-columns:1fr;gap:48px;align-items:center}
+.hero-content{position:relative;z-index:1}
+.hero h1{font-size:clamp(38px,4.6vw,54px);line-height:1.08;max-width:720px;margin-bottom:24px}
+.hero h1 em{font-style:italic;color:var(--coral)}
+.hero .subtitle{margin-bottom:48px}
+.hero-ctas{display:flex;gap:16px;flex-wrap:wrap}
+.btn-coral{display:inline-flex;align-items:center;gap:8px;padding:15px 34px;background:var(--coral);color:#fff;font-family:var(--font);font-size:14px;font-weight:600;border:none;border-radius:100px;cursor:pointer;text-decoration:none;transition:all .25s}
+.btn-coral:hover{filter:brightness(1.1);transform:translateY(-1px)}
+.problem{background:var(--bg-raised);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.p-card{display:flex;gap:16px;align-items:flex-start;padding:22px 24px;background:var(--bg-card);border:1px solid var(--border);border-radius:14px;transition:all .25s}
+.p-card:hover{border-color:var(--coral);background:var(--bg-card-hover)}
+.p-icon{flex-shrink:0;width:38px;height:38px;display:flex;align-items:center;justify-content:center;background:rgba(255,69,58,0.1);border-radius:10px;font-size:16px}
+.p-card h4{font-size:15px;font-weight:600;margin-bottom:4px}
+.p-card p{font-size:13px;color:var(--gray-300);line-height:1.55}
+.solution-pipeline{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:48px}
+.pipe-step{background:var(--bg-card);border:1px solid var(--border);border-radius:14px;padding:32px 24px;transition:all .25s}
+.pipe-step:hover{border-color:var(--coral)}
+.pipe-num{font-size:11px;font-weight:700;color:var(--coral);letter-spacing:.1em;text-transform:uppercase;margin-bottom:8px}
+.pipe-step h4{font-size:16px;font-weight:600;margin-bottom:8px}
+.pipe-step p{font-size:13px;color:var(--gray-300);line-height:1.55}
+.o-card{padding:32px 20px;background:var(--bg-card);border:1px solid var(--border);border-radius:14px;text-align:center;transition:all .25s}
+.o-card:hover{border-color:var(--coral);transform:translateY(-3px)}
+.o-num{font-size:38px;font-weight:700;letter-spacing:-.03em;color:var(--coral);margin-bottom:8px}
+.o-card h4{font-size:14px;font-weight:600;margin-bottom:8px}
+.o-card p{font-size:13px;color:var(--gray-300);line-height:1.5}
+.outcomes{background:var(--bg-raised);border-top:1px solid var(--border)}
+.final-cta{text-align:center;background:var(--bg-raised);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.final-form{max-width:460px;margin:32px auto 0;display:flex;flex-direction:column;gap:12px}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.form-row input,.form-row select{padding:14px 16px;background:var(--bg-card);border:1px solid var(--border);border-radius:10px;color:var(--white);font-family:var(--font);font-size:14px}
+.form-row input::placeholder,.form-row select{color:var(--gray-500)}
+.form-row input:focus,.form-row select:focus{outline:none;border-color:var(--coral)}
+.final-form .btn-coral{width:100%;justify-content:center;margin-top:4px;padding:16px}
+footer{background:#000;color:#fff;padding:64px 0 80px;border-top:none}
+.footer-top{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start;padding-bottom:40px;border-bottom:1px solid rgba(255,255,255,0.2)}
+.footer-top-right{display:flex;flex-direction:column;align-items:flex-end;gap:24px}
+.footer-columns{display:grid;grid-template-columns:1fr 1fr auto;gap:64px}
+.footer-col h5{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;margin-bottom:16px;color:rgba(255,255,255,0.9);text-align:right}
+.footer-col ul{list-style:none}
+.footer-col li{margin-bottom:8px;text-align:right}
+.footer-col a{color:rgba(255,255,255,0.75);text-decoration:none;font-size:14px;transition:color .2s}
+.footer-col a:hover{color:#fff}
+.footer-legal-row{display:flex;justify-content:flex-end;gap:24px;margin-top:24px;font-size:13px;color:rgba(255,255,255,0.6)}
+.footer-bottom{padding-top:48px;text-align:center}
+.footer-logo-img{width:100%;max-width:200px;height:auto;display:block;margin:0 auto;object-fit:contain}
+.stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:48px}
+.stat-item{text-align:center}
+.stat-item .num{font-size:36px;font-weight:700;letter-spacing:-.03em;color:var(--coral)}
+.stat-item .label{font-size:14px;color:var(--gray-500);margin-top:6px}
+.problem-grid-2x2{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:32px}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+@media(max-width:768px){.nav{padding:14px 16px}.container{padding:0 16px}section{padding:60px 0}.hero{padding-top:120px;padding-bottom:60px}.problem-grid-2x2,.two-col{grid-template-columns:1fr}.solution-pipeline{grid-template-columns:1fr}.outcomes-grid{grid-template-columns:repeat(2,1fr)}.stats-grid{grid-template-columns:repeat(2,1fr)}.footer-top{grid-template-columns:1fr}.footer-top-right{align-items:flex-start}.footer-columns{grid-template-columns:1fr}.footer-col h5,.footer-col li{text-align:left}.form-row{grid-template-columns:1fr}}
+  </style>
 </head>
 <body>
-  <div id="root"></div>
-  <script type="module" src="/src/entries/assistente.tsx"></script>
+
+<nav class="nav">
+  <a href="/" class="nav-logo"><img src="/logo-potential.png" alt="Auiki" class="nav-logo-img"></a>
+  <div class="nav-ctas">
+    <a href="/assistente.html" class="nav-cta nav-cta-red">Parla adesso con una demo live</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="container">
+    <div class="hero-inner">
+      <div class="hero-content">
+        <p class="kicker">AI Customer Service</p>
+        <h1>I tuoi clienti chiamano. <em>L'AI risponde — meglio di un umano.</em></h1>
+        <p class="subtitle">Un assistente virtuale che conosce la tua azienda, risponde alle domande, prenota appuntamenti e gestisce richieste — 24/7, in italiano perfetto.</p>
+        <div class="hero-ctas">
+          <a href="#cta" class="btn-coral">Parla adesso con una demo live</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="problem">
+  <div class="container">
+    <p class="kicker">Il problema</p>
+    <h2>Ogni giorno perdi clienti che non riesci a gestire.</h2>
+    <p class="subtitle">Squilla il telefono mentre sei con un altro cliente. Arriva un messaggio WhatsApp alle 22. Una email rimane senza risposta per tre giorni. Un potenziale cliente che voleva solo sapere il prezzo — se ne va da un competitor che ha risposto in 2 minuti.</p>
+    <p class="subtitle" style="margin-top: 16px;">Non è colpa tua. Non puoi essere ovunque. Ma il problema costa. Ogni mese.</p>
+    <div class="problem-grid-2x2" style="margin-top: 32px;">
+      <div class="p-card">
+        <div class="p-icon">📞</div>
+        <div>
+          <h4>Richieste senza risposta</h4>
+          <p>Chiamate perse, messaggi ignorati, email che si accumulano.</p>
+        </div>
+      </div>
+      <div class="p-card">
+        <div class="p-icon">⏰</div>
+        <div>
+          <h4>Clienti che aspettano</h4>
+          <p>Un competitor che risponde in 2 minuti si porta via il cliente.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <p class="kicker">La soluzione</p>
+    <h2>Il tuo assistente AI risponde al posto tuo — sempre.</h2>
+    <p class="subtitle">Risponde in secondi. Non in ore. Tu la mattina apri il telefono e trovi tutto già gestito.</p>
+    <ul style="margin-top: 24px; padding-left: 20px; color: var(--gray-300); line-height: 2;">
+      <li>Risponde su WhatsApp, sul sito, via email</li>
+      <li>Conosce i tuoi servizi, prezzi, orari</li>
+      <li>Prenota appuntamenti nel tuo calendario</li>
+      <li>Scala le situazioni complesse solo a te</li>
+    </ul>
+    <div class="solution-pipeline">
+      <div class="pipe-step">
+        <div class="pipe-num">01</div>
+        <h4>Lo configuriamo con le tue info</h4>
+        <p>Servizi, prezzi, FAQ, orari, tono di voce. In 30 minuti è pronto.</p>
+      </div>
+      <div class="pipe-step">
+        <div class="pipe-num">02</div>
+        <h4>Lo attivi sui tuoi canali</h4>
+        <p>Sito web, WhatsApp Business, email. Dove sono già i tuoi clienti.</p>
+      </div>
+      <div class="pipe-step">
+        <div class="pipe-num">03</div>
+        <h4>Lui risponde. Tu lavori.</h4>
+        <p>Ogni mattina ricevi un report. Intervieni solo quando serve davvero.</p>
+      </div>
+    </div>
+    <div class="stats-grid">
+      <div class="stat-item"><span class="num">-40%</span><span class="label">Tempi di risposta dopo l'implementazione</span></div>
+      <div class="stat-item"><span class="num">+35%</span><span class="label">Soddisfazione cliente media</span></div>
+      <div class="stat-item"><span class="num">8 sec</span><span class="label">Tempo medio di risposta</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="outcomes">
+  <div class="container">
+    <p class="kicker">Cosa dicono i clienti</p>
+    <div class="two-col" style="margin-top: 32px;">
+      <div class="p-card">
+        <p>«Prima avevamo una segretaria part-time solo per gestire le chiamate. Ora l'AI gestisce l'80% delle richieste da sola. La segretaria si occupa solo dei casi che richiedono davvero attenzione umana.»</p>
+      </div>
+      <div class="p-card">
+        <p>«Un paziente mi ha scritto alle 2 di notte per prenotare una visita urgente. L'AI ha risposto, ha raccolto i dati, ha inserito l'appuntamento. Io ho trovato tutto pronto la mattina.»</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="final-cta" id="cta">
+  <div class="container">
+    <p class="kicker">Prossimo passo</p>
+    <h2>Pronto a non perdere più un cliente?</h2>
+    <p class="subtitle">Prenota una demo con il tuo assistente AI.</p>
+    <form class="final-form" onsubmit="return false;">
+      <div class="form-row">
+        <input type="text" placeholder="Nome" required>
+        <input type="text" placeholder="Cognome" required>
+      </div>
+      <div class="form-row">
+        <input type="email" placeholder="Email" required>
+      </div>
+      <button type="submit" class="btn-coral">Prenota demo →</button>
+    </form>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-top">
+      <div class="footer-top-left"><span class="footer-brand-name">Auiki</span></div>
+      <div class="footer-top-right">
+        <div class="footer-columns">
+          <div class="footer-col"><h5>Contatti</h5><ul><li>info@auiki.it</li></ul></div>
+          <div class="footer-col"><h5>Dove trovarci</h5><ul><li>Reggio Emilia</li><li>Milano</li></ul></div>
+          <div class="footer-col"><h5>Social</h5><ul><li><a href="#">LinkedIn</a></li></ul></div>
+        </div>
+        <div class="footer-legal-row"><span>REA 307388</span><span>p.iva 02721330351</span></div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <img src="/auiki-logo-footer.png" alt="AUIKI" class="footer-logo-img">
+    </div>
+  </div>
+</footer>
+
 </body>
 </html>
