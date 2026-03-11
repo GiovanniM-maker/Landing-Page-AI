@@ -232,10 +232,10 @@ export default function LP2ContentMachine() {
               <div className="rounded-xl border border-white/10 bg-[#1A1A1A] p-6">
                 <p className="text-xs uppercase tracking-[0.2em] text-accent font-body font-semibold mb-3">Il costo reale</p>
                 <p className="font-body text-xl sm:text-2xl font-medium text-[#F5F5F7] leading-relaxed">
-                  Un dipendente che spreca 3 ore a settimana sui contenuti ti costa
-                  <span className="text-accent"> oltre €3.000 l'anno.</span>
+                  Un dipendente o freelance che si occupa dei contenuti a tempo pieno può costarti
+                  <span className="text-accent"> €1.500-2.000 al mese.</span>
                 </p>
-                <p className="text-sm text-gray-500 mt-3">Per molto meno, tu smetti di pensarci.</p>
+                <p className="text-sm text-gray-500 mt-3">Noi facciamo lo stesso per €500/mese.</p>
               </div>
             </motion.div>
           </div>
