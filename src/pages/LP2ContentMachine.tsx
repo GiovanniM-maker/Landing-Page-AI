@@ -151,7 +151,7 @@ export default function LP2ContentMachine() {
   const calcResult = calcHours && calcRate ? Math.round(parseFloat(calcHours) * parseFloat(calcRate) * 48) : null;
 
   return (
-    <div className="bg-[#FAFAF8] text-ink min-h-screen">
+    <div className="bg-[#000000] text-[#F5F5F7] min-h-screen">
       <LandingNavbar
         onScrollTo={scrollTo}
         scrolled={scrolled}
@@ -162,7 +162,7 @@ export default function LP2ContentMachine() {
 
       {/* Breadcrumb */}
       <div className="pt-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
-        <p className="text-xs text-gray-400 font-mono">/contenuti</p>
+        <p className="text-xs text-gray-500 font-mono">/contenuti</p>
       </div>
 
       {/* HERO */}
@@ -173,14 +173,14 @@ export default function LP2ContentMachine() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
           >
-            <span className="inline-block px-3 py-1 text-xs font-medium text-navy border border-navy/30 rounded-full mb-6">
+            <span className="inline-block px-3 py-1 text-xs font-medium text-accent border border-accent/30 rounded-full mb-6">
               AI Content Machine
             </span>
-            <h1 className="font-display font-bold text-4xl sm:text-5xl leading-[1.1] text-ink mb-6">
+            <h1 className="font-display font-bold text-4xl sm:text-5xl leading-[1.1] text-[#F5F5F7] mb-6">
               Stai perdendo clienti perché non pubblichi abbastanza.
               <span className="text-accent"> L'AI ora pubblica per te.</span>
             </h1>
-            <p className="font-body text-xl text-gray-600 leading-relaxed mb-8 max-w-xl">
+            <p className="font-body text-xl text-gray-400 leading-relaxed mb-8 max-w-xl">
               Blog, newsletter, LinkedIn, Instagram — contenuti professionali, nel tuo tone of voice, pronti in 30 secondi.
             </p>
             <button
@@ -198,9 +198,9 @@ export default function LP2ContentMachine() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className="rounded-2xl border border-gray-200 bg-white p-6 shadow-lg"
+            className="rounded-2xl border border-white/10 bg-[#1A1A1A] p-6 shadow-lg"
           >
-            <p className="text-xs uppercase tracking-[0.15em] text-gray-400 font-display font-semibold mb-4">
+            <p className="text-xs uppercase tracking-[0.15em] text-gray-500 font-display font-semibold mb-4">
               Prova live — Scegli il formato
             </p>
             <div className="flex flex-wrap gap-2 mb-4">
@@ -212,8 +212,8 @@ export default function LP2ContentMachine() {
                     onClick={() => setActiveFormat(f)}
                     className={`inline-flex items-center gap-1.5 px-3 py-2 rounded-lg text-sm font-medium transition-colors ${
                       activeFormat === f
-                        ? 'bg-navy text-white border border-navy'
-                        : 'bg-white text-gray-600 border border-gray-200 hover:border-gray-300'
+                        ? 'bg-accent text-white border border-accent'
+                        : 'bg-[#0A0A0A] text-gray-400 border border-white/10 hover:border-white/20'
                     }`}
                   >
                     <Icon size={14} />
@@ -222,11 +222,11 @@ export default function LP2ContentMachine() {
                 );
               })}
             </div>
-            <div className="rounded-xl bg-gray-50 border border-gray-100 p-4 max-h-[320px] overflow-y-auto">
+            <div className="rounded-xl bg-[#0A0A0A] border border-white/5 p-4 max-h-[320px] overflow-y-auto">
               <p className="text-[10px] uppercase tracking-wider text-accent font-display font-semibold mb-2">
                 {DEMO_OUTPUTS[activeFormat].label}
               </p>
-              <p className="font-body text-sm text-gray-700 leading-relaxed whitespace-pre-line">
+              <p className="font-body text-sm text-gray-300 leading-relaxed whitespace-pre-line">
                 {DEMO_OUTPUTS[activeFormat].content}
               </p>
             </div>
@@ -291,11 +291,11 @@ function SectionParagraphs({ id }: { id: string }) {
           initial={{ opacity: 0, y: 10 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.4 }}
-          className="text-xs uppercase tracking-[0.2em] text-navy font-display font-semibold mb-10"
+          className="text-xs uppercase tracking-[0.2em] text-accent font-display font-semibold mb-10"
         >
           Il problema
         </motion.p>
-        <div className="space-y-6 font-body text-gray-700 leading-[1.75] text-lg">
+        <div className="space-y-6 font-body text-gray-300 leading-[1.75] text-lg">
           {paragraphs.map((text, i) => (
             <motion.p
               key={i}
@@ -325,19 +325,19 @@ function SolutionSection({ activeFormat, setActiveFormat }: { activeFormat: Form
   ];
 
   return (
-    <section ref={ref} className="py-24 px-4 sm:px-6 lg:px-8 bg-white/50 border-y border-gray-100">
+    <section ref={ref} className="py-24 px-4 sm:px-6 lg:px-8 bg-[#0A0A0A] border-y border-white/10">
       <div className="max-w-6xl mx-auto">
         <motion.p
           initial={{ opacity: 0, y: 10 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
-          className="text-xs uppercase tracking-[0.2em] text-navy font-display font-semibold mb-3"
+          className="text-xs uppercase tracking-[0.2em] text-accent font-display font-semibold mb-3"
         >
           La soluzione
         </motion.p>
         <motion.h2
           initial={{ opacity: 0, y: 10 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
-          className="font-display font-bold text-3xl text-ink mb-4 max-w-2xl"
+          className="font-display font-bold text-3xl text-[#F5F5F7] mb-4 max-w-2xl"
         >
           Il tuo reparto contenuti automatico.
         </motion.h2>
@@ -345,7 +345,7 @@ function SolutionSection({ activeFormat, setActiveFormat }: { activeFormat: Form
           initial={{ opacity: 0, y: 10 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ delay: 0.1 }}
-          className="font-body text-lg text-gray-600 mb-8 max-w-xl"
+          className="font-body text-lg text-gray-400 mb-8 max-w-xl"
         >
           Ogni settimana, senza che tu muova un dito:
         </motion.p>
@@ -356,20 +356,20 @@ function SolutionSection({ activeFormat, setActiveFormat }: { activeFormat: Form
               initial={{ opacity: 0, y: 12 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ delay: 0.1 + i * 0.08 }}
-              className="flex items-start gap-3 rounded-xl border border-gray-200 bg-white p-4"
+              className="flex items-start gap-3 rounded-xl border border-white/10 bg-[#1A1A1A] p-4"
             >
               <CheckCircle size={20} className="text-accent mt-0.5 shrink-0" />
-              <span className="font-body text-gray-700">{p}</span>
+              <span className="font-body text-gray-300">{p}</span>
             </motion.div>
           ))}
         </div>
-        <p className="font-display font-semibold text-navy text-lg mb-6">
+        <p className="font-display font-semibold text-accent text-lg mb-6">
           Tu decidi i temi. L'AI scrive. Tu approvi in 2 minuti.
         </p>
 
         {/* Selettore formato */}
-        <div className="rounded-2xl border border-gray-200 bg-white p-6">
-          <p className="text-xs uppercase tracking-[0.15em] text-gray-400 font-display font-semibold mb-4">
+        <div className="rounded-2xl border border-white/10 bg-[#1A1A1A] p-6">
+          <p className="text-xs uppercase tracking-[0.15em] text-gray-500 font-display font-semibold mb-4">
             Stesso topic, formato diverso
           </p>
           <div className="flex flex-wrap gap-2 mb-4">
@@ -381,8 +381,8 @@ function SolutionSection({ activeFormat, setActiveFormat }: { activeFormat: Form
                   onClick={() => setActiveFormat(f)}
                   className={`inline-flex items-center gap-1.5 px-3 py-2 rounded-lg text-sm font-medium transition-colors ${
                     activeFormat === f
-                      ? 'bg-navy text-white border border-navy'
-                      : 'bg-white text-gray-600 border border-gray-200 hover:border-gray-300'
+                      ? 'bg-accent text-white border border-accent'
+                      : 'bg-[#0A0A0A] text-gray-400 border border-white/10 hover:border-white/20'
                   }`}
                 >
                   <Icon size={14} />
@@ -391,8 +391,8 @@ function SolutionSection({ activeFormat, setActiveFormat }: { activeFormat: Form
               );
             })}
           </div>
-          <div className="rounded-xl bg-gray-50 border border-gray-100 p-4 max-h-[280px] overflow-y-auto">
-            <p className="font-body text-sm text-gray-700 leading-relaxed whitespace-pre-line">
+          <div className="rounded-xl bg-[#0A0A0A] border border-white/5 p-4 max-h-[280px] overflow-y-auto">
+            <p className="font-body text-sm text-gray-300 leading-relaxed whitespace-pre-line">
               {DEMO_OUTPUTS[activeFormat].content}
             </p>
           </div>
@@ -428,19 +428,19 @@ function HowItWorks() {
   ];
 
   return (
-    <section id="come-funziona" ref={ref} className="py-24 px-4 sm:px-6 lg:px-8 bg-[#FAFAF8]">
+    <section id="come-funziona" ref={ref} className="py-24 px-4 sm:px-6 lg:px-8 bg-[#000000]">
       <div className="max-w-5xl mx-auto">
         <motion.p
           initial={{ opacity: 0, y: 10 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
-          className="text-xs uppercase tracking-[0.2em] text-navy font-display font-semibold mb-3"
+          className="text-xs uppercase tracking-[0.2em] text-accent font-display font-semibold mb-3"
         >
           Come funziona
         </motion.p>
         <motion.h2
           initial={{ opacity: 0, y: 10 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
-          className="font-display font-bold text-3xl text-ink mb-10 max-w-2xl"
+          className="font-display font-bold text-3xl text-[#F5F5F7] mb-10 max-w-2xl"
         >
           Tre passi. Zero competenze tecniche.
         </motion.h2>
@@ -451,27 +451,27 @@ function HowItWorks() {
               initial={{ opacity: 0, y: 24 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.5, delay: i * 0.12 }}
-              className="relative rounded-2xl border border-gray-200 bg-white p-8 shadow-sm hover:shadow-md transition-shadow"
+              className="relative rounded-2xl border border-white/10 bg-[#1A1A1A] p-8 shadow-sm hover:shadow-md transition-shadow"
             >
-              <span className="absolute top-6 right-6 font-display font-bold text-4xl text-navy/10">
+              <span className="absolute top-6 right-6 font-display font-bold text-4xl text-accent/20">
                 {step.num}
               </span>
-              <div className="mb-4 text-navy">
+              <div className="mb-4 text-accent">
                 <step.icon size={28} strokeWidth={1.8} />
               </div>
-              <h3 className="font-display font-bold text-lg text-ink mb-2">{step.title}</h3>
-              <p className="font-body text-gray-600 text-sm leading-relaxed">{step.desc}</p>
+              <h3 className="font-display font-bold text-lg text-[#F5F5F7] mb-2">{step.title}</h3>
+              <p className="font-body text-gray-400 text-sm leading-relaxed">{step.desc}</p>
             </motion.div>
           ))}
         </div>
 
         {/* Before/After */}
         <div className="mt-16 grid md:grid-cols-2 gap-6">
-          <div className="rounded-xl border border-gray-200 bg-white p-6">
-            <p className="text-[10px] uppercase tracking-wider text-gray-400 font-display font-semibold mb-3">
+          <div className="rounded-xl border border-white/10 bg-[#1A1A1A] p-6">
+            <p className="text-[10px] uppercase tracking-wider text-gray-500 font-display font-semibold mb-3">
               Quello che scrivi tu in 2 ore
             </p>
-            <div className="font-mono text-xs text-gray-500 space-y-2 leading-relaxed">
+            <div className="font-mono text-xs text-gray-400 space-y-2 leading-relaxed">
               <p>Mmh... dovrei scrivere qualcosa sul marketing AI...</p>
               <p>[apre documento Word]</p>
               <p>[guarda il cursore lampeggiante per 20 minuti]</p>
@@ -481,11 +481,11 @@ function HowItWorks() {
               <p>[chiude il laptop 2 ore dopo, zero post pubblicati]</p>
             </div>
           </div>
-          <div className="rounded-xl border border-accent/30 bg-accent/5 p-6">
+          <div className="rounded-xl border border-accent/30 bg-accent/10 p-6">
             <p className="text-[10px] uppercase tracking-wider text-accent font-display font-semibold mb-3">
               Quello che genera l'AI in 30 secondi
             </p>
-            <div className="font-body text-sm text-gray-700 space-y-2 leading-relaxed">
+            <div className="font-body text-sm text-gray-300 space-y-2 leading-relaxed">
               <p className="font-semibold">Ho smesso di scrivere post su LinkedIn per 3 mesi.</p>
               <p>Non perché non avessi niente da dire. Ma perché ogni volta che aprivo il documento, finivo per chiuderlo dopo 10 minuti.</p>
               <p>Poi ho provato a usare l'AI come assistente editoriale...</p>
@@ -510,13 +510,13 @@ function NumbersSection({ calcHours, setCalcHours, calcRate, setCalcRate, calcRe
   ];
 
   return (
-    <section id="numeri" className="py-24 px-4 sm:px-6 lg:px-8 border-y border-gray-100 bg-white/50">
+    <section id="numeri" className="py-24 px-4 sm:px-6 lg:px-8 border-y border-white/10 bg-[#0A0A0A]">
       <div className="max-w-6xl mx-auto">
         <motion.p
           initial={{ opacity: 0, y: 10 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-xs uppercase tracking-[0.2em] text-navy font-display font-semibold mb-3"
+          className="text-xs uppercase tracking-[0.2em] text-accent font-display font-semibold mb-3"
         >
           I numeri
         </motion.p>
@@ -524,7 +524,7 @@ function NumbersSection({ calcHours, setCalcHours, calcRate, setCalcRate, calcRe
           initial={{ opacity: 0, y: 10 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="font-display font-bold text-3xl text-ink mb-10 max-w-2xl"
+          className="font-display font-bold text-3xl text-[#F5F5F7] mb-10 max-w-2xl"
         >
           Numeri che parlano da soli.
         </motion.h2>
@@ -537,10 +537,10 @@ function NumbersSection({ calcHours, setCalcHours, calcRate, setCalcRate, calcRe
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.1 }}
-              className="rounded-xl border border-gray-200 bg-white p-6"
+              className="rounded-xl border border-white/10 bg-[#1A1A1A] p-6"
             >
               <p className="font-mono text-2xl font-bold text-accent mb-3">{card.value}</p>
-              <p className="text-sm text-gray-600 leading-relaxed font-body">{card.text}</p>
+              <p className="text-sm text-gray-400 leading-relaxed font-body">{card.text}</p>
             </motion.article>
           ))}
         </div>
@@ -550,35 +550,35 @@ function NumbersSection({ calcHours, setCalcHours, calcRate, setCalcRate, calcRe
           initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="rounded-2xl border border-gray-200 bg-white p-6 sm:p-8"
+          className="rounded-2xl border border-white/10 bg-[#1A1A1A] p-6 sm:p-8"
         >
-          <p className="text-xs uppercase tracking-[0.15em] text-navy font-display font-semibold mb-4">
+          <p className="text-xs uppercase tracking-[0.15em] text-accent font-display font-semibold mb-4">
             Calcolatore risparmio
           </p>
-          <p className="font-body text-gray-600 mb-6">
+          <p className="font-body text-gray-400 mb-6">
             Scopri quanto stai bruciando in contenuti ogni anno.
           </p>
           <div className="grid sm:grid-cols-2 gap-4 mb-6">
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Ore/settimana sui contenuti</label>
+              <label className="block text-sm font-medium text-gray-400 mb-1">Ore/settimana sui contenuti</label>
               <input
                 type="number"
                 min="0"
                 value={calcHours}
                 onChange={(e) => setCalcHours(e.target.value)}
                 placeholder="es. 3"
-                className="w-full rounded-lg border border-gray-200 px-4 py-3 text-sm focus:border-accent focus:ring-1 focus:ring-accent outline-none"
+                className="w-full rounded-lg border border-white/10 bg-[#0A0A0A] px-4 py-3 text-sm text-[#F5F5F7] placeholder-gray-500 focus:border-accent focus:ring-1 focus:ring-accent outline-none"
               />
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">La tua tariffa oraria &euro;</label>
+              <label className="block text-sm font-medium text-gray-400 mb-1">La tua tariffa oraria &euro;</label>
               <input
                 type="number"
                 min="0"
                 value={calcRate}
                 onChange={(e) => setCalcRate(e.target.value)}
                 placeholder="es. 80"
-                className="w-full rounded-lg border border-gray-200 px-4 py-3 text-sm focus:border-accent focus:ring-1 focus:ring-accent outline-none"
+                className="w-full rounded-lg border border-white/10 bg-[#0A0A0A] px-4 py-3 text-sm text-[#F5F5F7] placeholder-gray-500 focus:border-accent focus:ring-1 focus:ring-accent outline-none"
               />
             </div>
           </div>
@@ -586,11 +586,11 @@ function NumbersSection({ calcHours, setCalcHours, calcRate, setCalcRate, calcRe
             <motion.div
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
-              className="rounded-xl bg-accent/5 border border-accent/20 p-5 text-center"
+              className="rounded-xl bg-accent/10 border border-accent/20 p-5 text-center"
             >
-              <p className="font-body text-gray-600 mb-1">Stai bruciando circa</p>
+              <p className="font-body text-gray-400 mb-1">Stai bruciando circa</p>
               <p className="font-display font-bold text-3xl text-accent">&euro;{calcResult.toLocaleString('it-IT')}</p>
-              <p className="font-body text-gray-600 mt-1">all'anno in contenuti. Ecco quanto ti costerebbe delegarlo all'AI.</p>
+              <p className="font-body text-gray-400 mt-1">all'anno in contenuti. Ecco quanto ti costerebbe delegarlo all'AI.</p>
             </motion.div>
           )}
         </motion.div>
@@ -607,7 +607,7 @@ function TestimonialsSection({ testimonials }: { testimonials: typeof TESTIMONIA
           initial={{ opacity: 0, y: 10 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-xs uppercase tracking-[0.2em] text-navy font-display font-semibold mb-10"
+          className="text-xs uppercase tracking-[0.2em] text-accent font-display font-semibold mb-10"
         >
           Cosa dicono i clienti
         </motion.p>
@@ -619,14 +619,14 @@ function TestimonialsSection({ testimonials }: { testimonials: typeof TESTIMONIA
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.1 }}
-              className="rounded-xl border border-gray-200 bg-white p-6"
+              className="rounded-xl border border-white/10 bg-[#1A1A1A] p-6"
             >
-              <p className="font-body text-gray-700 leading-relaxed mb-4 italic">
+              <p className="font-body text-gray-300 leading-relaxed mb-4 italic">
                 &ldquo;{t.quote}&rdquo;
               </p>
               <footer className="text-sm">
-                <span className="font-display font-semibold text-ink">{t.name}</span>
-                <span className="text-gray-400"> &mdash; {t.role}, {t.company}</span>
+                <span className="font-display font-semibold text-[#F5F5F7]">{t.name}</span>
+                <span className="text-gray-500"> &mdash; {t.role}, {t.company}</span>
               </footer>
             </motion.blockquote>
           ))}
@@ -640,19 +640,19 @@ function FaqSection({ items, openFaq, setOpenFaq }: { items: typeof FAQ_ITEMS; o
   return (
     <section className="py-24 px-4 sm:px-6">
       <div className="max-w-[680px] mx-auto">
-        <p className="text-xs uppercase tracking-[0.2em] text-navy font-display font-semibold mb-10">
+        <p className="text-xs uppercase tracking-[0.2em] text-accent font-display font-semibold mb-10">
           Domande frequenti
         </p>
         <div className="space-y-2">
           {items.map((faq, i) => (
             <div
               key={i}
-              className="border border-gray-200 rounded-xl overflow-hidden bg-white"
+              className="border border-white/10 rounded-xl overflow-hidden bg-[#1A1A1A]"
             >
               <button
                 type="button"
                 onClick={() => setOpenFaq(openFaq === i ? null : i)}
-                className="w-full flex items-center justify-between gap-4 px-5 py-4 text-left font-display font-semibold text-ink hover:bg-gray-50 transition-colors min-h-[44px]"
+                className="w-full flex items-center justify-between gap-4 px-5 py-4 text-left font-display font-semibold text-[#F5F5F7] hover:bg-white/5 transition-colors min-h-[44px]"
                 aria-expanded={openFaq === i}
               >
                 {faq.q}
@@ -670,7 +670,7 @@ function FaqSection({ items, openFaq, setOpenFaq }: { items: typeof FAQ_ITEMS; o
                     transition={{ duration: 0.25 }}
                     className="overflow-hidden"
                   >
-                    <p className="px-5 pb-4 pt-0 font-body text-gray-600 leading-relaxed border-t border-gray-100">
+                    <p className="px-5 pb-4 pt-0 font-body text-gray-400 leading-relaxed border-t border-white/10">
                       {faq.a}
                     </p>
                   </motion.div>

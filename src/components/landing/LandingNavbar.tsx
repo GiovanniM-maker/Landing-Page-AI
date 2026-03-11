@@ -20,14 +20,14 @@ export default function LandingNavbar({ onScrollTo, scrolled, ctaLabel, ctaTarge
       transition={{ duration: 0.4 }}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         scrolled
-          ? 'bg-[#FAFAF8]/85 backdrop-blur-md border-b border-gray-200/60 shadow-sm'
+          ? 'bg-[#000000]/90 backdrop-blur-md border-b border-white/10 shadow-sm'
           : 'bg-transparent'
       }`}
     >
       <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
         <a
           href="/"
-          className="font-display font-bold text-lg tracking-[0.2em] text-ink hover:text-navy transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 rounded"
+          className="font-display font-bold text-lg tracking-[0.2em] text-[#F5F5F7] hover:text-accent transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 rounded"
         >
           AUIKI
         </a>
@@ -37,7 +37,7 @@ export default function LandingNavbar({ onScrollTo, scrolled, ctaLabel, ctaTarge
             <button
               key={link.id}
               onClick={() => onScrollTo(link.id)}
-              className="text-sm text-ink/80 hover:text-navy font-medium transition-colors"
+              className="text-sm text-[#F5F5F7]/80 hover:text-accent font-medium transition-colors"
             >
               {link.label}
             </button>
@@ -51,7 +51,7 @@ export default function LandingNavbar({ onScrollTo, scrolled, ctaLabel, ctaTarge
         </div>
 
         <button
-          className="md:hidden p-2 text-ink rounded-lg hover:bg-gray-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+          className="md:hidden p-2 text-[#F5F5F7] rounded-lg hover:bg-white/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent"
           onClick={() => setMobileOpen(true)}
           aria-label="Apri menu"
         >
@@ -65,13 +65,13 @@ export default function LandingNavbar({ onScrollTo, scrolled, ctaLabel, ctaTarge
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 bg-[#FAFAF8] z-50 md:hidden"
+            className="fixed inset-0 bg-[#000000] z-50 md:hidden"
           >
-            <div className="flex justify-between items-center p-4 border-b">
-              <span className="font-display font-bold tracking-[0.2em] text-ink">AUIKI</span>
+            <div className="flex justify-between items-center p-4 border-b border-white/10">
+              <span className="font-display font-bold tracking-[0.2em] text-[#F5F5F7]">AUIKI</span>
               <button
                 onClick={() => setMobileOpen(false)}
-                className="p-2 rounded-lg hover:bg-gray-100"
+                className="p-2 rounded-lg hover:bg-white/10"
                 aria-label="Chiudi menu"
               >
                 <X size={24} />
@@ -85,7 +85,7 @@ export default function LandingNavbar({ onScrollTo, scrolled, ctaLabel, ctaTarge
                     onScrollTo(link.id);
                     setMobileOpen(false);
                   }}
-                  className="text-left py-3 text-ink font-medium border-b border-gray-100"
+                  className="text-left py-3 text-[#F5F5F7] font-medium border-b border-white/10"
                 >
                   {link.label}
                 </button>

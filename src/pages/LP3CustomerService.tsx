@@ -104,7 +104,7 @@ export default function LP3CustomerService() {
   const calcResult = calcRequests && calcValue ? Math.round(parseFloat(calcRequests) * parseFloat(calcValue) * 0.3 * 4) : null;
 
   return (
-    <div className="bg-[#FAFAF8] text-ink min-h-screen">
+    <div className="bg-[#000000] text-[#F5F5F7] min-h-screen">
       <LandingNavbar
         onScrollTo={scrollTo}
         scrolled={scrolled}
@@ -115,7 +115,7 @@ export default function LP3CustomerService() {
 
       {/* Breadcrumb */}
       <div className="pt-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
-        <p className="text-xs text-gray-400 font-mono">/assistente</p>
+        <p className="text-xs text-gray-500 font-mono">/assistente</p>
       </div>
 
       {/* HERO */}
@@ -126,14 +126,14 @@ export default function LP3CustomerService() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
           >
-            <span className="inline-block px-3 py-1 text-xs font-medium text-navy border border-navy/30 rounded-full mb-6">
+            <span className="inline-block px-3 py-1 text-xs font-medium text-accent border border-accent/30 rounded-full mb-6">
               AI Customer Service
             </span>
-            <h1 className="font-display font-bold text-4xl sm:text-5xl leading-[1.1] text-ink mb-6">
+            <h1 className="font-display font-bold text-4xl sm:text-5xl leading-[1.1] text-[#F5F5F7] mb-6">
               I tuoi clienti chiamano.
               <span className="text-accent"> L'AI risponde — meglio di un umano.</span>
             </h1>
-            <p className="font-body text-xl text-gray-600 leading-relaxed mb-8 max-w-xl">
+            <p className="font-body text-xl text-gray-400 leading-relaxed mb-8 max-w-xl">
               Un assistente virtuale che conosce la tua azienda, risponde alle domande, prenota appuntamenti e gestisce richieste — 24/7, in italiano perfetto.
             </p>
             <button
@@ -151,7 +151,7 @@ export default function LP3CustomerService() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className="rounded-2xl border border-gray-200 bg-white shadow-lg overflow-hidden"
+            className="rounded-2xl border border-white/10 bg-[#1A1A1A] shadow-lg overflow-hidden"
           >
             <div className="bg-navy px-4 py-3 flex items-center gap-2">
               <div className="w-8 h-8 rounded-full bg-accent/20 flex items-center justify-center">
@@ -170,8 +170,8 @@ export default function LP3CustomerService() {
                     onClick={() => setActiveSector(s)}
                     className={`px-2.5 py-1 rounded-full text-[11px] font-medium transition-colors ${
                       activeSector === s
-                        ? 'bg-navy text-white'
-                        : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+                        ? 'bg-accent text-white'
+                        : 'bg-white/10 text-gray-400 hover:bg-white/20'
                     }`}
                   >
                     {s}
@@ -186,7 +186,7 @@ export default function LP3CustomerService() {
                     className={`max-w-[80%] rounded-2xl px-4 py-2.5 text-sm leading-relaxed whitespace-pre-line ${
                       msg.sender === 'user'
                         ? 'bg-accent text-white rounded-br-md'
-                        : 'bg-gray-100 text-gray-800 rounded-bl-md'
+                        : 'bg-[#0A0A0A] text-gray-300 rounded-bl-md'
                     }`}
                   >
                     {msg.text}
@@ -260,11 +260,11 @@ function ProblemSection({ calcRequests, setCalcRequests, calcValue, setCalcValue
         <motion.p
           initial={{ opacity: 0, y: 10 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
-          className="text-xs uppercase tracking-[0.2em] text-navy font-display font-semibold mb-10"
+          className="text-xs uppercase tracking-[0.2em] text-accent font-display font-semibold mb-10"
         >
           Il problema
         </motion.p>
-        <div className="space-y-6 font-body text-gray-700 leading-[1.75] text-lg">
+        <div className="space-y-6 font-body text-gray-300 leading-[1.75] text-lg">
           {paragraphs.map((text, i) => (
             <motion.p
               key={i}
@@ -283,32 +283,32 @@ function ProblemSection({ calcRequests, setCalcRequests, calcValue, setCalcValue
           initial={{ opacity: 0, y: 16 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ delay: 0.3 }}
-          className="mt-10 rounded-2xl border border-gray-200 bg-white p-6"
+          className="mt-10 rounded-2xl border border-white/10 bg-[#1A1A1A] p-6"
         >
-          <p className="text-xs uppercase tracking-[0.15em] text-navy font-display font-semibold mb-4">
+          <p className="text-xs uppercase tracking-[0.15em] text-accent font-display font-semibold mb-4">
             Calcola quanto perdi
           </p>
           <div className="grid sm:grid-cols-2 gap-4 mb-4">
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Richieste/settimana senza risposta immediata</label>
+              <label className="block text-sm font-medium text-gray-300 mb-1">Richieste/settimana senza risposta immediata</label>
               <input
                 type="number"
                 min="0"
                 value={calcRequests}
                 onChange={(e) => setCalcRequests(e.target.value)}
                 placeholder="es. 10"
-                className="w-full rounded-lg border border-gray-200 px-4 py-3 text-sm focus:border-accent focus:ring-1 focus:ring-accent outline-none"
+                className="w-full rounded-lg border border-white/10 bg-[#0A0A0A] px-4 py-3 text-sm text-[#F5F5F7] placeholder-gray-500 focus:border-accent focus:ring-1 focus:ring-accent outline-none"
               />
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Valore medio di un cliente &euro;</label>
+              <label className="block text-sm font-medium text-gray-300 mb-1">Valore medio di un cliente &euro;</label>
               <input
                 type="number"
                 min="0"
                 value={calcValue}
                 onChange={(e) => setCalcValue(e.target.value)}
                 placeholder="es. 200"
-                className="w-full rounded-lg border border-gray-200 px-4 py-3 text-sm focus:border-accent focus:ring-1 focus:ring-accent outline-none"
+                className="w-full rounded-lg border border-white/10 bg-[#0A0A0A] px-4 py-3 text-sm text-[#F5F5F7] placeholder-gray-500 focus:border-accent focus:ring-1 focus:ring-accent outline-none"
               />
             </div>
           </div>
@@ -318,9 +318,9 @@ function ProblemSection({ calcRequests, setCalcRequests, calcValue, setCalcValue
               animate={{ opacity: 1, scale: 1 }}
               className="rounded-xl bg-accent/5 border border-accent/20 p-5 text-center"
             >
-              <p className="font-body text-gray-600 mb-1">Stai perdendo circa</p>
+              <p className="font-body text-gray-400 mb-1">Stai perdendo circa</p>
               <p className="font-display font-bold text-3xl text-accent">&euro;{calcResult.toLocaleString('it-IT')}</p>
-              <p className="font-body text-gray-600 mt-1">al mese in clienti non gestiti.</p>
+              <p className="font-body text-gray-400 mt-1">al mese in clienti non gestiti.</p>
             </motion.div>
           )}
         </motion.div>
@@ -341,19 +341,19 @@ function SolutionSection() {
   ];
 
   return (
-    <section ref={ref} className="py-24 px-4 sm:px-6 lg:px-8 bg-white/50 border-y border-gray-100">
+    <section ref={ref} className="py-24 px-4 sm:px-6 lg:px-8 bg-[#0A0A0A] border-y border-white/10">
       <div className="max-w-6xl mx-auto">
         <motion.p
           initial={{ opacity: 0, y: 10 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
-          className="text-xs uppercase tracking-[0.2em] text-navy font-display font-semibold mb-3"
+          className="text-xs uppercase tracking-[0.2em] text-accent font-display font-semibold mb-3"
         >
           La soluzione
         </motion.p>
         <motion.h2
           initial={{ opacity: 0, y: 10 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
-          className="font-display font-bold text-3xl text-ink mb-4 max-w-2xl"
+          className="font-display font-bold text-3xl text-[#F5F5F7] mb-4 max-w-2xl"
         >
           Il tuo assistente AI risponde al posto tuo — sempre.
         </motion.h2>
@@ -361,7 +361,7 @@ function SolutionSection() {
           initial={{ opacity: 0, y: 10 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ delay: 0.1 }}
-          className="font-body text-lg text-gray-600 mb-8 max-w-xl"
+          className="font-body text-lg text-gray-400 mb-8 max-w-xl"
         >
           Risponde in secondi. Non in ore. Tu la mattina apri il telefono e trovi tutto già gestito.
         </motion.p>
@@ -372,10 +372,10 @@ function SolutionSection() {
               initial={{ opacity: 0, y: 12 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ delay: 0.1 + i * 0.08 }}
-              className="flex items-start gap-3 rounded-xl border border-gray-200 bg-white p-4"
+              className="flex items-start gap-3 rounded-xl border border-white/10 bg-[#1A1A1A] p-4"
             >
               <CheckCircle size={20} className="text-accent mt-0.5 shrink-0" />
-              <span className="font-body text-gray-700">{p}</span>
+              <span className="font-body text-gray-300">{p}</span>
             </motion.div>
           ))}
         </div>
@@ -417,19 +417,19 @@ function HowItWorks() {
   ];
 
   return (
-    <section id="come-funziona" ref={ref} className="py-24 px-4 sm:px-6 lg:px-8 bg-[#FAFAF8]">
+    <section id="come-funziona" ref={ref} className="py-24 px-4 sm:px-6 lg:px-8 bg-[#000000]">
       <div className="max-w-5xl mx-auto">
         <motion.p
           initial={{ opacity: 0, y: 10 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
-          className="text-xs uppercase tracking-[0.2em] text-navy font-display font-semibold mb-3"
+          className="text-xs uppercase tracking-[0.2em] text-accent font-display font-semibold mb-3"
         >
           Come funziona
         </motion.p>
         <motion.h2
           initial={{ opacity: 0, y: 10 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
-          className="font-display font-bold text-3xl text-ink mb-10 max-w-2xl"
+          className="font-display font-bold text-3xl text-[#F5F5F7] mb-10 max-w-2xl"
         >
           Pronto in 30 minuti. Attivo 24/7.
         </motion.h2>
@@ -440,23 +440,23 @@ function HowItWorks() {
               initial={{ opacity: 0, y: 24 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.5, delay: i * 0.12 }}
-              className="relative rounded-2xl border border-gray-200 bg-white p-8 shadow-sm hover:shadow-md transition-shadow"
+              className="relative rounded-2xl border border-white/10 bg-[#1A1A1A] p-8 shadow-sm hover:shadow-md transition-shadow"
             >
-              <span className="absolute top-6 right-6 font-display font-bold text-4xl text-navy/10">
+              <span className="absolute top-6 right-6 font-display font-bold text-4xl text-accent/20">
                 {step.num}
               </span>
-              <div className="mb-4 text-navy">
+              <div className="mb-4 text-accent">
                 <step.icon size={28} strokeWidth={1.8} />
               </div>
-              <h3 className="font-display font-bold text-lg text-ink mb-2">{step.title}</h3>
-              <p className="font-body text-gray-600 text-sm leading-relaxed">{step.desc}</p>
+              <h3 className="font-display font-bold text-lg text-[#F5F5F7] mb-2">{step.title}</h3>
+              <p className="font-body text-gray-400 text-sm leading-relaxed">{step.desc}</p>
             </motion.div>
           ))}
         </div>
 
         {/* Timeline */}
-        <div className="mt-16 rounded-2xl border border-gray-200 bg-white p-6 sm:p-8">
-          <p className="text-xs uppercase tracking-[0.15em] text-navy font-display font-semibold mb-6">
+        <div className="mt-16 rounded-2xl border border-white/10 bg-[#1A1A1A] p-6 sm:p-8">
+          <p className="text-xs uppercase tracking-[0.15em] text-accent font-display font-semibold mb-6">
             Una notte tipica
           </p>
           <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-0">
@@ -472,11 +472,11 @@ function HowItWorks() {
                   <Clock size={16} className="text-accent" />
                 </div>
                 <div>
-                  <p className="font-mono text-sm font-bold text-navy">{t.time}</p>
-                  <p className="text-xs text-gray-600">{t.event}</p>
+                  <p className="font-mono text-sm font-bold text-accent">{t.time}</p>
+                  <p className="text-xs text-gray-400">{t.event}</p>
                 </div>
                 {i < timeline.length - 1 && (
-                  <div className="hidden sm:block flex-1 h-px bg-gray-200 mx-2" />
+                  <div className="hidden sm:block flex-1 h-px bg-white/10 mx-2" />
                 )}
               </motion.div>
             ))}
@@ -496,13 +496,13 @@ function NumbersSection() {
   ];
 
   return (
-    <section className="py-24 px-4 sm:px-6 lg:px-8 border-y border-gray-100 bg-white/50">
+    <section className="py-24 px-4 sm:px-6 lg:px-8 border-y border-white/10 bg-white/50">
       <div className="max-w-6xl mx-auto">
         <motion.p
           initial={{ opacity: 0, y: 10 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-xs uppercase tracking-[0.2em] text-navy font-display font-semibold mb-3"
+          className="text-xs uppercase tracking-[0.2em] text-accent font-display font-semibold mb-3"
         >
           I numeri
         </motion.p>
@@ -514,10 +514,10 @@ function NumbersSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.1 }}
-              className="rounded-xl border border-gray-200 bg-white p-6"
+              className="rounded-xl border border-white/10 bg-[#1A1A1A] p-6"
             >
               <p className="font-mono text-2xl font-bold text-accent mb-3">{card.value}</p>
-              <p className="text-sm text-gray-600 leading-relaxed font-body">{card.text}</p>
+              <p className="text-sm text-gray-400 leading-relaxed font-body">{card.text}</p>
             </motion.article>
           ))}
         </div>
@@ -539,7 +539,7 @@ function TargetSection({ targets, activeSector, setActiveSector, chatConversatio
           initial={{ opacity: 0, y: 10 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-xs uppercase tracking-[0.2em] text-navy font-display font-semibold mb-3"
+          className="text-xs uppercase tracking-[0.2em] text-accent font-display font-semibold mb-3"
         >
           Per chi è
         </motion.p>
@@ -547,7 +547,7 @@ function TargetSection({ targets, activeSector, setActiveSector, chatConversatio
           initial={{ opacity: 0, y: 10 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="font-display font-bold text-3xl text-ink mb-10 max-w-2xl"
+          className="font-display font-bold text-3xl text-[#F5F5F7] mb-10 max-w-2xl"
         >
           Funziona per il tuo settore.
         </motion.h2>
@@ -559,11 +559,11 @@ function TargetSection({ targets, activeSector, setActiveSector, chatConversatio
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.08 }}
-              className="rounded-xl border border-gray-200 bg-white p-5 hover:border-accent/30 transition-colors"
+              className="rounded-xl border border-white/10 bg-[#1A1A1A] p-5 hover:border-accent/30 transition-colors"
             >
               <span className="text-2xl mb-2 block">{t.icon}</span>
-              <h4 className="font-display font-semibold text-ink mb-1">{t.label}</h4>
-              <p className="text-sm text-gray-600 font-body">{t.desc}</p>
+              <h4 className="font-display font-semibold text-[#F5F5F7] mb-1">{t.label}</h4>
+              <p className="text-sm text-gray-400 font-body">{t.desc}</p>
             </motion.div>
           ))}
         </div>
@@ -574,13 +574,13 @@ function TargetSection({ targets, activeSector, setActiveSector, chatConversatio
 
 function TestimonialsSection({ testimonials }: { testimonials: typeof TESTIMONIALS }) {
   return (
-    <section className="py-24 px-4 sm:px-6 lg:px-8 bg-white/50 border-y border-gray-100">
+    <section className="py-24 px-4 sm:px-6 lg:px-8 bg-[#0A0A0A] border-y border-white/10">
       <div className="max-w-6xl mx-auto">
         <motion.p
           initial={{ opacity: 0, y: 10 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-xs uppercase tracking-[0.2em] text-navy font-display font-semibold mb-10"
+          className="text-xs uppercase tracking-[0.2em] text-accent font-display font-semibold mb-10"
         >
           Cosa dicono i clienti
         </motion.p>
@@ -592,13 +592,13 @@ function TestimonialsSection({ testimonials }: { testimonials: typeof TESTIMONIA
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.1 }}
-              className="rounded-xl border border-gray-200 bg-white p-6"
+              className="rounded-xl border border-white/10 bg-[#1A1A1A] p-6"
             >
-              <p className="font-body text-gray-700 leading-relaxed mb-4 italic">
+              <p className="font-body text-gray-300 leading-relaxed mb-4 italic">
                 &ldquo;{t.quote}&rdquo;
               </p>
               <footer className="text-sm">
-                <span className="font-display font-semibold text-ink">{t.name}</span>
+                <span className="font-display font-semibold text-[#F5F5F7]">{t.name}</span>
                 <span className="text-gray-400"> &mdash; {t.role}, {t.company}</span>
               </footer>
             </motion.blockquote>
@@ -613,16 +613,16 @@ function FaqSection({ items, openFaq, setOpenFaq }: { items: typeof FAQ_ITEMS; o
   return (
     <section className="py-24 px-4 sm:px-6">
       <div className="max-w-[680px] mx-auto">
-        <p className="text-xs uppercase tracking-[0.2em] text-navy font-display font-semibold mb-10">
+        <p className="text-xs uppercase tracking-[0.2em] text-accent font-display font-semibold mb-10">
           Domande frequenti
         </p>
         <div className="space-y-2">
           {items.map((faq, i) => (
-            <div key={i} className="border border-gray-200 rounded-xl overflow-hidden bg-white">
+            <div key={i} className="border border-white/10 rounded-xl overflow-hidden bg-white">
               <button
                 type="button"
                 onClick={() => setOpenFaq(openFaq === i ? null : i)}
-                className="w-full flex items-center justify-between gap-4 px-5 py-4 text-left font-display font-semibold text-ink hover:bg-gray-50 transition-colors min-h-[44px]"
+                className="w-full flex items-center justify-between gap-4 px-5 py-4 text-left font-display font-semibold text-[#F5F5F7] hover:bg-white/5 transition-colors min-h-[44px]"
                 aria-expanded={openFaq === i}
               >
                 {faq.q}
@@ -637,7 +637,7 @@ function FaqSection({ items, openFaq, setOpenFaq }: { items: typeof FAQ_ITEMS; o
                     transition={{ duration: 0.25 }}
                     className="overflow-hidden"
                   >
-                    <p className="px-5 pb-4 pt-0 font-body text-gray-600 leading-relaxed border-t border-gray-100">{faq.a}</p>
+                    <p className="px-5 pb-4 pt-0 font-body text-gray-400 leading-relaxed border-t border-white/10">{faq.a}</p>
                   </motion.div>
                 )}
               </AnimatePresence>
