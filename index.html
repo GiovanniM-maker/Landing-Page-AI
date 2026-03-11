@@ -1584,15 +1584,20 @@ footer {
   if (typeof IntersectionObserver !== 'undefined' && ctas.length > 0) {
     var io = new IntersectionObserver(onIntersect, {
       root: null,
-      rootMargin: '0px',
-      threshold: 0.1
+      rootMargin: '-80px 0px -100px 0px',
+      threshold: 0.2
     });
     ctas.forEach(function(el) {
       if (!el.closest('.floating-cta')) io.observe(el);
     });
   }
   window.addEventListener('resize', updatePopup);
-  requestAnimationFrame(function() { requestAnimationFrame(updatePopup); });
+  window.addEventListener('scroll', function() { requestAnimationFrame(updatePopup); }, { passive: true });
+  requestAnimationFrame(function() {
+    requestAnimationFrame(function() {
+      updatePopup();
+    });
+  });
 })();
 </script>
 
