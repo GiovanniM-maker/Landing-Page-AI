@@ -896,7 +896,6 @@ footer {
 }
 
 @media (max-width: 768px) {
-  .floating-cta { display: none !important; }
   .nav-ctas { display: none; }
   .nav { padding: 14px 16px; }
   .container { padding: 0 16px; }
@@ -1003,47 +1002,6 @@ footer {
     gap: 12px;
     margin-top: 32px;
   }
-  .sticky-cta-mobile {
-    display: none;
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    z-index: 90;
-    padding: 12px 16px 24px;
-    padding-bottom: calc(24px + env(safe-area-inset-bottom));
-    background: linear-gradient(to top, rgba(0,0,0,0.95) 0%, transparent);
-    pointer-events: none;
-  }
-  .sticky-cta-mobile.is-visible {
-    display: block;
-    pointer-events: auto;
-  }
-  .sticky-cta-mobile .sticky-cta-btn {
-    display: block;
-    width: 100%;
-    padding: 16px 24px;
-    background: var(--coral);
-    color: #fff;
-    font-family: var(--font);
-    font-size: 15px;
-    font-weight: 600;
-    border: none;
-    border-radius: 100px;
-    cursor: pointer;
-    text-align: center;
-    text-decoration: none;
-    transition: filter 0.2s;
-    box-shadow: 0 4px 20px rgba(243,106,99,0.4);
-  }
-  .sticky-cta-mobile .sticky-cta-btn:hover,
-  .sticky-cta-mobile .sticky-cta-btn:active {
-    filter: brightness(1.1);
-  }
-}
-
-@media (min-width: 769px) {
-  .sticky-cta-mobile { display: none !important; }
 }
   </style>
 </head>
@@ -1473,11 +1431,6 @@ footer {
   </div>
 </div>
 
-<!-- Sticky CTA mobile: appare solo quando nessuna CTA è visibile -->
-<div id="sticky-cta-mobile" class="sticky-cta-mobile" aria-hidden="true">
-  <a href="#simulator" class="sticky-cta-btn">Genera il tuo primo prodotto con AI</a>
-</div>
-
 <script>
 (function(){
   var wrap = document.getElementById('floating-cta');
@@ -1510,6 +1463,7 @@ footer {
     textEl.textContent = MSGS[step].text;
     if (actionEl) actionEl.textContent = MSGS[step].action;
   }
+  window._floatCtaSetStep = setStep;
   window._floatCtaGo = function() {
     var el = document.querySelector(MSGS[step].href);
     if (el) el.scrollIntoView({ behavior: 'smooth' });
@@ -1557,6 +1511,7 @@ footer {
   }
   var shown = false;
   function tryShow() {
+    if (window.innerWidth <= 768) return false;
     if (sessionStorage.getItem(KEY) === '1' || shown) return true;
     var pct = scrollPct();
     if (pct >= 0.25) {
@@ -1570,6 +1525,7 @@ footer {
   window.addEventListener('scroll', tryShow, { passive: true });
   var delay = isTouch ? 1200 : 2500;
   setTimeout(function() {
+    if (window.innerWidth <= 768) return;
     if (sessionStorage.getItem(KEY) !== '1' && !shown) {
       shown = true;
       setStep(0);
@@ -1577,7 +1533,7 @@ footer {
     }
   }, delay);
   tryShow();
-  if (isTouch) {
+  if (isTouch && window.innerWidth > 768) {
     setTimeout(tryShow, 400);
     setTimeout(tryShow, 800);
   }
@@ -1585,25 +1541,37 @@ footer {
 </script>
 
 <script>
-/* ═══ STICKY CTA MOBILE: appare solo quando nessuna CTA è visibile ═══ */
+/* ═══ POPUP MOBILE: appare solo quando nessuna CTA è visibile (solo mobile) ═══ */
 (function(){
-  var sticky = document.getElementById('sticky-cta-mobile');
-  if (!sticky) return;
+  var wrap = document.getElementById('floating-cta');
+  if (!wrap) return;
   var ctaSelector = '.btn-coral, .btn-outline, .cost-box-cta';
   var ctas = document.querySelectorAll(ctaSelector);
   var visibleSet = new Set();
-  function updateSticky() {
-    if (window.innerWidth > 768) {
-      sticky.classList.remove('is-visible');
-      sticky.setAttribute('aria-hidden', 'true');
-      return;
-    }
+  function scrollPct() {
+    var doc = document.documentElement, body = document.body;
+    var scrollTop = window.pageYOffset || doc.scrollTop || body.scrollTop || 0;
+    var scrollHeight = Math.max(doc.scrollHeight, body.scrollHeight, doc.clientHeight);
+    var clientHeight = window.innerHeight || doc.clientHeight;
+    var maxScroll = scrollHeight - clientHeight;
+    if (maxScroll <= 0) return 0;
+    return Math.min(1, scrollTop / maxScroll);
+  }
+  function updatePopup() {
+    if (window.innerWidth > 768) return;
+    if (sessionStorage.getItem('auiki_float_cta_dismissed') === '1') return;
     if (visibleSet.size > 0) {
-      sticky.classList.remove('is-visible');
-      sticky.setAttribute('aria-hidden', 'true');
+      wrap.classList.remove('is-visible');
+      wrap.style.display = '';
+      wrap.setAttribute('aria-hidden', 'true');
     } else {
-      sticky.classList.add('is-visible');
-      sticky.setAttribute('aria-hidden', 'false');
+      var pct = scrollPct();
+      if (typeof window._floatCtaSetStep === 'function') {
+        window._floatCtaSetStep(pct >= 0.75 ? 2 : pct >= 0.5 ? 1 : 0);
+      }
+      wrap.classList.add('is-visible');
+      wrap.style.setProperty('display', 'block');
+      wrap.setAttribute('aria-hidden', 'false');
     }
   }
   function onIntersect(entries) {
@@ -1611,7 +1579,7 @@ footer {
       if (e.isIntersecting) visibleSet.add(e.target);
       else visibleSet.delete(e.target);
     });
-    updateSticky();
+    updatePopup();
   }
   if (typeof IntersectionObserver !== 'undefined' && ctas.length > 0) {
     var io = new IntersectionObserver(onIntersect, {
@@ -1620,11 +1588,11 @@ footer {
       threshold: 0.1
     });
     ctas.forEach(function(el) {
-      if (!el.closest('.sticky-cta-mobile')) io.observe(el);
+      if (!el.closest('.floating-cta')) io.observe(el);
     });
   }
-  window.addEventListener('resize', updateSticky);
-  requestAnimationFrame(function() { requestAnimationFrame(updateSticky); });
+  window.addEventListener('resize', updatePopup);
+  requestAnimationFrame(function() { requestAnimationFrame(updatePopup); });
 })();
 </script>
 
