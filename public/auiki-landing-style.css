@@ -2,8 +2,8 @@
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
 :root {
-  --bg: #0A0A0A;
-  --bg-raised: #141414;
+  --bg: #000000;
+  --bg-raised: #0A0A0A;
   --bg-card: #1A1A1A;
   --bg-card-hover: #202020;
   --border: rgba(255,255,255,0.08);
