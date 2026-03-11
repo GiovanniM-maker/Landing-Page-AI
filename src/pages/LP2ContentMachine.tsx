@@ -215,7 +215,7 @@ export default function LP2ContentMachine() {
                 Sai già che dovresti pubblicare di più. Ma tu hai un'azienda da mandare avanti.
               </blockquote>
               <div className="space-y-4 font-body text-gray-400 leading-relaxed">
-                <p>Non hai tempo di imparare prompt, feed RSS, calendari editoriali e strumenti AI. <strong className="text-gray-300">E non dovresti averlo.</strong></p>
+                <p>Non hai tempo di imparare prompt, feed RSS, calendari editoriali e strumenti AI. <strong className="text-gray-300">E non dovresti farlo.</strong></p>
                 <p>Intanto il tuo competitor pubblica ogni giorno su LinkedIn. Appare più autorevole. Intercetta i clienti che sarebbero tuoi.</p>
                 <p>Non è un problema di idee. Non è un problema di tempo. <strong className="text-gray-300">È un problema di esecuzione. E l'esecuzione si delega.</strong></p>
               </div>
@@ -276,7 +276,7 @@ export default function LP2ContentMachine() {
                 transition={{ delay: i * 0.1 }}
                 className="bg-[#000000] p-8 hover:bg-[#0A0A0A] transition-colors"
               >
-                <span className="font-body text-6xl font-bold text-accent/10 block mb-4">{step.num}</span>
+                <span className="font-body text-6xl font-bold text-accent/50 block mb-4">{step.num}</span>
                 <h3 className="font-body font-bold text-lg text-[#F5F5F7] mb-3">{step.title}</h3>
                 <p className="font-body text-sm text-gray-400 leading-relaxed mb-4">{step.desc}</p>
                 <p className="font-mono text-xs text-accent">⟶ {step.time}</p>
