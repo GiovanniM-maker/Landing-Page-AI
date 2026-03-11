@@ -291,7 +291,7 @@ export default function LP5LeadGeneration() {
             <span className="inline-block px-3 py-1 text-xs font-medium text-accent border border-accent/30 rounded-full mb-6">
               AI Lead Generation
             </span>
-            <h1 className="font-display font-bold text-4xl sm:text-5xl leading-[1.1] text-[#F5F5F7] mb-6">
+            <h1 className="hero-h1 font-display text-[#F5F5F7] mb-6">
               Ogni giorno centinaia di aziende hanno bisogno di quello che vendi.
               <span className="text-accent"> L'AI le trova e le contatta per te.</span>
             </h1>

@@ -38,3 +38,12 @@ body {
 .animate-marquee {
   animation: marquee 30s linear infinite;
 }
+
+/* Hero H1 — stile unificato come index.html */
+.hero-h1 {
+  font-size: clamp(38px, 4.6vw, 54px);
+  line-height: 1.08;
+  font-weight: 600;
+  letter-spacing: -0.025em;
+  max-width: 720px;
+}
