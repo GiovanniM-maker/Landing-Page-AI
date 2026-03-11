@@ -137,21 +137,13 @@ export default function LP2ContentMachine() {
               <br /><br />
               Tu non tocchi niente. Noi non ci fermiamo.
             </p>
-            <div className="flex flex-wrap gap-3">
-              <button
-                onClick={() => scrollTo('contatti')}
-                className="inline-flex items-center gap-2 px-6 py-3.5 bg-accent text-white font-body font-semibold rounded-lg hover:bg-accent-hover hover:scale-[1.02] active:scale-[0.98] transition-all"
-              >
-                Prenota la call gratuita
-                <ArrowRight size={18} />
-              </button>
-              <button
-                onClick={() => scrollTo('pricing')}
-                className="inline-flex items-center gap-2 px-6 py-3.5 border border-white/20 text-[#F5F5F7] font-body font-semibold rounded-lg hover:bg-white/5 transition-all"
-              >
-                Vedi il pricing
-              </button>
-            </div>
+            <button
+              onClick={() => scrollTo('contatti')}
+              className="inline-flex items-center gap-2 px-6 py-3.5 bg-accent text-white font-body font-semibold rounded-lg hover:bg-accent-hover hover:scale-[1.02] active:scale-[0.98] transition-all"
+            >
+              Prenota la call gratuita
+              <ArrowRight size={18} />
+            </button>
             <p className="mt-8 text-xs text-gray-500 font-mono">// Nessun impegno nella call · Setup incluso · Minimo 3 mesi</p>
           </motion.div>
 
