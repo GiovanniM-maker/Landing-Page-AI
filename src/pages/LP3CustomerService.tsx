@@ -28,19 +28,19 @@ const CHAT_CONVERSATIONS: Record<Sector, { sender: 'user' | 'ai'; text: string }
   ],
   'Hotel': [
     { sender: 'user', text: 'Buongiorno, vorrei sapere la disponibilità per 2 notti dal 20 al 22 marzo, camera doppia.' },
-    { sender: 'ai', text: 'Buongiorno! Per le date 20-22 marzo abbiamo disponibilità:\n\n🏨 Camera Doppia Classic — €120/notte\n🏨 Camera Doppia Superior (vista giardino) — €155/notte\n\nEntrambe includono colazione a buffet, Wi-Fi, parcheggio.\n\nCheck-in dalle 14:00, check-out entro le 11:00.\n\nDesidera procedere con la prenotazione?' },
+    { sender: 'ai', text: 'Buongiorno! Per le date 20-22 marzo abbiamo disponibilità:\n\n🏨 Camera Doppia Classic  €120/notte\n🏨 Camera Doppia Superior (vista giardino)  €155/notte\n\nEntrambe includono colazione a buffet, Wi-Fi, parcheggio.\n\nCheck-in dalle 14:00, check-out entro le 11:00.\n\nDesidera procedere con la prenotazione?' },
     { sender: 'user', text: 'La Superior, grazie. È possibile il late check-out?' },
-    { sender: 'ai', text: 'Ottima scelta! Ho riservato la Camera Doppia Superior per 2 notti (20-22 marzo) — totale €310.\n\nPer il late check-out: possiamo garantire fino alle 13:00 senza supplemento, soggetto a disponibilità. Le confermeremo il giorno del check-out.\n\nLe invio il link per completare la prenotazione con un acconto del 30%. Ha altre domande?' },
+    { sender: 'ai', text: 'Ottima scelta! Ho riservato la Camera Doppia Superior per 2 notti (20-22 marzo)  totale €310.\n\nPer il late check-out: possiamo garantire fino alle 13:00 senza supplemento, soggetto a disponibilità. Le confermeremo il giorno del check-out.\n\nLe invio il link per completare la prenotazione con un acconto del 30%. Ha altre domande?' },
   ],
   'Negozio': [
     { sender: 'user', text: 'Ciao, avete la Nike Air Max 90 bianca taglia 43?' },
     { sender: 'ai', text: 'Ciao! Verifico subito... ✓\n\nSì, la Nike Air Max 90 bianca è disponibile in taglia 43!\n\n💰 Prezzo: €139,90\n📍 Disponibile nel nostro punto vendita di Via Roma 15\n🚚 Oppure spedizione gratuita in 2-3 giorni\n\nVuoi che te la metta da parte in negozio o preferisci l\'ordine online?' },
     { sender: 'user', text: 'Mettila da parte, passo domani pomeriggio' },
-    { sender: 'ai', text: 'Fatto! La Nike Air Max 90 bianca tg. 43 è riservata a tuo nome fino a domani sera (ore 19:30).\n\n📍 Via Roma 15 — orario: 10:00-19:30\n\nSe cambi idea o hai bisogno di altro, scrivimi pure qui. A domani!' },
+    { sender: 'ai', text: 'Fatto! La Nike Air Max 90 bianca tg. 43 è riservata a tuo nome fino a domani sera (ore 19:30).\n\n📍 Via Roma 15  orario: 10:00-19:30\n\nSe cambi idea o hai bisogno di altro, scrivimi pure qui. A domani!' },
   ],
   'Altro': [
     { sender: 'user', text: 'Salve, vorrei informazioni sui vostri servizi di consulenza aziendale.' },
-    { sender: 'ai', text: 'Salve! Grazie per l\'interesse. Offriamo diversi servizi di consulenza:\n\n📊 Consulenza strategica — analisi del business e piano di crescita\n💼 Consulenza operativa — ottimizzazione dei processi\n📈 Consulenza marketing — strategia digitale e posizionamento\n\nOgni percorso inizia con un incontro gratuito di 30 minuti per capire le sue esigenze. Vuole fissare una call conoscitiva?' },
+    { sender: 'ai', text: 'Salve! Grazie per l\'interesse. Offriamo diversi servizi di consulenza:\n\n📊 Consulenza strategica  analisi del business e piano di crescita\n💼 Consulenza operativa  ottimizzazione dei processi\n📈 Consulenza marketing  strategia digitale e posizionamento\n\nOgni percorso inizia con un incontro gratuito di 30 minuti per capire le sue esigenze. Vuole fissare una call conoscitiva?' },
     { sender: 'user', text: 'Sì, quando è possibile?' },
     { sender: 'ai', text: 'Prossime disponibilità per la call conoscitiva:\n\n• Mercoledì 12 marzo ore 11:00\n• Giovedì 13 marzo ore 16:00\n• Venerdì 14 marzo ore 10:00\n\nDura circa 30 minuti, via Google Meet. Quale preferisce? Le invierò il link non appena conferma.' },
   ],
@@ -57,7 +57,7 @@ const TARGETS = [
 const FAQ_ITEMS = [
   {
     q: 'I miei clienti vogliono parlare con una persona vera?',
-    a: 'L\'AI non finge di essere umana. È trasparente. Ma risponde meglio e più velocemente di molti umani — e i clienti lo apprezzano. Le richieste complesse vengono sempre passate a te.',
+    a: 'L\'AI non finge di essere umana. È trasparente. Ma risponde meglio e più velocemente di molti umani  e i clienti lo apprezzano. Le richieste complesse vengono sempre passate a te.',
   },
   {
     q: 'Devo cambiare i miei sistemi?',
@@ -74,13 +74,13 @@ const TESTIMONIALS = [
     quote: 'Prima avevamo una segretaria part-time solo per gestire le chiamate. Ora l\'AI gestisce l\'80% delle richieste da sola. La segretaria si occupa solo dei casi che richiedono davvero attenzione umana.',
     name: 'Dott. Giovanni L.',
     role: 'Direttore',
-    company: 'Studio Dentistico — Veneto',
+    company: 'Studio Dentistico  Veneto',
   },
   {
     quote: 'Un paziente mi ha scritto alle 2 di notte per prenotare una visita urgente. L\'AI ha risposto, ha raccolto i dati, ha inserito l\'appuntamento. Io ho trovato tutto pronto la mattina.',
     name: 'Dott.ssa Sara M.',
     role: 'Medico',
-    company: 'Studio privato — Milano',
+    company: 'Studio privato  Milano',
   },
 ];
 
@@ -131,10 +131,10 @@ export default function LP3CustomerService() {
             </span>
             <h1 className="font-display font-bold text-4xl sm:text-5xl leading-[1.1] text-[#F5F5F7] mb-6">
               I tuoi clienti chiamano.
-              <span className="text-accent"> L'AI risponde — meglio di un umano.</span>
+              <span className="text-accent"> L'AI risponde  meglio di un umano.</span>
             </h1>
             <p className="font-body text-xl text-gray-400 leading-relaxed mb-8 max-w-xl">
-              Un assistente virtuale che conosce la tua azienda, risponde alle domande, prenota appuntamenti e gestisce richieste — 24/7, in italiano perfetto.
+              Un assistente virtuale che conosce la tua azienda, risponde alle domande, prenota appuntamenti e gestisce richieste  24/7, in italiano perfetto.
             </p>
             <button
               onClick={() => scrollTo('demo')}
@@ -250,7 +250,7 @@ function ProblemSection({ calcRequests, setCalcRequests, calcValue, setCalcValue
   const paragraphs = [
     'Ogni giorno perdi clienti che non riesci a gestire.',
     'Squilla il telefono mentre sei con un altro cliente. Arriva un messaggio WhatsApp alle 22. Una email rimane senza risposta per tre giorni.',
-    'Un potenziale cliente che voleva solo sapere il prezzo — se ne va da un competitor che ha risposto in 2 minuti.',
+    'Un potenziale cliente che voleva solo sapere il prezzo  se ne va da un competitor che ha risposto in 2 minuti.',
     'Non è colpa tua. Non puoi essere ovunque.\nMa il problema costa. Ogni mese.',
   ];
 
@@ -355,7 +355,7 @@ function SolutionSection() {
           animate={inView ? { opacity: 1, y: 0 } : {}}
           className="font-display font-bold text-3xl text-[#F5F5F7] mb-4 max-w-2xl"
         >
-          Il tuo assistente AI risponde al posto tuo — sempre.
+          Il tuo assistente AI risponde al posto tuo  sempre.
         </motion.h2>
         <motion.p
           initial={{ opacity: 0, y: 10 }}

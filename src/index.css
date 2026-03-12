@@ -6,7 +6,7 @@
   --color-accent: #F36A63;
   --color-accent-hover: #e05a53;
 
-  --font-display: "Nunito", "Inter", system-ui, sans-serif;
+  --font-display: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
   --font-body: "Inter", system-ui, -apple-system, sans-serif;
 }
 

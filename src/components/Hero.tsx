@@ -89,7 +89,7 @@ export default function Hero({ onScrollTo, ctaVariant }: HeroProps) {
               <div className="truncate">Descrizione: Lorem ipsum dolor sit ame...</div>
               <div className="truncate">Attributi: 2/12</div>
               <div className="truncate">SEO: Non ottimizzato</div>
-              <div className="text-gray-300">— — — — — — — — —</div>
+              <div className="text-gray-300">- - - - - - - - -</div>
               <div className="truncate">Tag: [mancanti]</div>
             </div>
           </motion.div>

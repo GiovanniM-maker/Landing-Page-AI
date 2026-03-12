@@ -11,7 +11,7 @@ type LandingFooterProps = {
 
 export default function LandingFooter({ headline, subtext, ctaLabel, ctaTarget, onScrollTo }: LandingFooterProps) {
   return (
-    <footer className="bg-navy text-white">
+    <footer className="bg-[#000000] text-[#F5F5F7] border-t border-white/10">
       <section className="py-20 px-4 sm:px-6 lg:px-8 text-center">
         <motion.h2
           initial={{ opacity: 0, y: 10 }}

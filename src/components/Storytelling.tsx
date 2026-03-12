@@ -10,7 +10,7 @@ export default function Storytelling() {
     'Ogni stagione arriva un file Excel con centinaia di nuovi prodotti. Il tuo team impiega settimane a scrivere le schede una per una. Quando finalmente vanno online, la stagione è già a metà.',
     'Il PIM è pieno di campi vuoti. Descrizioni copiate e incollate. Zero ottimizzazione SEO. I prodotti ci sono, ma non convertono.',
     'Hai provato a chiedere alla tua agenzia SEO di ottimizzare i testi. Ti hanno chiesto mesi e un budget che non avevi.',
-    'Hai valutato tool generici. Il risultato era troppo generico — non conoscevano il tuo tone of voice, i tuoi attributi specifici, il formato del tuo PIM.',
+    'Hai valutato tool generici. Il risultato era troppo generico  non conoscevano il tuo tone of voice, i tuoi attributi specifici, il formato del tuo PIM.',
     'Le aziende con cataloghi sopra le 5.000 referenze si dividono in due: chi ha strutturato il product enrichment e chi continua a pagare settimane di lavoro manuale.',
     'Quello che ti serve non è un altro tool.',
   ];

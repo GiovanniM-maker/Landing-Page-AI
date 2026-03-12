@@ -32,19 +32,19 @@ Avremmo bisogno di un servizio di consulenza per la
 digitalizzazione dei processi di magazzino.
 Budget indicativo: 15-20k.
 Tempistiche: entro Q2 2026.
-Grazie, Marco Rossi — Direttore Operativo`,
+Grazie, Marco Rossi  Direttore Operativo`,
     after: `PREVENTIVO N. 2026-0847
-Cliente: XYZ S.r.l. — Settore Food & Beverage
+Cliente: XYZ S.r.l.  Settore Food & Beverage
 
 SERVIZIO: Consulenza Digitalizzazione Magazzino
 
-Fase 1 — Audit & Assessment (2 settimane)
+Fase 1  Audit & Assessment (2 settimane)
   Analisi AS-IS dei processi .................. €3.500
 
-Fase 2 — Progettazione TO-BE (3 settimane)
+Fase 2  Progettazione TO-BE (3 settimane)
   Disegno nuovi flussi + selezione tool ...... €5.000
 
-Fase 3 — Implementazione (4 settimane)
+Fase 3  Implementazione (4 settimane)
   Setup, integrazione, training team .......... €8.500
 
 TOTALE: €17.000 + IVA
@@ -59,7 +59,7 @@ Termini: pagamento a 30gg fine mese
 Dati fiscali già nel sistema`,
     after: `FATTURA N. 2026/FV-0291
 Data: 11/03/2026
-Cliente: ABC S.r.l. — P.IVA 03456789012
+Cliente: ABC S.r.l.  P.IVA 03456789012
 
 Descrizione: Servizio di consulenza marketing Q1 2026
 come da preventivo n. 2026-0832
@@ -86,17 +86,17 @@ Clausole speciali: NDA incluso`,
 Tra: [La Tua Azienda S.r.l.] (di seguito "Fornitore")
 E: Studio Legale Bianchi e Associati (di seguito "Cliente")
 
-Art. 1 — Oggetto
+Art. 1  Oggetto
 Il Fornitore si impegna a fornire il servizio di
 consulenza Premium come da allegato A.
 
-Art. 2 — Durata
+Art. 2  Durata
 Dal 01/04/2026 al 31/03/2027. Rinnovo tacito.
 
-Art. 3 — Corrispettivo
+Art. 3  Corrispettivo
 €24.000 annui (€2.000/mese) + IVA
 
-Art. 4 — Riservatezza (NDA)
+Art. 4  Riservatezza (NDA)
 [clausola NDA standard compilata]
 
 ⚠️ ATTENZIONE: Art. 5 (Limitazione responsabilità)
@@ -115,7 +115,7 @@ Consegna prevista: 18/03/2026.
 Preghiamo confermare indirizzo di consegna
 e fascia oraria preferita.
 Distinti saluti`,
-    after: `Oggetto: Re: Conferma ordine materiali — Ordine 4521
+    after: `Oggetto: Re: Conferma ordine materiali  Ordine 4521
 
 Buongiorno,
 
@@ -139,7 +139,7 @@ Cordiali saluti,
 - 2 contratti in attesa di firma
 - 15 email gestite dall'AI
 - Tempo admin risparmiato: ~6 ore`,
-    after: `REPORT SETTIMANALE — 10-14 Marzo 2026
+    after: `REPORT SETTIMANALE  10-14 Marzo 2026
 
 📊 COMMERCIALE
 Preventivi inviati: 12 (+20% vs settimana prec.)
@@ -147,9 +147,9 @@ Tasso approvazione: 25% (3/12)
 Valore pipeline: €78.500
 
 💰 FATTURAZIONE
-Fatture emesse: 8 — Totale: €47.200
+Fatture emesse: 8  Totale: €47.200
 Incassi ricevuti: €31.400
-Scaduti: €8.200 (2 fatture — sollecito automatico inviato)
+Scaduti: €8.200 (2 fatture  sollecito automatico inviato)
 
 📋 CONTRATTI
 In attesa firma: 2 (valore: €36.000)
@@ -160,7 +160,7 @@ Email gestite dall'AI: 15/18 (83% autonomia)
 Tempo admin risparmiato: ~6 ore
 Equivalente economico: €480
 
-[Generato automaticamente — prossimo report: 21/03/2026]`,
+[Generato automaticamente  prossimo report: 21/03/2026]`,
     time: '20 secondi',
   },
 };
@@ -190,7 +190,7 @@ const SECTOR_FLOWS: Record<SectorType, { flow: string; timeSaved: string }> = {
 const FAQ_ITEMS = [
   {
     q: 'I miei documenti sono troppo specifici e complessi?',
-    a: 'Il sistema viene configurato sui tuoi template, sui tuoi processi, sul tuo settore. Non è un tool generico — è addestrato sul tuo modo di lavorare.',
+    a: 'Il sistema viene configurato sui tuoi template, sui tuoi processi, sul tuo settore. Non è un tool generico  è addestrato sul tuo modo di lavorare.',
   },
   {
     q: 'E la sicurezza dei dati? Ho documenti riservati.',
@@ -198,7 +198,7 @@ const FAQ_ITEMS = [
   },
   {
     q: 'Devo cambiare il mio gestionale?',
-    a: 'No. Il sistema si integra con quello che già usi — Drive, Dropbox, il tuo software di fatturazione, la tua email. Zero migrazione, zero stravolgimenti.',
+    a: 'No. Il sistema si integra con quello che già usi  Drive, Dropbox, il tuo software di fatturazione, la tua email. Zero migrazione, zero stravolgimenti.',
   },
   {
     q: 'E se genera un documento sbagliato?',
@@ -211,19 +211,19 @@ const TESTIMONIALS = [
     quote: 'Facevo i preventivi a mano in Word. Ci mettevo 45 minuti a pezzo. Ora descrivo la richiesta in due righe e il PDF è pronto in 40 secondi. Ho recuperato due ore al giorno.',
     name: 'Ing. Paolo V.',
     role: 'Titolare',
-    company: 'Studio di ingegneria — Padova',
+    company: 'Studio di ingegneria  Padova',
   },
   {
     quote: 'Le fatture scadute erano un incubo. Dovevo ricordarmi io di sollecitare. Ora il sistema manda il primo sollecito automatico, il secondo, e mi avvisa solo se dopo tre tentativi non c\'è risposta. I ritardi di pagamento sono calati del 70%.',
     name: 'Maria C.',
     role: 'CFO',
-    company: 'PMI manifatturiera — Brescia',
+    company: 'PMI manifatturiera  Brescia',
   },
   {
-    quote: 'Un commercialista mi ha detto che i miei documenti sono i più ordinati che abbia mai visto in uno studio della mia dimensione. Non so se ridere o piangere — li genera l\'AI.',
+    quote: 'Un commercialista mi ha detto che i miei documenti sono i più ordinati che abbia mai visto in uno studio della mia dimensione. Non so se ridere o piangere  li genera l\'AI.',
     name: 'Davide S.',
     role: 'Founder',
-    company: 'Agenzia consulenza — Roma',
+    company: 'Agenzia consulenza  Roma',
   },
 ];
 
@@ -278,7 +278,7 @@ export default function LP6DocumentAutomation() {
               <span className="text-accent"> L'AI li fa in 30 secondi.</span>
             </h1>
             <p className="font-body text-xl text-gray-400 leading-relaxed mb-8 max-w-xl">
-              Automatizza tutta la parte amministrativa della tua azienda — senza errori, senza ritardi, senza assumere nessuno.
+              Automatizza tutta la parte amministrativa della tua azienda  senza errori, senza ritardi, senza assumere nessuno.
             </p>
             <button
               onClick={() => scrollTo('demo')}
@@ -334,7 +334,7 @@ export default function LP6DocumentAutomation() {
               </div>
               <div className="rounded-xl bg-accent/5 border border-accent/20 p-3">
                 <p className="text-[10px] uppercase tracking-wider text-accent font-display font-semibold mb-2">
-                  Output AI — {DOC_DEMOS[activeDocType].time}
+                  Output AI  {DOC_DEMOS[activeDocType].time}
                 </p>
                 <pre className="font-mono text-[11px] text-gray-300 leading-relaxed whitespace-pre-wrap overflow-y-auto max-h-[240px]">
                   {DOC_DEMOS[activeDocType].after}
@@ -400,7 +400,7 @@ function ProblemSection({ calcHours, setCalcHours, calcRate, setCalcRate, calcRe
   const paragraphs = [
     'Sai esattamente di cosa parlo.',
     'Sono le 18:30. Hai finito con l\'ultimo cliente. Dovresti staccare. Invece apri il laptop perché hai ancora tre preventivi da fare, due fatture da mandare, un contratto da revisionare e dieci email a cui rispondere.',
-    'Ogni settimana, almeno 6-8 ore del tuo tempo — ore che potresti vendere, usare per acquisire clienti, o semplicemente non lavorare — le passi su attività che non richiedono la tua testa. Richiedono solo tempo.',
+    'Ogni settimana, almeno 6-8 ore del tuo tempo  ore che potresti vendere, usare per acquisire clienti, o semplicemente non lavorare  le passi su attività che non richiedono la tua testa. Richiedono solo tempo.',
     'Moltiplicalo per 12 mesi.',
   ];
 
@@ -559,7 +559,7 @@ function SolutionSection({ activeDocType, setActiveDocType }: { activeDocType: D
             </div>
             <div className="rounded-xl bg-accent/5 border border-accent/20 p-4">
               <p className="text-[10px] uppercase tracking-wider text-accent font-display font-semibold mb-2">
-                Dopo — {DOC_DEMOS[activeDocType].time}
+                Dopo  {DOC_DEMOS[activeDocType].time}
               </p>
               <pre className="font-mono text-xs text-gray-300 leading-relaxed whitespace-pre-wrap overflow-y-auto max-h-[200px]">
                 {DOC_DEMOS[activeDocType].after}

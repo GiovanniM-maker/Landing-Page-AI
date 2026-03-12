@@ -90,13 +90,13 @@ export const MOCK_RESULT = {
     topPerformer: 78,
   },
   enriched: {
-    title: 'Giacca Invernale Uomo in Lana Merino Premium — Blu Navy | Collezione Inverno 2026',
+    title: 'Giacca Invernale Uomo in Lana Merino Premium  Blu Navy | Collezione Inverno 2026',
     attributes: [
       'Materiale: 100% Lana Merino Extra-Fine (19.5 micron)',
-      'Vestibilità: Regular Fit — Consigliamo la taglia abituale',
-      'Manutenzione: Lavaggio a mano a 30°C — Non asciugare in asciugatrice',
+      'Vestibilità: Regular Fit  Consigliamo la taglia abituale',
+      'Manutenzione: Lavaggio a mano a 30°C  Non asciugare in asciugatrice',
       'Stagione: Autunno/Inverno 2026',
-      'Origine: Made in Italy — Produzione artigianale',
+      'Origine: Made in Italy  Produzione artigianale',
       'Tag SEO: giacca lana merino uomo, cappotto invernale blu, giacca italiana premium',
       'Cross-selling suggerito: "Completa il look: Sciarpa in cashmere, Guanti in pelle, Berretto in lana"',
     ],

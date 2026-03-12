@@ -16,10 +16,10 @@ type Profile = typeof PROFILES[number];
 const EMAIL_SEQUENCES: Record<Profile, { subject: string; body: string }[]> = {
   Agenzia: [
     {
-      subject: 'Una domanda sul vostro reparto marketing — [Nome Azienda]',
+      subject: 'Una domanda sul vostro reparto marketing  [Nome Azienda]',
       body: `Buongiorno [Nome],
 
-ho notato che [Azienda Target] sta investendo nella comunicazione digitale — complimenti per il rebrand recente del sito.
+ho notato che [Azienda Target] sta investendo nella comunicazione digitale  complimenti per il rebrand recente del sito.
 
 Lavoro con [Nome Agenzia], aiutiamo aziende manifatturiere del Nord Italia a strutturare la strategia di contenuti B2B. Con [Cliente Simile] abbiamo ottenuto +140% di lead qualificati in 4 mesi.
 
@@ -34,7 +34,7 @@ Buona giornata,
       subject: 'Re: Una domanda sul vostro reparto marketing',
       body: `Buongiorno [Nome],
 
-torno sulla mia email di qualche giorno fa — capisco che le agende siano piene.
+torno sulla mia email di qualche giorno fa  capisco che le agende siano piene.
 
 Le condivido un caso studio rapido: [Cliente nel suo settore] aveva lo stesso problema di visibilità B2B. In 90 giorni abbiamo portato il traffico organico da 2.000 a 8.500 visite/mese.
 
@@ -44,12 +44,12 @@ A presto,
 [Firma]`,
     },
     {
-      subject: 'Ultimo tentativo — poi non disturbo più',
+      subject: 'Ultimo tentativo  poi non disturbo più',
       body: `Buongiorno [Nome],
 
 non voglio essere insistente, quindi sarò breve: se la content strategy non è una priorità adesso, capisco perfettamente.
 
-Se invece è qualcosa che avete in roadmap, sono disponibile per una call conoscitiva di 15 minuti — senza impegno, senza slide, solo una conversazione.
+Se invece è qualcosa che avete in roadmap, sono disponibile per una call conoscitiva di 15 minuti  senza impegno, senza slide, solo una conversazione.
 
 In ogni caso, le auguro buon lavoro.
 
@@ -58,10 +58,10 @@ In ogni caso, le auguro buon lavoro.
   ],
   Consulente: [
     {
-      subject: 'Idea per i vostri processi interni — [Azienda]',
+      subject: 'Idea per i vostri processi interni  [Azienda]',
       body: `Buongiorno [Nome],
 
-mi sono imbattuto nel profilo di [Azienda] su LinkedIn e ho notato che state crescendo rapidamente — congratulazioni per i risultati dell'ultimo trimestre.
+mi sono imbattuto nel profilo di [Azienda] su LinkedIn e ho notato che state crescendo rapidamente  congratulazioni per i risultati dell'ultimo trimestre.
 
 Come consulente specializzato in efficienza operativa, lavoro con PMI in fase di scaling che hanno bisogno di strutturare i processi prima che la crescita diventi un problema.
 
@@ -76,14 +76,14 @@ Cordialmente,
       subject: 'Re: Idea per i vostri processi',
       body: `[Nome], riprendo brevemente il filo.
 
-Ho preparato un mini-audit gratuito basato su dati pubblici di [Azienda] — 3 punti dove vedo potenziale di ottimizzazione immediata.
+Ho preparato un mini-audit gratuito basato su dati pubblici di [Azienda]  3 punti dove vedo potenziale di ottimizzazione immediata.
 
 Glielo mando se mi conferma interesse, nessun obbligo.
 
 [Firma]`,
     },
     {
-      subject: 'Chiudo il cerchio — [Azienda]',
+      subject: 'Chiudo il cerchio  [Azienda]',
       body: `[Nome], capisco che i tempi possano non essere giusti.
 
 Se in futuro doveste valutare un supporto esterno sull'efficienza operativa, il mio contatto resta questo.
@@ -95,29 +95,29 @@ Le auguro una buona giornata.
   ],
   Freelance: [
     {
-      subject: 'Una proposta per [Azienda] — design & brand',
+      subject: 'Una proposta per [Azienda]  design & brand',
       body: `Buongiorno [Nome],
 
-ho visto il vostro sito e i materiali di comunicazione — avete un prodotto interessante, ma credo che il brand non lo stia raccontando al meglio.
+ho visto il vostro sito e i materiali di comunicazione  avete un prodotto interessante, ma credo che il brand non lo stia raccontando al meglio.
 
 Sono un brand designer freelance specializzato in PMI B2B. Ho curato il rebrand di [Azienda Simile] che ha portato a +60% di richieste di preventivo in 3 mesi.
 
-Non le chiedo un'ora — le chiedo 10 minuti per mostrarle 2-3 idee concrete specifiche per [Azienda].
+Non le chiedo un'ora  le chiedo 10 minuti per mostrarle 2-3 idee concrete specifiche per [Azienda].
 
 Quando le farebbe comodo?
 
 [Firma]`,
     },
     {
-      subject: 'Re: Proposta design — ho preparato qualcosa',
+      subject: 'Re: Proposta design  ho preparato qualcosa',
       body: `[Nome], ho preparato un mockup rapido (non richiesto, lo so) di come potrebbe apparire la vostra homepage con un refresh visivo.
 
-Se le interessa vederlo, mi faccia sapere — glielo mando senza impegno.
+Se le interessa vederlo, mi faccia sapere  glielo mando senza impegno.
 
 [Firma]`,
     },
     {
-      subject: 'Ultimo messaggio — poi sparisco!',
+      subject: 'Ultimo messaggio  poi sparisco!',
       body: `[Nome], non voglio riempirle la inbox.
 
 Il mockup resta a disposizione se in futuro vi interessa. Le auguro un ottimo proseguimento.
@@ -127,12 +127,12 @@ Il mockup resta a disposizione se in futuro vi interessa. Le auguro un ottimo pr
   ],
   Startup: [
     {
-      subject: 'Da founder a founder — [Azienda]',
+      subject: 'Da founder a founder  [Azienda]',
       body: `Ciao [Nome],
 
-sto seguendo il percorso di [Startup] da quando ho visto il vostro post su LinkedIn sulla chiusura del seed round — in bocca al lupo!
+sto seguendo il percorso di [Startup] da quando ho visto il vostro post su LinkedIn sulla chiusura del seed round  in bocca al lupo!
 
-Noi di [Nostra Startup] aiutiamo startup in fase di go-to-market a validare il product-market fit attraverso outreach strutturato — senza bruciare budget in ads prematuramente.
+Noi di [Nostra Startup] aiutiamo startup in fase di go-to-market a validare il product-market fit attraverso outreach strutturato  senza bruciare budget in ads prematuramente.
 
 Con [Startup Simile] abbiamo generato 40 conversazioni qualificate in 3 settimane partendo da zero lista contatti.
 
@@ -149,7 +149,7 @@ Ho scritto un mini-playbook "Go-to-market senza ads" basato su quello che ha fun
 [Firma]`,
     },
     {
-      subject: 'Ultimo ping — poi silenzio',
+      subject: 'Ultimo ping  poi silenzio',
       body: `[Nome], se non è il momento giusto, nessun problema. Il mondo startup è caotico, lo capisco bene.
 
 Se in futuro vi serve un canale di acquisizione che non sia ads, sapete dove trovarmi.
@@ -160,22 +160,22 @@ In bocca al lupo per tutto!
   ],
   PMI: [
     {
-      subject: 'Un\'osservazione sul vostro commerciale — [Azienda]',
+      subject: 'Un\'osservazione sul vostro commerciale  [Azienda]',
       body: `Buongiorno [Nome],
 
-ho trovato [Azienda] cercando fornitori di [Settore] nel [Area Geografica] — il vostro catalogo è interessante.
+ho trovato [Azienda] cercando fornitori di [Settore] nel [Area Geografica]  il vostro catalogo è interessante.
 
 Lavoro con PMI che vogliono scalare le vendite B2B senza assumere nuovi commerciali. Il nostro sistema di outreach AI ha permesso a [Azienda Simile] di passare da 5 a 20 trattative attive al mese con lo stesso team.
 
 La sua forza vendita attuale quanto riesce a fare prospecting attivo ogni settimana? Se la risposta è "poco", forse possiamo aiutarvi.
 
-Le propongo un confronto di 15 minuti — nessun impegno.
+Le propongo un confronto di 15 minuti  nessun impegno.
 
 Cordiali saluti,
 [Firma]`,
     },
     {
-      subject: 'Re: Commerciale [Azienda] — un dato che potrebbe interessarle',
+      subject: 'Re: Commerciale [Azienda]  un dato che potrebbe interessarle',
       body: `[Nome], torno brevemente.
 
 Un dato dal nostro ultimo report: le PMI che automatizzano il primo contatto commerciale chiudono 3.4x deal in più a parità di team.
@@ -185,7 +185,7 @@ Se vuole il report completo, glielo invio volentieri.
 [Firma]`,
     },
     {
-      subject: 'Chiudo qui — [Azienda]',
+      subject: 'Chiudo qui  [Azienda]',
       body: `[Nome], non voglio occuparle tempo se non è il momento giusto.
 
 Se in futuro la crescita commerciale diventa una priorità, il mio contatto resta questo.
@@ -207,11 +207,11 @@ const TARGETS = [
 const FAQ_ITEMS = [
   {
     q: 'Le email automatiche finiscono in spam?',
-    a: 'Il sistema usa personalizzazione profonda — nome, azienda, contesto specifico — che i filtri antispam riconoscono come email umane. Tasso di deliverability medio: 94%.',
+    a: 'Il sistema usa personalizzazione profonda  nome, azienda, contesto specifico  che i filtri antispam riconoscono come email umane. Tasso di deliverability medio: 94%.',
   },
   {
     q: 'Sembra freddo e impersonale?',
-    a: 'È il contrario. L\'AI ricerca il prospect prima di scrivere — settore, dimensione, eventuali notizie recenti sull\'azienda. Ogni email sembra scritta a mano perché contiene dettagli reali su chi la riceve.',
+    a: 'È il contrario. L\'AI ricerca il prospect prima di scrivere  settore, dimensione, eventuali notizie recenti sull\'azienda. Ogni email sembra scritta a mano perché contiene dettagli reali su chi la riceve.',
   },
   {
     q: 'Non ho una lista di contatti?',
@@ -224,13 +224,13 @@ const TESTIMONIALS = [
     quote: 'Avevo una lista di 400 contatti ferma da un anno. L\'AI ha scritto le email, ha mandato tutto, ha fatto i follow-up. In tre settimane ho avuto 23 risposte e 6 call prenotate. In un anno non avevo fatto nulla.',
     name: 'Andrea T.',
     role: 'Founder',
-    company: 'Agenzia digital — Torino',
+    company: 'Agenzia digital  Torino',
   },
   {
     quote: 'Il mio commerciale ora usa l\'AI per il primo contatto e si concentra solo sulle trattative. Ha triplicato il numero di deal chiusi senza lavorare più ore.',
     name: 'Luca F.',
     role: 'CEO',
-    company: 'Software house — Milano',
+    company: 'Software house  Milano',
   },
 ];
 
@@ -296,7 +296,7 @@ export default function LP5LeadGeneration() {
               <span className="text-accent"> L'AI le trova e le contatta per te.</span>
             </h1>
             <p className="font-body text-xl text-gray-400 leading-relaxed mb-8 max-w-xl">
-              Prospecting automatico, email personalizzate su scala, follow-up intelligenti — senza che tu muova un dito. Tu parli solo con chi è già interessato.
+              Prospecting automatico, email personalizzate su scala, follow-up intelligenti  senza che tu muova un dito. Tu parli solo con chi è già interessato.
             </p>
             <button
               onClick={() => scrollTo('calcolatore')}
@@ -415,10 +415,10 @@ function ProblemSection() {
   const paragraphs = [
     'Sai già chi dovresti contattare. Non lo fai mai abbastanza.',
     'Hai una lista di potenziali clienti che aspetta da mesi. Hai mandato qualche email, nessuna risposta, hai mollato.',
-    'Non hai tempo per fare prospecting sistematico — stai già gestendo i clienti che hai.',
+    'Non hai tempo per fare prospecting sistematico  stai già gestendo i clienti che hai.',
     'Ogni tanto ti ricordi di qualcuno, lo cerchi su LinkedIn, scrivi due righe, dimentichi di fare follow-up.',
     'Risultato: il tuo miglior lead si è già comprato il servizio da un competitor che era più costante di te.',
-    'Non è pigrizia. È che vendere richiede un sistema — e tu non ce l\'hai ancora.',
+    'Non è pigrizia. È che vendere richiede un sistema  e tu non ce l\'hai ancora.',
   ];
 
   return (

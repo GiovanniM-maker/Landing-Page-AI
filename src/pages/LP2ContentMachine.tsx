@@ -27,7 +27,7 @@ const DEMO_OUTPUTS: Record<Format, { label: string; content: string }> = {
 
 Nel 2026, il 87% delle aziende italiane utilizza già strumenti di AI per la creazione di contenuti. Ma cosa significa concretamente per una PMI?
 
-La risposta è semplice: più contenuti, più visibilità, più clienti — senza aumentare il team.
+La risposta è semplice: più contenuti, più visibilità, più clienti  senza aumentare il team.
 
 Le aziende che pubblicano con costanza ottengono il 67% in più di lead rispetto a chi pubblica sporadicamente. Il problema non è mai stato la mancanza di idee, ma la mancanza di un sistema che trasformi quelle idee in contenuti pubblicabili in modo efficiente.
 
@@ -70,7 +70,7 @@ E sai qual è la differenza tra chi lo fa e chi no? Non è il budget. Non è il 
 
 Chi ha un sistema pubblica. Chi non ce l'ha, rimanda.
 
-Noi abbiamo messo in piedi il nostro sistema in un pomeriggio. Ora ogni lunedì i contenuti della settimana sono pronti — blog, social, newsletter.
+Noi abbiamo messo in piedi il nostro sistema in un pomeriggio. Ora ogni lunedì i contenuti della settimana sono pronti  blog, social, newsletter.
 
 Se vuoi sapere come, rispondi a questa email. Ti mostro esattamente cosa facciamo.
 
@@ -121,13 +121,13 @@ const TESTIMONIALS = [
     quote: 'Prima pubblicavamo un post al mese, se andava bene. Ora usciamo tre volte a settimana su LinkedIn e la newsletter va ogni giovedì. I clienti ci scrivono dicendo che ci vedono ovunque.',
     name: 'Marco R.',
     role: 'Marketing Manager',
-    company: 'Studio Associato — Verona',
+    company: 'Studio Associato  Verona',
   },
   {
     quote: 'Ho provato a farlo con ChatGPT ma il risultato sembrava scritto da un robot. Questo invece parla come me.',
     name: 'Elena B.',
     role: 'Founder',
-    company: 'Agenzia digital — Torino',
+    company: 'Agenzia digital  Torino',
   },
 ];
 
@@ -181,7 +181,7 @@ export default function LP2ContentMachine() {
               <span className="text-accent"> L'AI ora pubblica per te.</span>
             </h1>
             <p className="font-body text-xl text-gray-400 leading-relaxed mb-8 max-w-xl">
-              Blog, newsletter, LinkedIn, Instagram — contenuti professionali, nel tuo tone of voice, pronti in 30 secondi.
+              Blog, newsletter, LinkedIn, Instagram  contenuti professionali, nel tuo tone of voice, pronti in 30 secondi.
             </p>
             <button
               onClick={() => scrollTo('demo')}
@@ -201,7 +201,7 @@ export default function LP2ContentMachine() {
             className="rounded-2xl border border-white/10 bg-[#1A1A1A] p-6 shadow-lg"
           >
             <p className="text-xs uppercase tracking-[0.15em] text-gray-500 font-display font-semibold mb-4">
-              Prova live — Scegli il formato
+              Prova live  Scegli il formato
             </p>
             <div className="flex flex-wrap gap-2 mb-4">
               {FORMATS.map((f) => {
@@ -279,7 +279,7 @@ function SectionParagraphs({ id }: { id: string }) {
   const paragraphs = [
     'Sai già che dovresti pubblicare di più.',
     'Hai idee. Hai competenze. Hai cose da dire.',
-    'Ma ogni volta che apri il documento Word per scrivere un post, finisce così:\n— hai altro da fare\n— non sai da dove partire\n— ci hai messo due ore per tre righe',
+    'Ma ogni volta che apri il documento Word per scrivere un post, finisce così:\n hai altro da fare\n non sai da dove partire\n ci hai messo due ore per tre righe',
     'Risultato? Profilo LinkedIn fermo da settimane. Newsletter mai partita. Competitor che pubblica ogni giorno e appare più autorevole di te.',
     'Non è un problema di tempo. È un problema di sistema.',
   ];
@@ -417,7 +417,7 @@ function HowItWorks() {
       num: '02',
       icon: Zap,
       title: 'L\'AI genera i tuoi contenuti',
-      desc: 'Articoli, post, email — nel tuo stile, non in quello di un robot.',
+      desc: 'Articoli, post, email  nel tuo stile, non in quello di un robot.',
     },
     {
       num: '03',
