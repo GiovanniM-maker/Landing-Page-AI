@@ -1081,7 +1081,7 @@ footer {
         <div class="p-icon">📈</div>
         <div>
           <h4>Impossibilità di scalare</h4>
-          <p>Da 500 a 5.000 SKU il processo crolla. L'unica soluzione attuale: assumere.</p>
+          <p>Da 500 a 5.000 referenze il processo crolla. L'unica soluzione attuale: assumere.</p>
         </div>
       </div>
     </div>
@@ -1430,6 +1430,7 @@ footer {
     <button type="button" class="floating-cta-close" id="floating-cta-close" aria-label="Chiudi">×</button>
   </div>
 </div>
+
 <script>
 (function(){
   var wrap = document.getElementById('floating-cta');
@@ -1462,6 +1463,7 @@ footer {
     textEl.textContent = MSGS[step].text;
     if (actionEl) actionEl.textContent = MSGS[step].action;
   }
+  window._floatCtaSetStep = setStep;
   window._floatCtaGo = function() {
     var el = document.querySelector(MSGS[step].href);
     if (el) el.scrollIntoView({ behavior: 'smooth' });
@@ -1509,6 +1511,7 @@ footer {
   }
   var shown = false;
   function tryShow() {
+    if (window.innerWidth <= 768) return false;
     if (sessionStorage.getItem(KEY) === '1' || shown) return true;
     var pct = scrollPct();
     if (pct >= 0.25) {
@@ -1522,6 +1525,7 @@ footer {
   window.addEventListener('scroll', tryShow, { passive: true });
   var delay = isTouch ? 1200 : 2500;
   setTimeout(function() {
+    if (window.innerWidth <= 768) return;
     if (sessionStorage.getItem(KEY) !== '1' && !shown) {
       shown = true;
       setStep(0);
@@ -1529,10 +1533,71 @@ footer {
     }
   }, delay);
   tryShow();
-  if (isTouch) {
+  if (isTouch && window.innerWidth > 768) {
     setTimeout(tryShow, 400);
     setTimeout(tryShow, 800);
   }
+})();
+</script>
+
+<script>
+/* ═══ POPUP MOBILE: appare solo quando nessuna CTA è visibile (solo mobile) ═══ */
+(function(){
+  var wrap = document.getElementById('floating-cta');
+  if (!wrap) return;
+  var ctaSelector = '.btn-coral, .btn-outline, .cost-box-cta';
+  var ctas = document.querySelectorAll(ctaSelector);
+  var visibleSet = new Set();
+  function scrollPct() {
+    var doc = document.documentElement, body = document.body;
+    var scrollTop = window.pageYOffset || doc.scrollTop || body.scrollTop || 0;
+    var scrollHeight = Math.max(doc.scrollHeight, body.scrollHeight, doc.clientHeight);
+    var clientHeight = window.innerHeight || doc.clientHeight;
+    var maxScroll = scrollHeight - clientHeight;
+    if (maxScroll <= 0) return 0;
+    return Math.min(1, scrollTop / maxScroll);
+  }
+  function updatePopup() {
+    if (window.innerWidth > 768) return;
+    if (sessionStorage.getItem('auiki_float_cta_dismissed') === '1') return;
+    if (visibleSet.size > 0) {
+      wrap.classList.remove('is-visible');
+      wrap.style.display = '';
+      wrap.setAttribute('aria-hidden', 'true');
+    } else {
+      var pct = scrollPct();
+      if (typeof window._floatCtaSetStep === 'function') {
+        window._floatCtaSetStep(pct >= 0.75 ? 2 : pct >= 0.5 ? 1 : 0);
+      }
+      wrap.classList.add('is-visible');
+      wrap.style.setProperty('display', 'block');
+      wrap.setAttribute('aria-hidden', 'false');
+    }
+  }
+  function onIntersect(entries) {
+    entries.forEach(function(e) {
+      if (e.isIntersecting) visibleSet.add(e.target);
+      else visibleSet.delete(e.target);
+    });
+    updatePopup();
+  }
+  if (typeof IntersectionObserver !== 'undefined' && ctas.length > 0) {
+    var io = new IntersectionObserver(onIntersect, {
+      root: null,
+      rootMargin: '-80px 0px -100px 0px',
+      threshold: 0.2
+    });
+    ctas.forEach(function(el) {
+      if (!el.closest('.floating-cta')) io.observe(el);
+    });
+  }
+  window.addEventListener('resize', updatePopup);
+  window.addEventListener('scroll', function() { requestAnimationFrame(updatePopup); }, { passive: true });
+  requestAnimationFrame(function() {
+    requestAnimationFrame(function() {
+      updatePopup();
+    });
+  });
 })();
 </script>
 
