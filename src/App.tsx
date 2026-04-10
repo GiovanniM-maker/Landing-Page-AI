@@ -212,9 +212,10 @@ const IMPROVEMENT_AREAS = [
 ];
 
 const HOW_STEPS = [
-  { n: "01", title: "Ci mandi i dati grezzi", desc: "Excel, export PIM o CSV/XML in input pipeline.", image: "/flow/step-1.png" },
-  { n: "02", title: "Il sistema li processa", desc: "Arricchimento attributi, SEO, HTML e tone of voice.", image: "/flow/step-2.png" },
-  { n: "03", title: "Ricevi schede pronte", desc: "Output validato e pronto per import nel PIM.", image: "/flow/step-3.png" },
+  { n: "01", title: "Ci dai quello che hai", desc: "Immagini prodotto, dati grezzi, file del fornitore. Qualsiasi formato tu abbia già, noi partiamo da lì. Nessun template obbligatorio.", image: "/flow/step-1.png" },
+  { n: "02", title: "Il motore AI elabora", desc: "Generiamo in automatico titoli, descrizioni, attributi strutturati, tag SEO e categorie, uniformando tutto al tuo standard.", image: "/flow/step-2.png" },
+  { n: "03", title: "Validazione umana", desc: "Nessun dato va online al buio. Il sistema propone, il tuo team approva, corregge o rifiuta. Il controllo di qualità resta a voi.", image: "/flow/step-3.png" },
+  { n: "04", title: "Pronto per il tuo gestionale", desc: "Dati puliti e pronti per il tuo eCommerce, PIM o ERP. Integrazione diretta, senza dover fare un ulteriore copia-incolla.", image: "/flow/step-3.png" },
 ];
 
 const SECTOR_RESULTS = [
@@ -341,10 +342,16 @@ export default function App() {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
   const simulatorRef = useRef<HTMLElement | null>(null);
   const howRef = useRef<HTMLElement | null>(null);
+  const contactRef = useRef<HTMLElement | null>(null);
+  const [calcSku, setCalcSku] = useState("");
+  const [calcMinutes, setCalcMinutes] = useState("");
+  const [calcCost, setCalcCost] = useState("");
+  const [contactRole, setContactRole] = useState("");
+  const [contactSkuRange, setContactSkuRange] = useState("");
   const customFileInputRef = useRef<HTMLInputElement | null>(null);
-  const m1 = useCountUp(15000, 1500, true);
-  const m2 = useCountUp(80, 1200, true);
-  const m3 = useCountUp(48, 1000, true);
+  const m1 = useCountUp(70, 1200, true);
+  const m2 = useCountUp(3, 800, true);
+  const m3 = useCountUp(40, 1000, true);
   const activeSector = SECTOR_RESULTS[activeSectorTab];
   const hasCustomFiles = customFiles.length > 0;
   const selectedProduct = SIM_PRODUCTS.find((p) => p.id === selectedProductId) || SIM_PRODUCTS[0];
@@ -811,10 +818,12 @@ export default function App() {
       .ai-list{margin:0;padding-left:18px;display:grid;gap:6px}
       .ai-pill{display:inline-flex;border:1px solid var(--border);border-radius:999px;padding:4px 10px;font-size:12px;background:var(--bg-card)}
       @media (max-width:980px){.how-grid,.two-col{grid-template-columns:1fr}}
-      @media (max-width:980px){.hero-visual{height:42vh;border-radius:14px}}
+      @media (max-width:980px){.hero-visual{height:auto;min-height:42vh;border-radius:14px}}
       @media (max-width:840px){.container{padding:0 18px}}
-      @media (max-width:840px){h1{font-size:56px !important;line-height:0.96 !important}}
+      @media (max-width:840px){h1{font-size:36px !important;line-height:1.08 !important}}
       @media (max-width:840px){.stats-grid{grid-template-columns:repeat(2,minmax(0,1fr)) !important}}
+      @media (max-width:640px){.stats-grid{grid-template-columns:1fr !important}}
+      @media (max-width:640px){.product-carousel{grid-template-columns:1fr !important}}
       `}</style>
 
       <nav style={{ position: "fixed", insetInline: 0, top: 0, zIndex: 40, borderBottom: "1px solid var(--border)", background: "#000000", padding: "18px 40px", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
@@ -822,7 +831,7 @@ export default function App() {
           <strong style={{ letterSpacing: 1.2, fontWeight: 700, color: "var(--white)" }}>AUIKI</strong>
           <div style={{ display: "flex", gap: 8 }}>
             <button className="btn" onClick={() => scrollTo(howRef)}>Come funziona</button>
-            <button className="btn btn-primary" onClick={() => scrollTo(simulatorRef)}>Prenota una demo</button>
+            <button className="btn btn-primary" onClick={() => scrollTo(simulatorRef)}>Prova gratis</button>
           </div>
         </div>
       </nav>
@@ -831,18 +840,22 @@ export default function App() {
         <section className="container grid-bg" style={{ paddingTop: 146, paddingBottom: 96, textAlign: "left" }}>
           <div className="hero-visual">
             <div className="hero-content">
-              <span className="kicker">Focus retailer</span>
-              <h1 style={{ fontSize: "clamp(38px, 4.6vw, 54px)", lineHeight: 1.08, letterSpacing: "-.025em", maxWidth: 720, margin: "18px 0", fontWeight: 600, color: "var(--white)" }}>Dai dati fornitore ai prodotti online.<br />Verificati e pubblicati.</h1>
-              <p className="muted" style={{ maxWidth: 760, margin: "0 0 28px", fontSize: 20 }}>
-                Auiki trasforma dati prodotto in output verificati e pronti canale. Case study Eataly: -80% tempo operativo.
+              <h1 style={{ fontSize: "clamp(34px, 4.2vw, 50px)", lineHeight: 1.08, letterSpacing: "-.025em", maxWidth: 720, margin: "18px 0", fontWeight: 800, color: "var(--white)", textTransform: "uppercase" }}>Gestire l'e‑commerce con l'AI?</h1>
+              <p style={{ fontSize: 22, fontWeight: 600, color: "var(--white)", margin: "0 0 16px", maxWidth: 720 }}>Il tuo lavoro è vendere. Non compilare schede prodotto.</p>
+              <p className="muted" style={{ maxWidth: 760, margin: "0 0 28px", fontSize: 17, lineHeight: 1.65 }}>
+                Il data entry manuale uccide i margini e ritarda le vendite. Abbiamo messo a punto un sistema basato sull'AI che estrae i dati dei tuoi prodotti in automatico e compila le schede al posto tuo. Il tuo team smette di fare copia‑incolla, e il catalogo va online in un terzo del tempo. Senza stress e senza dover assumere nuove persone.
               </p>
-              <button className="btn btn-primary" onClick={() => scrollTo(simulatorRef)}>Prenota una demo</button>
+              <div style={{ display: "flex", gap: 12, alignItems: "center", flexWrap: "wrap" }}>
+                <button className="btn btn-primary" onClick={() => scrollTo(simulatorRef)}>Prova l'AI su un tuo prodotto. Sul serio.</button>
+                <button className="btn" onClick={() => scrollTo(simulatorRef)}>Calcola quanto ti costa il catalogo oggi</button>
+              </div>
+              <p className="muted" style={{ fontSize: 13, marginTop: 10 }}>Ci vogliono 60 secondi e non devi registrarti</p>
             </div>
           </div>
 
           <div style={{ marginTop: 48 }} className="rule" />
           <div className="stats-grid" style={{ paddingTop: 24, display: "grid", gridTemplateColumns: "repeat(4,minmax(0,1fr))", gap: 12, textAlign: "left" }}>
-            {[{ v: `${m1.toLocaleString("it-IT")}+`, l: "Referenze processate" }, { v: `${m2}%`, l: "Tempo risparmiato" }, { v: "<4", l: "Settimane al ROI" }, { v: `${m3}h`, l: "Consegna media" }].map((m) => (
+            {[{ v: `–${m1}%`, l: "Tempo di gestione catalogo" }, { v: `${m2}x`, l: "Velocità di messa online" }, { v: `–${m3}%`, l: "Costi operativi" }, { v: "∞", l: "Scalabilità senza nuovi assunti" }].map((m) => (
               <div key={m.l}><p className="mono" style={{ fontSize: 36, margin: 0, letterSpacing: "-.02em" }}>{m.v}</p><p className="muted" style={{ margin: 0 }}>{m.l}</p></div>
             ))}
           </div>
@@ -850,40 +863,68 @@ export default function App() {
 
         <section className="container grid-bg" style={{ paddingBottom: 90 }}>
           <div className="card" style={{ padding: 32 }}>
-            <p className="kicker">La sfida</p>
-            <h2 style={{ marginTop: 10, fontSize: 44, letterSpacing: "-.02em", lineHeight: 1.1, fontWeight: 800 }}>La complessità dei dati fornitore limita la crescita</h2>
-            <div className="two-col" style={{ marginTop: 20 }}>
+            <p className="kicker">Il vero costo del data entry</p>
+            <h2 style={{ marginTop: 10, fontSize: 44, letterSpacing: "-.02em", lineHeight: 1.1, fontWeight: 800 }}>Il tuo team ha altri obiettivi.<br />Non sprecarlo su fogli Excel.</h2>
+            <p className="muted" style={{ maxWidth: "70ch", marginTop: 14, lineHeight: 1.65, fontSize: 17 }}>
+              Ogni scheda compilata a mano è tempo sottratto alla strategia aziendale, un costo che lievita e un errore sempre in agguato. Le persone sono la tua risorsa più preziosa: farle impazzire su infiniti fogli Excel non è più sostenibile.
+            </p>
+
+            <div style={{ padding: 24, marginTop: 24, background: "var(--bg-raised)", border: "1px solid var(--border)", borderRadius: 14 }}>
+              <p className="kicker">Il costo nascosto</p>
+              <p className="muted" style={{ lineHeight: 1.65, marginTop: 8 }}>
+                Un team di 3 persone che spende 15 minuti a scheda su 300 referenze al mese, brucia oltre 4.500 euro al mese solo per fare inserimento dati. Senza contare il tempo perso per correzioni, sviste e rilavorazioni.
+              </p>
+              <button className="btn btn-primary" style={{ marginTop: 12 }} onClick={() => scrollTo(simulatorRef)}>Calcola il vero costo del tuo team catalogo</button>
+              <p className="muted" style={{ fontSize: 13, marginTop: 8 }}>Ti sorprenderà, ma è un numero reale</p>
+            </div>
+
+            <div className="two-col" style={{ marginTop: 28 }}>
               <div>
-                <h3 className="card__title" style={{ fontSize: 24, marginTop: 0 }}>Stato attuale</h3>
-                <ul className="card__content" style={{ lineHeight: 1.7, margin: 0, paddingLeft: 18 }}>
-                  <li>Formati dati eterogenei tra fornitori</li>
-                  <li>Validazione manuale lenta e costosa</li>
-                  <li>Onboarding fornitori in mesi</li>
-                </ul>
+                <div style={{ display: "flex", gap: 12, alignItems: "flex-start", marginBottom: 24 }}>
+                  <span style={{ fontSize: 26, lineHeight: 1 }}>⏱</span>
+                  <div>
+                    <h4 style={{ margin: 0, fontSize: 16, fontWeight: 700 }}>Inserimento manuale lento</h4>
+                    <p className="muted" style={{ margin: "6px 0 0", lineHeight: 1.55 }}>Centinaia di prodotti significano settimane di lavoro ripetitivo.</p>
+                  </div>
+                </div>
+                <div style={{ display: "flex", gap: 12, alignItems: "flex-start" }}>
+                  <span style={{ fontSize: 26, lineHeight: 1 }}>⚠️</span>
+                  <div>
+                    <h4 style={{ margin: 0, fontSize: 16, fontWeight: 700 }}>Incoerenza dati ed errori umani</h4>
+                    <p className="muted" style={{ margin: "6px 0 0", lineHeight: 1.55 }}>Titoli disallineati, attributi mancanti, categorie sbagliate. L'errore è fisiologico, non è colpa del team.</p>
+                  </div>
+                </div>
               </div>
               <div>
-                <h3 className="card__title" style={{ fontSize: 24, marginTop: 0 }}>Con Auiki</h3>
-                <ul className="card__content" style={{ lineHeight: 1.7, margin: 0, paddingLeft: 18 }}>
-                  <li>Ingestion unificata e normalizzazione automatica</li>
-                  <li>Arricchimento operativo su schede reali</li>
-                  <li>Go-live in giorni, non mesi</li>
-                </ul>
+                <div style={{ display: "flex", gap: 12, alignItems: "flex-start", marginBottom: 24 }}>
+                  <span style={{ fontSize: 26, lineHeight: 1 }}>🐢</span>
+                  <div>
+                    <h4 style={{ margin: 0, fontSize: 16, fontWeight: 700 }}>Ritardi sul mercato</h4>
+                    <p className="muted" style={{ margin: "6px 0 0", lineHeight: 1.55 }}>Se la merce è in magazzino ma il catalogo non è pronto, non stai fatturando.</p>
+                  </div>
+                </div>
+                <div style={{ display: "flex", gap: 12, alignItems: "flex-start" }}>
+                  <span style={{ fontSize: 26, lineHeight: 1 }}>📈</span>
+                  <div>
+                    <h4 style={{ margin: 0, fontSize: 16, fontWeight: 700 }}>Impossibilità di crescere</h4>
+                    <p className="muted" style={{ margin: "6px 0 0", lineHeight: 1.55 }}>Da 500 a 5.000 referenze, il sistema esplode. Fino a ieri l'unica soluzione era assumere data-entry.</p>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
         </section>
 
         <section ref={howRef} className="container grid-bg" style={{ paddingBottom: 100 }}>
-          <p className="kicker">Come funziona</p>
-          <h2 style={{ fontSize: 58, lineHeight: 1.02, letterSpacing: "-.03em", marginTop: 10, fontWeight: 800 }}>Dal caos fornitore al controllo catalogo in tre step</h2>
-          <p className="muted" style={{ maxWidth: "56ch", marginTop: 14, lineHeight: 1.6 }}>Importazione, arricchimento e pubblicazione in un flusso unico con output pronto per il PIM.</p>
-          <div className="how-grid" style={{ marginTop: 32 }}>
+          <p className="kicker">Come funziona nella realtà</p>
+          <h2 style={{ fontSize: 48, lineHeight: 1.06, letterSpacing: "-.03em", marginTop: 10, fontWeight: 800 }}>Nessun tool da studiare.<br />Un sistema che lavora per te.</h2>
+          <p className="muted" style={{ maxWidth: "70ch", marginTop: 14, lineHeight: 1.65 }}>Non vogliamo venderti l'ennesimo tool da configurare. Abbiamo costruito un flusso che elimina il lavoro alienante e restituisce dati puliti. La tecnologia produce, tu mantieni il controllo assoluto.</p>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(2, minmax(0, 1fr))", gap: 20, marginTop: 32 }}>
             {HOW_STEPS.map((step) => (
               <article key={step.n} className="how-step-card">
+                <div className="card__date">Step {step.n}</div>
                 <h3 className="card__title">{step.title}</h3>
                 <p className="card__content">{step.desc}</p>
-                <img src={step.image} alt={step.title} loading="lazy" style={{ width: "100%", borderRadius: 10, border: "1px solid var(--border)", opacity: 0.92 }} />
-                <div className="card__date">Step {step.n}</div>
                 <div className="card__arrow">
                   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" height="15" width="15">
                     <path fill="#fff" d="M13.4697 17.9697C13.1768 18.2626 13.1768 18.7374 13.4697 19.0303C13.7626 19.3232 14.2374 19.3232 14.5303 19.0303L20.3232 13.2374C21.0066 12.554 21.0066 11.446 20.3232 10.7626L14.5303 4.96967C14.2374 4.67678 13.7626 4.67678 13.4697 4.96967C13.1768 5.26256 13.1768 5.73744 13.4697 6.03033L18.6893 11.25H4C3.58579 11.25 3.25 11.5858 3.25 12C3.25 12.4142 3.58579 12.75 4 12.75H18.6893L13.4697 17.9697Z" />
@@ -892,41 +933,43 @@ export default function App() {
               </article>
             ))}
           </div>
+          <p className="muted" style={{ marginTop: 24, fontSize: 15, lineHeight: 1.65 }}>Il sistema si adatta al tuo processo e alla tua struttura dati. Non viceversa. Siamo qui per risolvere problemi, non per importi i nostri formati.</p>
         </section>
 
         <section className="container grid-bg" style={{ paddingBottom: 100 }}>
-          <p className="kicker">Risultati per settore</p>
-          <div style={{ display: "flex", gap: 8, flexWrap: "wrap", margin: "12px 0 18px" }}>
-            {SECTOR_RESULTS.map((s, i) => (
-              <button key={s.sector} className="btn" style={{ background: i === activeSectorTab ? "var(--coral)" : "transparent", color: i === activeSectorTab ? "#fff" : "var(--white)", borderColor: i === activeSectorTab ? "var(--coral)" : "var(--border-strong)" }} onClick={() => setActiveSectorTab(i)}>
-                {s.sector}
-              </button>
-            ))}
-          </div>
-          <div className="two-col">
-            <article className="card" style={{ padding: 16 }}>
-              <p className="kicker">Prima / Dopo</p>
-              <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 10 }}>
-                <div style={{ border: "1px solid var(--border)", borderRadius: 10, padding: 12, background: "var(--bg-card)" }}>
-                  <p className="muted" style={{ margin: 0 }}>Prima</p>
-                  <p className="mono" style={{ fontSize: 34, margin: "5px 0", color: "var(--danger)" }}>{activeSector.before}/100</p>
-                  <p className="muted" style={{ margin: 0 }}>Campi critici elevati</p>
-                </div>
-                <div style={{ border: "1px solid var(--border)", borderRadius: 10, padding: 12, background: "var(--green-dim)" }}>
-                  <p className="muted" style={{ margin: 0 }}>Dopo</p>
-                  <p className="mono" style={{ fontSize: 34, margin: "5px 0", color: "var(--success)" }}>{activeSector.after}/100</p>
-                  <p className="muted" style={{ margin: 0 }}>Schede pronte import</p>
-                </div>
-              </div>
-              <p className="muted" style={{ marginBottom: 0 }}><strong>Volume:</strong> {activeSector.products} · <strong>Consegna:</strong> {activeSector.time}</p>
-            </article>
+          <p className="kicker">Impatto reale</p>
+          <h2 style={{ fontSize: 48, lineHeight: 1.06, letterSpacing: "-.03em", marginTop: 10, fontWeight: 800 }}>Tempi dimezzati. Morale al massimo, errori al minimo.</h2>
+          <p className="muted" style={{ maxWidth: "70ch", marginTop: 14, lineHeight: 1.65 }}>Non ci piacciono le promesse da guru. Preferiamo le soluzioni che danno un contributo vero. Ottimizzare il catalogo significa liberare risorse preziose e arrivare sul mercato prima dei tuoi competitor.</p>
 
-            <article className="card" style={{ padding: 16 }}>
-              <p className="kicker">Output operativo consegnato</p>
-              <ul className="muted" style={{ margin: 0, paddingLeft: 18, display: "grid", gap: 7 }}>
-                {activeSector.outputs.map((o) => <li key={o}>{o}</li>)}
-              </ul>
-            </article>
+          <div className="card" style={{ padding: 28, marginTop: 28 }}>
+            <p className="kicker">Un caso studio</p>
+            <h3 style={{ fontSize: 24, fontWeight: 700, marginTop: 8 }}>Azienda Retail Food, +2.000 referenze</h3>
+            <p className="muted" style={{ lineHeight: 1.65, marginTop: 10 }}>
+              Il team passava le giornate a compilare campi manualmente. Con il nostro sistema AI, il tempo medio per scheda è crollato da 12 a 3 minuti. I costi operativi sul data-entry si sono ridotti del 65%. E i nuovi prodotti oggi vanno online in 3 giorni anziché 2 settimane.
+            </p>
+          </div>
+
+          <div className="stats-grid" style={{ paddingTop: 28, display: "grid", gridTemplateColumns: "repeat(4,minmax(0,1fr))", gap: 16, textAlign: "left" }}>
+            <div className="card" style={{ padding: 20 }}>
+              <p className="mono" style={{ fontSize: 34, margin: 0, color: "var(--coral)" }}>–75%</p>
+              <p style={{ margin: "6px 0 0", fontWeight: 700, fontSize: 15 }}>Tempo per scheda</p>
+              <p className="muted" style={{ margin: "6px 0 0", fontSize: 14, lineHeight: 1.5 }}>Da 40 minuti a meno di 5 per ogni prodotto. Sui grandi numeri, è la differenza tra crescere o bloccarsi.</p>
+            </div>
+            <div className="card" style={{ padding: 20 }}>
+              <p className="mono" style={{ fontSize: 34, margin: 0, color: "var(--coral)" }}>–65%</p>
+              <p style={{ margin: "6px 0 0", fontWeight: 700, fontSize: 15 }}>Costi operativi</p>
+              <p className="muted" style={{ margin: "6px 0 0", fontSize: 14, lineHeight: 1.5 }}>Meno budget bruciato nel data-entry. Il team torna a fare lavori a valore aggiunto.</p>
+            </div>
+            <div className="card" style={{ padding: 20 }}>
+              <p className="mono" style={{ fontSize: 34, margin: 0, color: "var(--coral)" }}>3 gg</p>
+              <p style={{ margin: "6px 0 0", fontWeight: 700, fontSize: 15 }}>Time-to-market</p>
+              <p className="muted" style={{ margin: "6px 0 0", fontSize: 14, lineHeight: 1.5 }}>Prodotti online in pochi giorni. Meno merce ferma a prendere polvere in magazzino.</p>
+            </div>
+            <div className="card" style={{ padding: 20 }}>
+              <p className="mono" style={{ fontSize: 34, margin: 0, color: "var(--coral)" }}>∞</p>
+              <p style={{ margin: "6px 0 0", fontWeight: 700, fontSize: 15 }}>Scalabilità</p>
+              <p className="muted" style={{ margin: "6px 0 0", fontSize: 14, lineHeight: 1.5 }}>Passare da 300 a 3.000 referenze al mese senza dover assumere persone solo per digitare su una tastiera.</p>
+            </div>
           </div>
         </section>
 
@@ -940,14 +983,14 @@ export default function App() {
           }}
         >
           <div className="container grid-bg" style={{ paddingTop: 24, color: "var(--white)" }}>
-            <p className="kicker">Il simulatore</p>
-            <h2 style={{ marginTop: 8, fontSize: 44, letterSpacing: "-.02em", lineHeight: 1.08, fontWeight: 800 }}>Prova il motore sulla tua scheda prodotto</h2>
-            <p className="muted">Seleziona un prodotto dal carosello. Passa il mouse per vedere la seconda foto e avvia l'analisi.</p>
+            <p className="kicker">Fai una prova sui tuoi prodotti</p>
+            <h2 style={{ marginTop: 8, fontSize: 44, letterSpacing: "-.02em", lineHeight: 1.08, fontWeight: 800 }}>Tocca con mano come funziona.<br />Scommettiamo che rimarrai sbalordito?</h2>
+            <p className="muted" style={{ maxWidth: "70ch", lineHeight: 1.65 }}>Non crederci sulla parola. Seleziona un prodotto d'esempio o carica la foto di un tuo articolo per vedere come il sistema ne estrae i dati pronti all'uso in 60 secondi. È gratuito.</p>
             <div style={{ color: "var(--white)", paddingTop: 16 }}>
               {simState === "idle" && (
                 <div style={{ padding: "12px 0 10px" }}>
                   <p className="muted" style={{ marginTop: 0, marginBottom: 10, textAlign: "center" }}>
-                    Seleziona un prodotto dal carosello oppure carica immagini custom da inviare al webhook.
+                    📤 Carica le tue immagini (PNG, JPG, WEBP – max 6 foto) oppure seleziona un prodotto d'esempio.
                   </p>
                   <div className="product-carousel">
                     {SIM_PRODUCTS.map((product) => (
@@ -988,7 +1031,7 @@ export default function App() {
                       </div>
                       <div style={{ padding: 10, minHeight: 58, display: "grid", placeItems: "center" }}>
                         <p style={{ margin: 0, fontWeight: 600, fontSize: 13, color: "var(--white)", textAlign: "center" }}>
-                          Carica la foto del tuo prodotto
+                          Carica una foto prodotto
                         </p>
                       </div>
                     </article>
@@ -1016,6 +1059,7 @@ export default function App() {
                         </div>
                       </button>
                     </div>
+                    <p className="muted" style={{ fontSize: 13, marginTop: 10, textAlign: "center" }}>È gratis per davvero. E non ti chiediamo la mail per farti vedere il risultato.</p>
                   </div>
                 </div>
               )}
@@ -1063,58 +1107,129 @@ export default function App() {
                       )}
                     </div>
                   </div>
-                  {simState === "result" ? (
-                    <div style={{ marginTop: 12, textAlign: "center" }}>
-                      <h3 style={{ marginBottom: 8 }}>Vuoi continuare con lo sblocco completo?</h3>
-                      <div style={{ display: "grid", gap: 8, justifyContent: "center", maxWidth: 680, margin: "0 auto" }}>
-                        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 8 }}>
-                          <input value={firstName} onChange={(e) => { setFirstName(e.target.value); setEmailError(""); }} placeholder="Nome *" style={{ borderRadius: 10, border: "1px solid var(--border)", background: "var(--bg-card)", color: "var(--white)", padding: 11 }} />
-                          <input value={lastName} onChange={(e) => { setLastName(e.target.value); setEmailError(""); }} placeholder="Cognome *" style={{ borderRadius: 10, border: "1px solid var(--border)", background: "var(--bg-card)", color: "var(--white)", padding: 11 }} />
-                        </div>
-                        <div style={{ display: "flex", gap: 8 }}>
-                          <input value={email} onChange={(e) => { setEmail(e.target.value); setEmailError(""); }} placeholder="nome@tuaazienda.it *" style={{ minWidth: 300, flex: 1, borderRadius: 10, border: "1px solid var(--border)", background: "var(--bg-card)", color: "var(--white)", padding: 11 }} />
-                          <button className="btn btn-primary" onClick={submitEmail}>Invio</button>
-                        </div>
-                      </div>
-                      {emailError && <p style={{ color: "var(--coral)" }}>{emailError}</p>}
-                    </div>
-                  ) : (
-                    <div style={{ marginTop: 10 }} />
-                  )}
+                  <div style={{ marginTop: 10 }} />
                 </div>
               )}
             </div>
-          </div>
-        </section>
 
-        <section className="container grid-bg" style={{ paddingBottom: 96 }}>
-          <div className="card" style={{ padding: 40, textAlign: "center" }}>
-            <p className="kicker">Prossimo passo</p>
-            <h2 style={{ fontSize: 48, margin: "12px 0", letterSpacing: "-.02em", lineHeight: 1.08, fontWeight: 800 }}>Pronto a trasformare le operazioni del tuo catalogo?</h2>
-            <p className="card__content" style={{ maxWidth: 700, margin: "0 auto 18px" }}>Parti con una discovery call di 20 minuti. Ti mostriamo il piano operativo su dati reali.</p>
-            <div style={{ display: "flex", gap: 10, justifyContent: "center" }}>
-              <button className="btn btn-primary">Prenota una demo →</button>
-              <button className="btn">Contattaci</button>
+            <div style={{ marginTop: 40 }}>
+              <div className="rule" />
+              <h3 style={{ fontSize: 22, fontWeight: 700, marginTop: 28 }}>Quanto ti costa oggi il lavoro manuale?</h3>
+              <p className="muted" style={{ marginTop: 4, lineHeight: 1.55 }}>Inserisci i tuoi numeri. Scopri quante ore e quanto budget puoi recuperare quest'anno.</p>
+              <div style={{ display: "grid", gridTemplateColumns: "repeat(3,minmax(0,1fr))", gap: 12, marginTop: 16 }}>
+                <div>
+                  <label className="muted" style={{ fontSize: 13, display: "block", marginBottom: 6 }}>SKU gestite (circa)</label>
+                  <input value={calcSku} onChange={(e) => setCalcSku(e.target.value)} placeholder="es. 500" type="number" style={{ width: "100%", borderRadius: 10, border: "1px solid var(--border)", background: "var(--bg-card)", color: "var(--white)", padding: 11, boxSizing: "border-box" }} />
+                </div>
+                <div>
+                  <label className="muted" style={{ fontSize: 13, display: "block", marginBottom: 6 }}>Minuti per scheda attuali</label>
+                  <input value={calcMinutes} onChange={(e) => setCalcMinutes(e.target.value)} placeholder="es. 15" type="number" style={{ width: "100%", borderRadius: 10, border: "1px solid var(--border)", background: "var(--bg-card)", color: "var(--white)", padding: 11, boxSizing: "border-box" }} />
+                </div>
+                <div>
+                  <label className="muted" style={{ fontSize: 13, display: "block", marginBottom: 6 }}>Costo orario €</label>
+                  <input value={calcCost} onChange={(e) => setCalcCost(e.target.value)} placeholder="es. 25" type="number" style={{ width: "100%", borderRadius: 10, border: "1px solid var(--border)", background: "var(--bg-card)", color: "var(--white)", padding: 11, boxSizing: "border-box" }} />
+                </div>
+              </div>
+              {(() => {
+                const sku = parseInt(calcSku) || 0;
+                const min = parseInt(calcMinutes) || 0;
+                const cost = parseFloat(calcCost) || 0;
+                if (!sku || !min || !cost) return null;
+                const hoursMonth = (sku * min) / 60;
+                const costMonth = hoursMonth * cost;
+                const costYear = costMonth * 12;
+                return (
+                  <div style={{ marginTop: 20, padding: 20, background: "var(--coral-dim)", border: "1px solid var(--coral)", borderRadius: 14 }}>
+                    <div style={{ display: "grid", gridTemplateColumns: "repeat(3,minmax(0,1fr))", gap: 16, textAlign: "center" }}>
+                      <div>
+                        <p className="mono" style={{ fontSize: 28, margin: 0, color: "var(--coral)" }}>{Math.round(hoursMonth)}h</p>
+                        <p className="muted" style={{ margin: "4px 0 0", fontSize: 13 }}>ore / mese</p>
+                      </div>
+                      <div>
+                        <p className="mono" style={{ fontSize: 28, margin: 0, color: "var(--coral)" }}>€{Math.round(costMonth).toLocaleString("it-IT")}</p>
+                        <p className="muted" style={{ margin: "4px 0 0", fontSize: 13 }}>costo / mese</p>
+                      </div>
+                      <div>
+                        <p className="mono" style={{ fontSize: 28, margin: 0, color: "var(--coral)" }}>€{Math.round(costYear).toLocaleString("it-IT")}</p>
+                        <p className="muted" style={{ margin: "4px 0 0", fontSize: 13 }}>costo / anno</p>
+                      </div>
+                    </div>
+                  </div>
+                );
+              })()}
+              <p className="muted" style={{ fontSize: 13, marginTop: 10 }}>È una stima indicativa e nessun dato viene salvato. Fai tutte le prove che vuoi.</p>
             </div>
           </div>
         </section>
 
-        <section className="container grid-bg" style={{ paddingBottom: 64 }}>
-          <h3 style={{ fontSize: 32, marginBottom: 4, letterSpacing: "-.02em", fontWeight: 700 }}>Domande frequenti</h3>
-          {FAQS.map((f, i) => (
-            <div key={f.q} className="how-step-card" style={{ marginTop: 12, paddingBottom: "2.1rem" }}>
-              <button
-                style={{ width: "100%", textAlign: "left", border: "none", background: "transparent", padding: 0, cursor: "pointer", paddingRight: 34 }}
-                onClick={() => setOpenFaq(openFaq === i ? null : i)}
-              >
-                <span className="card__title" style={{ fontSize: 22 }}>{f.q}</span>
-              </button>
-              {openFaq === i && <p className="card__content" style={{ marginBottom: 0 }}>{f.a}</p>}
-              <div className="card__arrow" aria-hidden="true">
-                <span style={{ color: "#fff", fontWeight: 700, lineHeight: 1 }}>{openFaq === i ? "−" : "+"}</span>
+        <section className="container grid-bg" style={{ paddingBottom: 90, paddingTop: 60 }}>
+          <div className="card" style={{ padding: 32 }}>
+            <p className="kicker">Il controllo resta a te</p>
+            <h2 style={{ marginTop: 10, fontSize: 44, letterSpacing: "-.02em", lineHeight: 1.1, fontWeight: 800 }}>L'AI fa il lavoro sporco.<br />Tu hai l'ultima parola.</h2>
+            <p className="muted" style={{ maxWidth: "70ch", marginTop: 14, lineHeight: 1.65 }}>
+              Sappiamo che affidare i dati aziendali a un algoritmo richiede fiducia. Per questo il nostro sistema è chiuso, sicuro e non pubblica mai nulla senza il tuo via libera.
+            </p>
+            <div className="two-col" style={{ marginTop: 28 }}>
+              <div>
+                <div style={{ display: "flex", gap: 12, alignItems: "flex-start", marginBottom: 24 }}>
+                  <span style={{ fontSize: 26, lineHeight: 1 }}>👁</span>
+                  <div>
+                    <h4 style={{ margin: 0, fontSize: 16, fontWeight: 700 }}>Supervisione umana</h4>
+                    <p className="muted" style={{ margin: "6px 0 0", lineHeight: 1.55 }}>Tu approvi, l'AI esegue. Niente va online in automatico.</p>
+                  </div>
+                </div>
+                <div style={{ display: "flex", gap: 12, alignItems: "flex-start" }}>
+                  <span style={{ fontSize: 26, lineHeight: 1 }}>🧪</span>
+                  <div>
+                    <h4 style={{ margin: 0, fontSize: 16, fontWeight: 700 }}>Si parte in piccolo</h4>
+                    <p className="muted" style={{ margin: "6px 0 0", lineHeight: 1.55 }}>Testiamo su un campione di prodotti. Mai salti nel buio o pubblicazioni massive alla cieca.</p>
+                  </div>
+                </div>
+              </div>
+              <div>
+                <div style={{ display: "flex", gap: 12, alignItems: "flex-start", marginBottom: 24 }}>
+                  <span style={{ fontSize: 26, lineHeight: 1 }}>🔒</span>
+                  <div>
+                    <h4 style={{ margin: 0, fontSize: 16, fontWeight: 700 }}>Dati al sicuro</h4>
+                    <p className="muted" style={{ margin: "6px 0 0", lineHeight: 1.55 }}>I tuoi database e i tuoi file originali non vengono mai toccati o sovrascritti.</p>
+                  </div>
+                </div>
+                <div style={{ display: "flex", gap: 12, alignItems: "flex-start" }}>
+                  <span style={{ fontSize: 26, lineHeight: 1 }}>✅</span>
+                  <div>
+                    <h4 style={{ margin: 0, fontSize: 16, fontWeight: 700 }}>Integrazione rapida</h4>
+                    <p className="muted" style={{ margin: "6px 0 0", lineHeight: 1.55 }}>In 2–4 settimane il flusso è integrato, testato e funzionante nel tuo ecosistema.</p>
+                  </div>
+                </div>
               </div>
             </div>
-          ))}
+          </div>
+        </section>
+
+        <section ref={contactRef} className="container grid-bg" style={{ paddingBottom: 96 }}>
+          <div className="card" style={{ padding: 40, textAlign: "center" }}>
+            <p className="kicker">Facciamo due chiacchiere</p>
+            <h2 style={{ fontSize: 44, margin: "12px 0", letterSpacing: "-.02em", lineHeight: 1.08, fontWeight: 800 }}>Capiamo se fa al caso tuo.<br />Senza provare a venderti niente.</h2>
+            <p className="card__content" style={{ maxWidth: 700, margin: "0 auto 24px", lineHeight: 1.65 }}>In 20 minuti analizziamo come gestisci il catalogo oggi e ti diciamo onestamente se il nostro sistema può farti risparmiare tempo e soldi. Niente presentazioni commerciali infinite, andiamo dritti al punto.</p>
+
+            <div style={{ maxWidth: 680, margin: "0 auto", textAlign: "left" }}>
+              <p style={{ margin: "0 0 8px", fontWeight: 600, fontSize: 15 }}>Il tuo ruolo:</p>
+              <div style={{ display: "flex", gap: 8, flexWrap: "wrap", marginBottom: 24 }}>
+                {["Head of eCommerce", "Digital Director", "Operations Manager", "CEO", "PIM Manager", "Altro"].map((r) => (
+                  <button key={r} className="btn" style={{ background: contactRole === r ? "var(--coral)" : "transparent", color: contactRole === r ? "#fff" : "var(--white)", borderColor: contactRole === r ? "var(--coral)" : "var(--border-strong)" }} onClick={() => setContactRole(r)}>{r}</button>
+                ))}
+              </div>
+              <p style={{ margin: "0 0 8px", fontWeight: 600, fontSize: 15 }}>SKU gestite (circa):</p>
+              <div style={{ display: "flex", gap: 8, flexWrap: "wrap", marginBottom: 28 }}>
+                {["Meno di 500", "500 – 2.000", "2.000 – 10.000", "Oltre 10.000"].map((s) => (
+                  <button key={s} className="btn" style={{ background: contactSkuRange === s ? "var(--coral)" : "transparent", color: contactSkuRange === s ? "#fff" : "var(--white)", borderColor: contactSkuRange === s ? "var(--coral)" : "var(--border-strong)" }} onClick={() => setContactSkuRange(s)}>{s}</button>
+                ))}
+              </div>
+            </div>
+
+            <button className="btn btn-primary" style={{ fontSize: 16, padding: "14px 36px" }} onClick={() => scrollTo(contactRef)}>Prenota la call</button>
+            <p className="muted" style={{ fontSize: 13, marginTop: 12 }}>Scegli tu giorno e ora. Se capiamo che il servizio non fa per te, te lo diciamo subito.</p>
+          </div>
         </section>
 
         <footer className="container" style={{ borderTop: "1px solid var(--border)", padding: "24px 24px 40px", display: "flex", justifyContent: "space-between" }}>

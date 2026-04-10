@@ -1,6 +1,6 @@
-import { useState, useRef, useEffect } from 'react';
-import { motion, useInView, AnimatePresence } from 'framer-motion';
-import { ArrowRight, Linkedin, Mail, Instagram, ChevronDown, FileText, BarChart3 } from 'lucide-react';
+import { useState, useEffect } from 'react';
+import { motion } from 'framer-motion';
+import { ArrowRight, Linkedin, Mail, Instagram, FileText, BarChart3 } from 'lucide-react';
 import LandingNavbar from '../components/landing/LandingNavbar';
 import MainFooter from '../components/landing/MainFooter';
 
@@ -8,7 +8,6 @@ const NAV_LINKS = [
   { label: 'Come funziona', id: 'come-funziona' },
   { label: 'Cosa facciamo', id: 'cosa-facciamo' },
   { label: 'Pricing', id: 'pricing' },
-  { label: 'FAQ', id: 'faq' },
 ];
 
 const MARQUEE_ITEMS = [
@@ -16,80 +15,36 @@ const MARQUEE_ITEMS = [
 ];
 
 const DELIVERABLES = [
-  { icon: Linkedin, title: 'Post LinkedIn', desc: '2-3 post a settimana, nel tuo tono di voce, su argomenti che posizionano la tua expertise' },
-  { icon: Instagram, title: 'Caption Instagram', desc: 'Contenuti visuali e caption pronte, inclusa indicazione per grafiche e caroselli' },
-  { icon: Mail, title: 'Newsletter settimanale', desc: 'Email pronta da inviare, formattata, con oggetto ottimizzato per l\'apertura' },
-  { icon: FileText, title: 'Articolo blog SEO', desc: 'Un articolo mensile ottimizzato per portare traffico organico sul tuo sito' },
-  { icon: BarChart3, title: 'Report mensile', desc: 'Performance dei contenuti, cosa ha funzionato, cosa ottimizziamo il mese dopo' },
+  { icon: Linkedin, title: 'Post LinkedIn', desc: '2-3 uscite settimanali nel tuo tono di voce, per mantenere la rete attiva e posizionare la tua competenza.' },
+  { icon: Instagram, title: 'Caption Instagram', desc: 'Testi pronti e indicazioni chiare (per grafiche e caroselli) per un feed ordinato e coerente.' },
+  { icon: Mail, title: 'Newsletter settimanale', desc: 'Un appuntamento fisso pronto da inviare, impaginato bene, per farsi leggere dai tuoi contatti.' },
+  { icon: FileText, title: 'Articolo blog SEO', desc: 'Un approfondimento mensile per mantenere il sito vivo e farti trovare più facilmente su Google.' },
+  { icon: BarChart3, title: 'Report mensile', desc: 'Dati essenziali e sinceri per capire cosa funziona e misurare concretamente il nostro lavoro.' },
 ];
 
 const STORY_LINES = [
-  '«Dovremmo fare qualcosa su LinkedIn questa settimana»',
-  'Si apre un documento Word',
-  'Si fissa il cursore lampeggiante per venti minuti',
-  'Si apre LinkedIn «per ispirarsi»',
-  'Due ore dopo: zero pubblicato',
-  '«La prossima settimana lo facciamo per forza»',
+  '«Questa settimana dobbiamo uscire su LinkedIn»',
+  'Si apre un documento vuoto a fine giornata',
+  'Le urgenze operative prendono il sopravvento',
+  'Due ore dopo: zero contenuti prodotti',
+  '«Mettiamolo in agenda per la prossima settimana»',
 ];
 
 const STEPS = [
-  { num: '01', title: 'Ci racconti chi sei', desc: 'Una call di 30 minuti. Tono di voce, settore, competitor, obiettivi. Ti facciamo le domande giuste, tu non devi preparare niente.', time: '30 minuti · una volta sola' },
-  { num: '02', title: 'Costruiamo il sistema', desc: 'Impostiamo la pipeline: fonti di contenuto, calendario editoriale, formati, canali. L\'audit strategico definisce la tua voce e il posizionamento. Costo fisso: €500.', time: 'Prima settimana' },
-  { num: '03', title: 'Pubblichiamo ogni settimana', desc: 'Da quel momento: noi produciamo, tu (opzionalmente) approvi. Contenuti pubblicati, calendario pieno, profilo attivo. Tu guardi i risultati.', time: 'Ogni settimana, in autonomia' },
+  { num: '01', title: 'Ci racconti chi sei', desc: 'Una call di 30 minuti. Il tuo settore, il tuo pubblico, i tuoi obiettivi. Noi facciamo le domande giuste, tu porti solo la tua esperienza sul campo.', time: '30 minuti · una volta sola' },
+  { num: '02', title: 'Impostiamo il lavoro', desc: 'Definiamo la rotta: fonti, calendario, canali. L\'Audit Strategico fissa subito il posizionamento corretto della tua azienda. Costo fisso: €500.', time: 'Prima settimana' },
+  { num: '03', title: 'Pubblichiamo per te', desc: 'Da quel momento il sistema è attivo: noi produciamo settimanalmente i contenuti, tu (se vuoi) li approvi. Canali curati, continuità garantita. Tu misuri i risultati.', time: 'Ogni settimana, in autonomia' },
 ];
 
 const MATH_ROWS = [
   { label: 'Copywriter junior (part-time)', val: '€1.500/mese' },
   { label: 'Social media manager', val: '€1.200/mese' },
-  { label: 'Strumenti AI e scheduling', val: '€150/mese' },
-  { label: 'Tempo interno di supervisione', val: '€400/mese' },
-];
-
-const FAQ_ITEMS = [
-  {
-    q: 'Dovete avere accesso ai nostri profili social?',
-    a: 'Dipende da voi. Offriamo due modalità: gestione completa con accesso ai vostri account (pubblichiamo noi direttamente), oppure modalità bozze dove vi consegniamo tutto pronto e pubblicate voi in autonomia. La maggior parte dei clienti sceglie le bozze il primo mese e poi passa alla gestione completa una volta vista la qualità.',
-  },
-  {
-    q: 'I contenuti suonano "fatti dall\'AI"?',
-    a: 'No, e questa è la parte che ci distingue da un tool generico. L\'audit iniziale serve esattamente a calibrare il tono di voce, il lessico, le posizioni che volete prendere, gli argomenti che volete evitare. Usiamo l\'AI come strumento di produzione, ma ogni contenuto passa da una revisione umana prima di uscire. Il risultato suona come voi, non come ChatGPT.',
-  },
-  {
-    q: 'Perché il contratto minimo di 3 mesi?',
-    a: 'Il contenuto non si calibra in un mese. Le prime 4-6 settimane servono per trovare il ritmo, capire cosa funziona con il vostro pubblico, e ottimizzare il piano editoriale. Chi ha provato con un mese solo non ha mai visto i risultati. Non perché il servizio non funzioni, ma perché i contenuti hanno bisogno di tempo per costruire autorevolezza e reach. Il minimo di 3 mesi è una garanzia per entrambe le parti.',
-  },
-  {
-    q: 'Cosa succede dopo i 3 mesi?',
-    a: 'Rinnovo mensile, senza vincoli. Potete continuare mese per mese, fermarvi quando volete, o ridiscutere il piano se le esigenze cambiano. Nessuna penale, nessun rinnovo automatico silenzioso.',
-  },
-  {
-    q: 'Possiamo approvare i contenuti prima della pubblicazione?',
-    a: 'Assolutamente sì. Tutti i contenuti vengono condivisi in anticipo, via Google Docs, Notion, o qualsiasi strumento usiate già. Potete approvare, chiedere modifiche o pubblicare direttamente. Se preferite non essere coinvolti, pubblichiamo in autonomia. La scelta è vostra e può cambiare mese per mese.',
-  },
-  {
-    q: '€500/mese sembra poco per tutto questo. Perché?',
-    a: 'Perché usiamo strumenti AI per la produzione, il che abbassa drasticamente il tempo umano necessario. Un nostro operatore gestisce più clienti in parallelo. Il che significa che il costo per cliente è sostenibile. Non stiamo tagliando sulla qualità: stiamo ottimizzando il processo. Il prezzo è basso rispetto al mercato, ma è sostenibile per noi perché il sistema è efficiente.',
-  },
-];
-
-const TESTIMONIALS = [
-  {
-    quote: 'Prima pubblicavamo un post al mese, se andava bene. Ora usciamo tre volte a settimana su LinkedIn e la newsletter va ogni giovedì. I clienti ci scrivono dicendo che ci vedono ovunque.',
-    name: 'Marco R.',
-    role: 'Marketing Manager',
-    company: 'Studio Associato · Verona',
-  },
-  {
-    quote: 'Ho provato a farlo con ChatGPT ma il risultato sembrava scritto da un robot. Questo invece parla come me. In tre mesi ho ricevuto 8 richieste di contatto da LinkedIn che non avrei mai avuto.',
-    name: 'Elena B.',
-    role: 'Founder',
-    company: 'Agenzia Digital · Torino',
-  },
+  { label: 'Strumenti professionali', val: '€150/mese' },
+  { label: 'Tempo speso internamente', val: '€400/mese' },
 ];
 
 export default function LP2ContentMachine() {
   const [scrolled, setScrolled] = useState(false);
-  const [openFaq, setOpenFaq] = useState<number | null>(null);
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 40);
@@ -106,7 +61,7 @@ export default function LP2ContentMachine() {
       <LandingNavbar
         onScrollTo={scrollTo}
         scrolled={scrolled}
-        ctaLabel="Prenota una call"
+        ctaLabel="Sentiamoci"
         ctaTarget="contatti"
         navLinks={NAV_LINKS}
       />
@@ -123,28 +78,31 @@ export default function LP2ContentMachine() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
           >
-            <span className="inline-block px-3 py-1 text-xs font-medium text-accent border border-accent/30 rounded-full mb-6">
-              Servizio gestito · AI + Umano
-            </span>
             <h1 className="hero-h1 font-body text-[#F5F5F7] mb-6">
-              Il tuo reparto contenuti.
+              Creare contenuti è indispensabile.
               <br />
-              <span className="text-accent">Già attivo.</span>
+              <span className="text-accent">Ora è anche accessibile.</span>
               <span className="block mt-2 text-2xl sm:text-3xl text-accent">€500 / mese.</span>
             </h1>
-            <p className="font-body text-lg text-gray-400 leading-relaxed mb-8 max-w-xl">
-              Costruiamo la tua pipeline di contenuti <strong className="text-gray-300">da zero</strong>, la gestiamo ogni settimana e pubblichiamo per te su LinkedIn, Instagram, newsletter e blog.
-              <br /><br />
-              Tu non tocchi niente. Noi non ci fermiamo.
+            <p className="font-body text-lg text-gray-400 leading-relaxed mb-4 max-w-xl">
+              Conosciamo le piccole e medie imprese. In fondo lo siamo anche noi. Sappiamo che metti tutta la tua energia nel tuo prodotto o nel tuo servizio.
+            </p>
+            <p className="font-body text-lg text-gray-400 leading-relaxed mb-4 max-w-xl">
+              Ma nel 2026, se non ti racconti online, è come se non esistessi.
+            </p>
+            <p className="font-body text-lg text-gray-400 leading-relaxed mb-4 max-w-xl">
+              Abbiamo unito la nostra competenza d'agenzia all'efficacia dell'AI, con un obiettivo semplice e diretto: darti una presenza digitale professionale e continua, a un budget sostenibile.
+            </p>
+            <p className="font-body text-lg font-semibold text-gray-300 mb-8 max-w-xl">
+              Tu guidi l'azienda. Noi presidiamo i tuoi canali.
             </p>
             <button
               onClick={() => scrollTo('contatti')}
               className="inline-flex items-center gap-2 px-6 py-3.5 bg-accent text-white font-body font-semibold rounded-lg hover:bg-accent-hover hover:scale-[1.02] active:scale-[0.98] transition-all"
             >
-              Prenota la call gratuita
+              Possiamo anche sentirci subito
               <ArrowRight size={18} />
             </button>
-            <p className="mt-8 text-xs text-gray-500 font-mono">// Nessun impegno nella call · Setup incluso · Minimo 3 mesi</p>
           </motion.div>
 
           {/* Price card */}
@@ -160,9 +118,9 @@ export default function LP2ContentMachine() {
             <p className="font-body font-bold text-5xl text-[#F5F5F7] mb-1">
               <span className="text-2xl text-accent align-top">€</span>500
             </p>
-            <p className="font-body text-sm text-gray-400 mb-6">al mese · contratto minimo 3 mesi</p>
+            <p className="font-body text-sm text-gray-400 mb-6">al mese · Iniziamo con 3 mesi?</p>
             <ul className="space-y-3 font-body text-sm text-gray-300">
-              {['Piano editoriale mensile personalizzato', 'Contenuti per LinkedIn, Instagram, newsletter, blog', 'Pubblicazione gestita ogni settimana', 'Revisione + feedback continuo', 'Report mensile di performance', 'Supporto diretto via WhatsApp'].map((item, i) => (
+              {['Piano editoriale mensile su misura', 'Contenuti per LinkedIn, Instagram, newsletter, blog', 'Pubblicazione gestita ogni settimana', 'Revisione e allineamento continuo', 'Report mensile sui risultati', 'Supporto diretto via WhatsApp'].map((item, i) => (
                 <li key={i} className="flex items-start gap-2">
                   <span className="text-accent">·</span>
                   {item}
@@ -191,7 +149,7 @@ export default function LP2ContentMachine() {
         </div>
       </div>
 
-      {/* IL PROBLEMA */}
+      {/* IL DIVARIO DA COLMARE */}
       <section id="problema" className="py-24 px-4 sm:px-6 lg:px-8 bg-[#0A0A0A] border-b border-white/10">
         <div className="max-w-6xl mx-auto">
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
@@ -201,15 +159,16 @@ export default function LP2ContentMachine() {
               viewport={{ once: true }}
             >
               <p className="text-xs uppercase tracking-[0.2em] text-accent font-body font-semibold mb-6">
-                Il problema
+                Il divario da colmare
               </p>
-              <blockquote className="font-body text-2xl sm:text-3xl font-medium text-[#F5F5F7] italic border-l-2 border-accent pl-8 mb-8 leading-relaxed">
-                Sai già che dovresti pubblicare di più. Ma tu hai un'azienda da mandare avanti.
-              </blockquote>
+              <h2 className="font-body font-bold text-3xl sm:text-4xl text-[#F5F5F7] mb-8 leading-tight">
+                Comunicare costa.<br /><span className="text-accent">Non farlo costa di più.</span>
+              </h2>
               <div className="space-y-4 font-body text-gray-400 leading-relaxed">
-                <p>Non hai tempo di imparare prompt, feed RSS, calendari editoriali e strumenti AI. <strong className="text-gray-300">E non dovresti farlo.</strong></p>
-                <p>Intanto il tuo competitor pubblica ogni giorno su LinkedIn. Appare più autorevole. Intercetta i clienti che sarebbero tuoi.</p>
-                <p>Non è un problema di idee. Non è un problema di tempo. <strong className="text-gray-300">È un problema di esecuzione. E l'esecuzione si delega.</strong></p>
+                <p>Delegare i social richiede budget che le PMI non sempre hanno. Farli internamente ruba tempo prezioso.</p>
+                <p>Spesso sul mercato non vince il più bravo, ma chi presidia lo spazio digitale con più forza e costanza.</p>
+                <p>Mentre tu sei assorbito a far girare l'azienda, i tuoi competitor usano i social per intercettare clienti e opportunità. Il gap aumenta e tu resti indietro, non certo perché non sai lavorare, ma perché non lo comunichi.</p>
+                <p><strong className="text-gray-300">AUIKI ha messo a punto questo servizio per aiutarti a competere ad armi pari.</strong></p>
               </div>
             </motion.div>
             <motion.div
@@ -219,7 +178,7 @@ export default function LP2ContentMachine() {
               className="space-y-6"
             >
               <div className="rounded-xl border border-white/10 bg-[#1A1A1A] p-6">
-                <p className="text-[10px] uppercase tracking-wider text-gray-500 font-mono mb-4">// Ogni settimana, in ogni azienda italiana</p>
+                <p className="text-[10px] uppercase tracking-wider text-gray-500 font-mono mb-4">// Lo scenario tipico, in ogni azienda</p>
                 <div className="space-y-3 font-body text-sm text-gray-400">
                   {STORY_LINES.map((line, i) => (
                     <p key={i} className="flex items-start gap-2">
@@ -231,11 +190,10 @@ export default function LP2ContentMachine() {
               </div>
               <div className="rounded-xl border border-white/10 bg-[#1A1A1A] p-6">
                 <p className="text-xs uppercase tracking-[0.2em] text-accent font-body font-semibold mb-3">Il costo reale</p>
-                <p className="font-body text-xl sm:text-2xl font-medium text-[#F5F5F7] leading-relaxed">
-                  Un dipendente o freelance che si occupa dei contenuti a tempo pieno può costarti
-                  <span className="text-accent"> €1.500-2.000 al mese.</span>
+                <p className="font-body text-lg text-gray-400 leading-relaxed">
+                  Un team interno o un servizio d'agenzia classico richiedono investimenti dai <span className="text-accent font-semibold">€1.500 ai €3.000 al mese.</span>
                 </p>
-                <p className="text-sm text-gray-500 mt-3">Noi facciamo lo stesso per €500/mese.</p>
+                <p className="text-sm text-gray-500 mt-3">Noi abbiamo ottimizzato il processo con l'AI per garantirti un presidio fisso, fatto bene, a €500/mese.</p>
               </div>
             </motion.div>
           </div>
@@ -253,9 +211,9 @@ export default function LP2ContentMachine() {
           >
             <p className="text-xs uppercase tracking-[0.2em] text-accent font-body font-semibold mb-3">Come funziona</p>
             <h2 className="font-body font-bold text-3xl sm:text-4xl text-[#F5F5F7] mb-4">
-              Tre passi.<br /><span className="text-accent">Zero competenze richieste.</span>
+              Tre passi.<br /><span className="text-accent">Nessuna fatica.</span>
             </h2>
-            <p className="font-body text-gray-400 max-w-xl">Non ti diamo un tool da imparare. Ti costruiamo un sistema e lo gestiamo noi.</p>
+            <p className="font-body text-gray-400 max-w-xl">Nessun tool da studiare o manuale da leggere. Tu ci metti la competenza, al resto pensiamo noi.</p>
           </motion.div>
 
           <div className="grid md:grid-cols-3 gap-px bg-white/10 border border-white/10 rounded-xl overflow-hidden">
@@ -289,8 +247,9 @@ export default function LP2ContentMachine() {
             >
               <p className="text-xs uppercase tracking-[0.2em] text-accent font-body font-semibold mb-3">Cosa facciamo</p>
               <h2 className="font-body font-bold text-3xl text-[#F5F5F7] mb-4">
-                Ogni settimana,<br /><span className="text-accent">senza che tu ci pensi.</span>
+                Tu pensi al tuo lavoro.<br /><span className="text-accent">I contenuti lavorano per te.</span>
               </h2>
+              <p className="font-body text-gray-400 mb-6">Un ecosistema di contenuti essenziale, solido e professionale, gestito interamente da noi.</p>
               <ul className="space-y-0">
                 {DELIVERABLES.map((d, i) => (
                   <motion.li
@@ -320,7 +279,7 @@ export default function LP2ContentMachine() {
               className="lg:sticky lg:top-24"
             >
               <div className="rounded-xl border border-white/10 bg-[#1A1A1A] p-6">
-                <h3 className="font-body font-bold text-lg text-[#F5F5F7] mb-6">Quanto costa farlo internamente?</h3>
+                <h3 className="font-body font-bold text-lg text-[#F5F5F7] mb-6">Quanto costa la via standard?</h3>
                 <div className="space-y-3">
                   {MATH_ROWS.map((r) => (
                     <div key={r.label} className="flex justify-between items-center py-2 border-b border-white/10 last:border-0">
@@ -335,12 +294,12 @@ export default function LP2ContentMachine() {
                   </div>
                   <div className="h-px bg-white/10 my-2" />
                   <div className="flex justify-between items-center py-2">
-                    <span className="font-body font-semibold text-[#F5F5F7]">Con Auiki</span>
+                    <span className="font-body font-semibold text-[#F5F5F7]">Il presidio AUIKI</span>
                     <span className="font-body font-bold text-2xl text-accent">€500/mese</span>
                   </div>
                 </div>
                 <p className="mt-6 text-sm text-gray-500 italic leading-relaxed">
-                  €2.750 di differenza mensile. €33.000 l'anno. Abbastanza per assumere qualcuno che fa altro.
+                  €2.750 risparmiati ogni mese. Ben €33.000 all'anno che restano in azienda, investiti sul tuo prodotto, mentre i tuoi canali continuano a lavorare.
                 </p>
               </div>
             </motion.div>
@@ -348,7 +307,7 @@ export default function LP2ContentMachine() {
         </div>
       </section>
 
-      {/* PRICING */}
+      {/* L'INVESTIMENTO */}
       <section id="pricing" className="py-24 px-4 sm:px-6 lg:px-8">
         <div className="max-w-6xl mx-auto">
           <motion.div
@@ -357,14 +316,14 @@ export default function LP2ContentMachine() {
             viewport={{ once: true }}
             className="mb-12"
           >
-            <p className="text-xs uppercase tracking-[0.2em] text-accent font-body font-semibold mb-3">Pricing</p>
+            <p className="text-xs uppercase tracking-[0.2em] text-accent font-body font-semibold mb-3">L'investimento</p>
             <h2 className="font-body font-bold text-3xl sm:text-4xl text-[#F5F5F7] mb-4">
               Due voci.<br /><span className="text-accent">Nessuna sorpresa.</span>
             </h2>
-            <p className="font-body text-gray-400 max-w-xl">Setup una volta sola. Poi un costo fisso ogni mese. Non ci sono costi nascosti, scatti tariffari, o rincari.</p>
+            <p className="font-body text-gray-400 max-w-xl">Un costo iniziale per definire la strategia, un canone per il lavoro di tutti i giorni. Diciamo le cose come stanno.</p>
           </motion.div>
 
-          <div className="grid md:grid-cols-2 gap-4 mb-4">
+          <div className="grid md:grid-cols-2 gap-4">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -375,12 +334,11 @@ export default function LP2ContentMachine() {
               <p className="font-body font-bold text-5xl text-[#F5F5F7] mb-1">
                 <span className="text-2xl text-accent align-top">€</span>500
               </p>
-              <p className="font-body text-sm text-gray-400 mb-4">pagamento unico prima di iniziare</p>
-              <p className="font-mono text-xs text-accent mb-6">// Non si ripete · Incluso nella firma del contratto</p>
+              <p className="font-body text-sm text-gray-400 mb-4">Pagamento unico prima di iniziare. Non si ripete.</p>
               <div className="h-px bg-white/10 mb-6" />
-              <p className="font-body text-gray-300 italic mb-6">Non è un onboarding tecnico. È una consulenza strategica che resta tua anche se poi non continuassi.</p>
+              <p className="font-body text-gray-300 italic mb-6">È la mappa che guiderà il lavoro. Non è un semplice setup tecnico. È un momento di consulenza vera che fissa le basi del tuo brand sui social. Un documento strategico che resta di tua proprietà.</p>
               <ul className="space-y-2 mb-6 font-body text-sm text-gray-300">
-                {['Call di 60 minuti approfondita', 'Analisi dei canali esistenti', 'Definizione del tono di voce e posizionamento', 'Benchmark competitor su 3 canali', 'Piano editoriale del primo mese', 'Documento strategico consegnato in PDF'].map((item, i) => (
+                {['Call strategica di allineamento (60 min)', 'Analisi dei tuoi canali attuali', 'Definizione di posizionamento e tono di voce', 'Benchmark dei competitor su 3 canali', 'Piano editoriale del primo mese', 'Documento strategico consegnato in PDF'].map((item, i) => (
                   <li key={i} className="flex items-start gap-2">
                     <span className="text-accent">·</span>
                     {item}
@@ -388,7 +346,7 @@ export default function LP2ContentMachine() {
                 ))}
               </ul>
               <button onClick={() => scrollTo('contatti')} className="w-full py-4 border border-white/20 text-[#F5F5F7] font-body font-semibold rounded-lg hover:bg-white/5 transition-all">
-                Inizia dall'Audit →
+                Partiamo con l'Audit? →
               </button>
             </motion.div>
 
@@ -402,12 +360,11 @@ export default function LP2ContentMachine() {
               <p className="font-body font-bold text-5xl text-[#F5F5F7] mb-1">
                 <span className="text-2xl text-accent align-top">€</span>500
               </p>
-              <p className="font-body text-sm text-gray-400 mb-4">al mese · contratto minimo 3 mesi</p>
-              <p className="font-mono text-xs text-accent mb-6">// Il servizio continuo. Dalla seconda settimana in poi.</p>
+              <p className="font-body text-sm text-gray-400 mb-4">Al mese · impegno minimo 3 mesi</p>
               <div className="h-px bg-white/10 mb-6" />
-              <p className="font-body text-gray-300 italic mb-6">Ogni settimana produciamo e pubblichiamo. Tu hai accesso a tutto, puoi approvare o lasciar fare.</p>
+              <p className="font-body text-gray-300 italic mb-6">Il motore sempre acceso. Dalla seconda settimana in poi, la nostra agenzia produce e pubblica per te, assistita dalla tecnologia. Tu mantieni il controllo: puoi supervisionare ogni virgola o delegarci l'intera esecuzione.</p>
               <ul className="space-y-2 mb-6 font-body text-sm text-gray-300">
-                {['2-3 post LinkedIn a settimana', 'Caption Instagram + indicazioni grafiche', 'Newsletter settimanale pronta da inviare', '1 articolo blog SEO al mese', 'Pubblicazione gestita (o bozze se preferisci)', 'Report mensile performance', 'Supporto WhatsApp diretto'].map((item, i) => (
+                {['2-3 post LinkedIn a settimana', 'Caption Instagram + direttive grafiche', 'Newsletter settimanale pronta da inviare', '1 articolo blog SEO al mese', 'Pubblicazione delegata (o invio bozze)', 'Report mensile sulle performance', 'Supporto costante e diretto via WhatsApp'].map((item, i) => (
                   <li key={i} className="flex items-start gap-2">
                     <span className="text-accent">·</span>
                     {item}
@@ -415,118 +372,9 @@ export default function LP2ContentMachine() {
                 ))}
               </ul>
               <button onClick={() => scrollTo('contatti')} className="w-full py-4 bg-accent text-white font-body font-semibold rounded-lg hover:bg-accent-hover transition-all">
-                Prenota la call gratuita →
+                Sentiamoci →
               </button>
-              <p className="text-center text-xs text-gray-500 mt-3">La call è gratuita e senza impegno</p>
             </motion.div>
-          </div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="rounded-xl border border-white/10 bg-[#1A1A1A] p-6 flex flex-col sm:flex-row justify-between items-center gap-4"
-          >
-            <div>
-              <p className="font-body font-semibold text-[#F5F5F7]">Investimento totale · Primi 3 mesi</p>
-              <p className="text-sm text-gray-400">Audit una tantum + 3 mesi di gestione completa</p>
-            </div>
-            <p className="font-body font-bold text-3xl text-accent">€2.000 <span className="text-base font-normal text-gray-400">totali</span></p>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* TESTIMONIALS */}
-      <section className="py-24 px-4 sm:px-6 lg:px-8 bg-[#0A0A0A] border-y border-white/10">
-        <div className="max-w-6xl mx-auto">
-          <motion.p
-            initial={{ opacity: 0, y: 10 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-xs uppercase tracking-[0.2em] text-accent font-body font-semibold mb-10"
-          >
-            Cosa dicono
-          </motion.p>
-          <h2 className="font-body font-bold text-3xl text-[#F5F5F7] mb-12">
-            Chi ha smesso<br /><span className="text-accent">di rimandare.</span>
-          </h2>
-          <div className="grid md:grid-cols-2 gap-6">
-            {TESTIMONIALS.map((t, i) => (
-              <motion.blockquote
-                key={i}
-                initial={{ opacity: 0, y: 16 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.1 }}
-                className="rounded-xl border border-white/10 bg-[#1A1A1A] p-6"
-              >
-                <p className="font-body text-gray-300 leading-relaxed mb-6 italic">
-                  &ldquo;{t.quote}&rdquo;
-                </p>
-                <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-full bg-accent/10 border border-accent/20 flex items-center justify-center font-body font-bold text-accent text-sm">
-                    {t.name[0]}
-                  </div>
-                  <div>
-                    <p className="font-body font-semibold text-[#F5F5F7]">{t.name}</p>
-                    <p className="font-mono text-xs text-gray-500">{t.role} · {t.company}</p>
-                  </div>
-                </div>
-              </motion.blockquote>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* FAQ */}
-      <section id="faq" className="py-24 px-4 sm:px-6 lg:px-8 bg-[#000000]">
-        <div className="max-w-3xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="mb-12"
-          >
-            <p className="text-xs uppercase tracking-[0.2em] text-accent font-body font-semibold mb-3">Domande frequenti</p>
-            <h2 className="font-body font-bold text-3xl text-[#F5F5F7]">
-              Quello che<br /><span className="text-accent">tutti chiedono.</span>
-            </h2>
-          </motion.div>
-          <div className="space-y-2">
-            {FAQ_ITEMS.map((faq, i) => (
-              <div
-                key={i}
-                className="border border-white/10 rounded-xl overflow-hidden bg-[#1A1A1A]"
-              >
-                <button
-                  type="button"
-                  onClick={() => setOpenFaq(openFaq === i ? null : i)}
-                  className="w-full flex items-center justify-between gap-4 px-5 py-4 text-left font-body font-semibold text-[#F5F5F7] hover:bg-white/5 transition-colors min-h-[44px]"
-                  aria-expanded={openFaq === i}
-                >
-                  {faq.q}
-                  <ChevronDown
-                    className={`shrink-0 text-gray-400 transition-transform ${openFaq === i ? 'rotate-180' : ''}`}
-                    size={20}
-                  />
-                </button>
-                <AnimatePresence initial={false}>
-                  {openFaq === i && (
-                    <motion.div
-                      initial={{ height: 0, opacity: 0 }}
-                      animate={{ height: 'auto', opacity: 1 }}
-                      exit={{ height: 0, opacity: 0 }}
-                      transition={{ duration: 0.25 }}
-                      className="overflow-hidden"
-                    >
-                      <p className="px-5 pb-4 pt-0 font-body text-gray-400 leading-relaxed border-t border-white/10">
-                        {faq.a}
-                      </p>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </div>
-            ))}
           </div>
         </div>
       </section>
