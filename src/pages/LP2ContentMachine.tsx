@@ -43,8 +43,42 @@ const MATH_ROWS = [
   { label: 'Tempo speso internamente', val: '€400/mese' },
 ];
 
+const LEAD_WEBHOOK_URL = "https://giovannimavilla.app.n8n.cloud/webhook/f5d0fd75-8c72-4c61-8029-cd6c46832039";
+
 export default function LP2ContentMachine() {
   const [scrolled, setScrolled] = useState(false);
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [email, setEmail] = useState("");
+  const [emailError, setEmailError] = useState("");
+  const [formSent, setFormSent] = useState(false);
+
+  const validateEmail = (e: string) => {
+    const v = e.trim().toLowerCase();
+    if (!v || !v.includes("@")) return "Inserisci un'email valida.";
+    const [local, domain] = v.split("@");
+    if (!local || !domain || !domain.includes(".")) return "Inserisci un'email valida.";
+    return "";
+  };
+
+  const submitLead = async () => {
+    if (!firstName.trim()) return setEmailError("Inserisci il nome.");
+    if (!lastName.trim()) return setEmailError("Inserisci il cognome.");
+    const err = validateEmail(email);
+    if (err) return setEmailError(err);
+    setEmailError("");
+    try {
+      const res = await fetch(LEAD_WEBHOOK_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ nome: firstName.trim(), cognome: lastName.trim(), email: email.trim().toLowerCase(), source: "contenuti" }),
+      });
+      if (!res.ok) throw new Error("Errore");
+      setFormSent(true);
+    } catch {
+      setEmailError("Errore invio. Riprova.");
+    }
+  };
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 40);
@@ -379,8 +413,65 @@ export default function LP2ContentMachine() {
         </div>
       </section>
 
+      {/* CONTATTI - Form email */}
+      <section id="contatti" className="py-24 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-3xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="rounded-2xl border border-accent/30 bg-accent/5 p-8 sm:p-12 text-center"
+          >
+            <p className="text-xs uppercase tracking-[0.2em] text-accent font-body font-semibold mb-3">Sentiamoci</p>
+            <h2 className="font-body font-bold text-3xl sm:text-4xl text-[#F5F5F7] mb-4">
+              Pronto a presidiare davvero<br /><span className="text-accent">i tuoi canali?</span>
+            </h2>
+            <p className="font-body text-gray-400 mb-8 max-w-lg mx-auto leading-relaxed">
+              Una call di 30 minuti senza impegno. Capiamo se fa al caso tuo e ti diciamo onestamente se possiamo aiutarti.
+            </p>
+
+            {formSent ? (
+              <div className="rounded-xl border border-accent/30 bg-accent/10 p-6">
+                <p className="font-body font-semibold text-[#F5F5F7] text-lg">Ricevuto! Ti ricontattiamo a breve.</p>
+              </div>
+            ) : (
+              <div className="max-w-md mx-auto text-left">
+                <div className="grid grid-cols-2 gap-3 mb-3">
+                  <input
+                    value={firstName}
+                    onChange={(e) => { setFirstName(e.target.value); setEmailError(""); }}
+                    placeholder="Nome *"
+                    className="w-full px-4 py-3 rounded-lg border border-white/10 bg-[#1A1A1A] text-[#F5F5F7] font-body text-sm placeholder:text-gray-500 focus:border-accent focus:outline-none transition-colors"
+                  />
+                  <input
+                    value={lastName}
+                    onChange={(e) => { setLastName(e.target.value); setEmailError(""); }}
+                    placeholder="Cognome *"
+                    className="w-full px-4 py-3 rounded-lg border border-white/10 bg-[#1A1A1A] text-[#F5F5F7] font-body text-sm placeholder:text-gray-500 focus:border-accent focus:outline-none transition-colors"
+                  />
+                </div>
+                <input
+                  value={email}
+                  onChange={(e) => { setEmail(e.target.value); setEmailError(""); }}
+                  placeholder="nome@tuaazienda.it *"
+                  className="w-full px-4 py-3 rounded-lg border border-white/10 bg-[#1A1A1A] text-[#F5F5F7] font-body text-sm placeholder:text-gray-500 focus:border-accent focus:outline-none transition-colors mb-4"
+                />
+                {emailError && <p className="text-accent text-sm mb-3">{emailError}</p>}
+                <button
+                  onClick={submitLead}
+                  className="w-full py-4 bg-accent text-white font-body font-semibold rounded-lg hover:bg-accent-hover hover:scale-[1.01] active:scale-[0.99] transition-all"
+                >
+                  Possiamo anche sentirci subito →
+                </button>
+                <p className="text-center text-xs text-gray-500 mt-3">Nessun impegno. Ti rispondiamo entro 24 ore.</p>
+              </div>
+            )}
+          </motion.div>
+        </div>
+      </section>
+
       {/* FOOTER */}
-      <div id="contatti">
+      <div>
         <MainFooter />
       </div>
     </div>

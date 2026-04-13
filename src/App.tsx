@@ -1227,7 +1227,17 @@ export default function App() {
               </div>
             </div>
 
-            <button className="btn btn-primary" style={{ fontSize: 16, padding: "14px 36px" }} onClick={() => scrollTo(contactRef)}>Prenota la call</button>
+            <div style={{ maxWidth: 680, margin: "0 auto", textAlign: "left" }}>
+              <p style={{ margin: "0 0 8px", fontWeight: 600, fontSize: 15 }}>Lasciaci i tuoi dati:</p>
+              <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 10 }}>
+                <input value={firstName} onChange={(e) => { setFirstName(e.target.value); setEmailError(""); }} placeholder="Nome *" style={{ borderRadius: 10, border: "1px solid var(--border)", background: "var(--bg-card)", color: "var(--white)", padding: 12, fontSize: 14, fontFamily: "var(--font)" }} />
+                <input value={lastName} onChange={(e) => { setLastName(e.target.value); setEmailError(""); }} placeholder="Cognome *" style={{ borderRadius: 10, border: "1px solid var(--border)", background: "var(--bg-card)", color: "var(--white)", padding: 12, fontSize: 14, fontFamily: "var(--font)" }} />
+              </div>
+              <input value={email} onChange={(e) => { setEmail(e.target.value); setEmailError(""); }} placeholder="nome@tuaazienda.it *" style={{ width: "100%", marginTop: 10, borderRadius: 10, border: "1px solid var(--border)", background: "var(--bg-card)", color: "var(--white)", padding: 12, fontSize: 14, fontFamily: "var(--font)", boxSizing: "border-box" }} />
+              {emailError && <p style={{ color: "var(--coral)", fontSize: 13, marginTop: 6 }}>{emailError}</p>}
+            </div>
+
+            <button className="btn btn-primary" style={{ fontSize: 16, padding: "14px 36px", marginTop: 20 }} onClick={submitEmail}>Prenota la call</button>
             <p className="muted" style={{ fontSize: 13, marginTop: 12 }}>Scegli tu giorno e ora. Se capiamo che il servizio non fa per te, te lo diciamo subito.</p>
           </div>
         </section>
