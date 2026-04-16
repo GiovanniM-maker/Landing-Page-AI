@@ -938,7 +938,7 @@ export default function App() {
 
         <section className="container grid-bg" style={{ paddingBottom: 100 }}>
           <p className="kicker">Impatto reale</p>
-          <h2 style={{ fontSize: 48, lineHeight: 1.06, letterSpacing: "-.03em", marginTop: 10, fontWeight: 800 }}>Tempi dimezzati. Morale al massimo, errori al minimo.</h2>
+          <h2 style={{ fontSize: 48, lineHeight: 1.06, letterSpacing: "-.03em", marginTop: 10, fontWeight: 800 }}>Tempi dimezzati. Morale al massimo, errore al minimo.</h2>
           <p className="muted" style={{ maxWidth: "70ch", marginTop: 14, lineHeight: 1.65 }}>Non ci piacciono le promesse da guru. Preferiamo le soluzioni che danno un contributo vero. Ottimizzare il catalogo significa liberare risorse preziose e arrivare sul mercato prima dei tuoi competitor.</p>
 
           <div className="card" style={{ padding: 28, marginTop: 28 }}>
